@@ -1,0 +1,73 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content">
+    <section class="wrap main_sect">
+        <h1>Добро пожаловать на сайт Метропедий</h1>
+    </section>
+    <h2 class="wrap">Последние новости:</h2>
+    <section class="wrap post_sect">
+        <div class="element">
+            <a href="">
+                <div class="prev_post">
+                    <img src="{% static 'images/plug.jpg' %}" alt="">
+                </div>
+                <div class="info_post">
+                    <h2>Статья 1</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
+                        iaculis neque, sit amet consectetur odio. Pellentesque et
+                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
+                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
+                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
+                </div>
+                <div class="date_author_post">
+                    <span>Автор</span>
+                    <span>ДД/ММ/ГГГГ</span>
+                </div>
+            </a>
+        </div>
+        <div class="element">
+            <a href="">
+                <div class="prev_post">
+                    <img src="{% static 'images/plug.jpg' %}" alt="">
+                </div>
+                <div class="info_post">
+                    <h2>Статья 2</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
+                        iaculis neque, sit amet consectetur odio. Pellentesque et
+                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
+                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
+                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
+                </div>
+                <div class="date_author_post">
+                    <span>Автор</span>
+                    <span>ДД/ММ/ГГГГ</span>
+                </div>
+            </a>
+        </div>
+        <div class="element">
+            <a href="">
+                <div class="prev_post">
+                    <img src="{% static 'images/plug.jpg' %}" alt="">
+                </div>
+                <div class="info_post">
+                    <h2>Статья 3</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
+                        iaculis neque, sit amet consectetur odio. Pellentesque et
+                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
+                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
+                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
+                </div>
+                <div class="date_author_post">
+                    <span>Автор</span>
+                    <span>ДД/ММ/ГГГГ</span>
+                </div>
+            </a>
+        </div>
+    </section>
+</main>
+{% endblock %}
