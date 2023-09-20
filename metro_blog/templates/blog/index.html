@@ -1,0 +1,28 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <section class="wrap">
+        <h1>{{ title }}</h1>
+        <ul>
+            {% for p in posts %}
+            <div class="element">
+                <a href="{{ p.get_absolute_url }}">
+                    <div class="prev_post">
+                        <img src="{{ p.image.url }}" alt="post_image">
+                    </div>
+                    <div class="info_post">
+                        <h2>{{ p.title }}</h2>
+                        <p>{{ p.content | linebreaksbr | truncatewords:15 }}</p>
+                    </div>
+                    <div class="date_author_post">
+                        <span>Автор</span>
+                        <span>{{ p.time_update }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

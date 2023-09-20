@@ -13,7 +13,7 @@ body{
 
     .menu{
     background: #ffffff;
-    box-shadow: 0px 2px 12px 2px #ff8454;;
+    box-shadow: 0px 2px 12px 2px #4388e4;;
     }
 
     ul{
@@ -30,7 +30,7 @@ body{
 
     .menu .logo{
     margin-right: 30%;
-    color: #ff8454;
+    color: #4388e4;
     }
 
     a{
@@ -38,7 +38,7 @@ body{
     }
 
     .menu a{
-    color: #ff8454;
+    color: #4388e4;
     }
 
     .content .wrap{
@@ -50,23 +50,31 @@ body{
     }
 
     h1, h2, h4{
-    color: #ff8454;
+    color: #4388e4;
     }
     button{
     border-radius: 16px;
-    box-shadow: 0px 2px 12px 2px #ff8454;
+    box-shadow: 0px 2px 12px 2px #4388e4;
     padding: 10px 40px;
     font-size: 24px;
     border: 0;
     margin-top: 0;
     background: transparent;
     border: none;
-    color: #ff8454;
+    color: #4388e4;
     }
     button:hover{
     cursor: pointer;
-    background: #ff8454;
+    background: #4388e4;
     color: #fff;
+    }
+    .navbar li{
+        text-align: right;
+        flex-basis: 40%;
+    }
+    .navbar li .logo{
+        text-align: left;
+        flex-basis: 30%;
     }
     .main_sect{
     margin: 50px auto;
@@ -107,10 +115,11 @@ body{
     justify-content: space-between;
     flex-basis: 360px;
     box-sizing: border-box;
-    box-shadow: 0px 2px 12px 2px #ff8454;
+    box-shadow: 0px 2px 12px 2px #4388e4;
     border-radius: 7px;
     margin: 10px;
     padding: 5px;
+    max-width: 33%;
     }
 
     .prev_post img{
@@ -119,6 +128,12 @@ body{
 
     .info_post{
     margin-bottom: 50px;
+    }
+
+    .info_post p{
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
     }
 
     .date_author_post{
@@ -130,5 +145,22 @@ body{
 
     .date_author_post span{
     margin: 0 10px;
+    font-size: 16px;
     color: #00000080;
+    }
+
+    .post{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .post p{
+        line-height: 20px;
+        max-width: 45%;
+    }
+
+    .post img{
+        max-width: 45%;
     }
