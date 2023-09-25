@@ -10,7 +10,7 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=False, verbose_name='Картинка')
     time_created = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
-    line = models.OneToOneField(Line, on_delete=models.PROTECT, blank=True, null=True, verbose_name='линия')
+    line = models.ForeignKey(Line, on_delete=models.PROTECT, blank=True, null=True, verbose_name='линия')
 
     def __str__(self):
         return self.title
