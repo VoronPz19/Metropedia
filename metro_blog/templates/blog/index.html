@@ -4,23 +4,23 @@
 <main class="content">
     <section class="wrap">
         <h1>{{ title }}</h1>
-        <ul>
+        <ul class="post_list">
             {% for p in posts %}
-            <div class="element">
+            <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                 <a href="{{ p.get_absolute_url }}">
                     <div class="prev_post">
+                        <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
+                            <span>Город - {{ p.line.title }}</span>
+                        </div>
                         <img src="{{ p.image.url }}" alt="post_image">
                     </div>
-                    <div class="info_post">
-                        <h2>{{ p.title }}</h2>
-                        <p>{{ p.content | linebreaksbr | truncatewords:15 }}</p>
-                    </div>
-                    <div class="date_author_post">
-                        <span>Автор</span>
+                    <h2>{{ p.title }}</h2>
+                    <p>{{ p.content | linebreaksbr | truncatewords:15 }}</p>
+                    <div class="date_post">
                         <span>{{ p.time_update }}</span>
                     </div>
                 </a>
-            </div>
+            </li>
             {% endfor %}
         </ul>
     </section>
