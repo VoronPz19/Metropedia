@@ -20,6 +20,13 @@ class CityInfo(models.Model):
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
                               default='images/plugs/plug_city.jpg', verbose_name='Картинка')
 
+    def __str__(self):
+        return self.city
+
+    class Meta:
+        verbose_name = 'Информация о городе'
+        verbose_name_plural = 'Информация о городе'
+
 
 class Line(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название линий')
@@ -34,7 +41,6 @@ class Line(models.Model):
     class Meta:
         verbose_name = 'Линия'
         verbose_name_plural = 'Линии'
-        ordering = ['number']
 
 
 class LineInfo(models.Model):
@@ -42,3 +48,10 @@ class LineInfo(models.Model):
     info = models.TextField(blank=True, null=True, verbose_name='Текст')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
                               default='images/plugs/plug_line.jpg', verbose_name='Картинка')
+
+    def __str__(self):
+        return self.line
+
+    class Meta:
+        verbose_name = 'Информация о линий'
+        verbose_name_plural = 'Информация о линий'
