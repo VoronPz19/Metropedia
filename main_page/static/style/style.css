@@ -160,6 +160,16 @@ h1, h2, h4{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 375px) {
+    .element{
+        max-width: 120%;
+    }
+    .post_list{
+        max-width: 120%;
     }
 }
 
