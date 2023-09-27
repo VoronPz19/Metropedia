@@ -8,6 +8,7 @@
     </section>
     <h2 class="wrap">Последние новости:</h2>
     <section class="wrap post_sect">
+        {% if posts %}
         <ul class="post_list">
             {% for p in posts %}
             <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
@@ -27,6 +28,7 @@
             </li>
             {% endfor %}
         </ul>
+        {% endif %}
     </section>
 </main>
 {% endblock %}
