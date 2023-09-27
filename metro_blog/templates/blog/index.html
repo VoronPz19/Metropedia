@@ -8,11 +8,12 @@
         <ul class="post_list">
             {% for p in posts %}
             <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+                <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
+                    <a href=""><span>{{ p.line.city.title }}</span></a>
+                    <a href=""><span>{{ p.line.title }}</span></a>
+                </div>
                 <a href="{{ p.get_absolute_url }}">
                     <div class="prev_post">
-                        <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                            <span>Город - {{ p.line.title }}</span>
-                        </div>
                         <img src="{{ p.image.url }}" alt="post_image">
                     </div>
                     <h2>{{ p.title }}</h2>
