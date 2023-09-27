@@ -1,6 +1,3 @@
-from .models import *
-from django.db.models import Count
-
 menu = [{'title': 'Информация метрополитена', 'url_name': 'main'},
         {'title': 'Новости метрополитена', 'url_name': 'blogs'},
 ]
