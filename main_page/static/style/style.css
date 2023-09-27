@@ -136,6 +136,8 @@ h1, h2, h4{
 }
 
 .element{
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     margin: 10px;
     max-width: 30%;
@@ -169,10 +171,8 @@ h1, h2, h4{
 }
 
 .cat_post{
-    height: 30px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
