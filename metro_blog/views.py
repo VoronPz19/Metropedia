@@ -1,12 +1,9 @@
 from django.views.generic import ListView, DetailView
 from .models import *
-
-menu = [{'title': 'добавить статью', 'url_name': 'index'},
-        {'title': 'Войти', 'url_name': 'index'},
-        {'title': 'Статьи', 'url_name': 'index'}]
+from main_page.utils import DataMixin
 
 
-class Blogs(ListView):
+class Blogs(DataMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -18,7 +15,7 @@ class Blogs(ListView):
         return context
 
 
-class ShowPost(DetailView):
+class ShowPost(DataMixin, DetailView):
     model = Blog
     template_name = 'blog/post.html'
     slug_url_kwarg = 'post_slug'
