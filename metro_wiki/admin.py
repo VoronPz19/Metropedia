@@ -18,3 +18,5 @@ class CityAdmin(admin.ModelAdmin):
 
 admin.site.register(Line, LineAdmin)
 admin.site.register(City, CityAdmin)
+admin.site.register(LineInfo)
+admin.site.register(CityInfo)

@@ -14,6 +14,13 @@ class City(models.Model):
         verbose_name_plural = 'Города'
 
 
+class CityInfo(models.Model):
+    city = models.OneToOneField(City, on_delete=models.PROTECT, verbose_name='линия')
+    info = models.TextField(blank=True, null=True, verbose_name='Текст')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
+                              default='images/slugs/slug_city.jpg', verbose_name='Картинка')
+
+
 class Line(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название линий')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
@@ -28,3 +35,10 @@ class Line(models.Model):
         verbose_name = 'Линия'
         verbose_name_plural = 'Линии'
         ordering = ['number']
+
+
+class LineInfo(models.Model):
+    line = models.OneToOneField(Line, on_delete=models.PROTECT, verbose_name='линия')
+    info = models.TextField(blank=True, null=True, verbose_name='Текст')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
+                              default='images/slugs/slug_line.jpg', verbose_name='Картинка')
