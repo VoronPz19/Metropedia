@@ -1,5 +1,5 @@
 from django.db import models
-from main_page.models import Line
+from metro_wiki.models import Line
 from django.urls import reverse
 
 
