@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_page.apps.MainPageConfig',
     'metro_blog.apps.MetroBlogConfig',
-    'colorfield'
+    'metro_wiki.apps.MetroWikiConfig',
+    'colorfield',
 ]
 
 MIDDLEWARE = [
