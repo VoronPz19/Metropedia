@@ -8,66 +8,25 @@
     </section>
     <h2 class="wrap">Последние новости:</h2>
     <section class="wrap post_sect">
-        <div class="element">
-            <a href="">
-                <div class="prev_post">
-                    <img src="{% static 'images/plug.jpg' %}" alt="">
-                </div>
-                <div class="info_post">
-                    <h2>Статья 1</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
-                        iaculis neque, sit amet consectetur odio. Pellentesque et
-                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
-                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
-                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
-                </div>
-                <div class="date_author_post">
-                    <span>Автор</span>
-                    <span>ДД/ММ/ГГГГ</span>
-                </div>
-            </a>
-        </div>
-        <div class="element">
-            <a href="">
-                <div class="prev_post">
-                    <img src="{% static 'images/plug.jpg' %}" alt="">
-                </div>
-                <div class="info_post">
-                    <h2>Статья 2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
-                        iaculis neque, sit amet consectetur odio. Pellentesque et
-                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
-                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
-                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
-                </div>
-                <div class="date_author_post">
-                    <span>Автор</span>
-                    <span>ДД/ММ/ГГГГ</span>
-                </div>
-            </a>
-        </div>
-        <div class="element">
-            <a href="">
-                <div class="prev_post">
-                    <img src="{% static 'images/plug.jpg' %}" alt="">
-                </div>
-                <div class="info_post">
-                    <h2>Статья 3</h2>
-                    <p class="post_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nulla eu sapien sed est ornare ultricies. Suspendisse ac
-                        iaculis neque, sit amet consectetur odio. Pellentesque et
-                        sapien malesuada, ultrices quam quis, lacinia arcu. Nulla
-                        ut lorem vitae ante sagittis porttitor. Cras id quam ut
-                        mauris pharetra sagittis. Maecenas ac erat pharetra.</p>
-                </div>
-                <div class="date_author_post">
-                    <span>Автор</span>
-                    <span>ДД/ММ/ГГГГ</span>
-                </div>
-            </a>
-        </div>
+        <ul class="post_list">
+            {% for p in posts %}
+            <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+                <a href="{{ p.get_absolute_url }}">
+                    <div class="prev_post">
+                        <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
+                            <span>Город - {{ p.line.title }}</span>
+                        </div>
+                        <img src="{{ p.image.url }}" alt="post_image">
+                    </div>
+                    <h2>{{ p.title }}</h2>
+                    <p>{{ p.content | linebreaksbr | truncatewords:15 }}</p>
+                    <div class="date_post">
+                        <span>{{ p.time_update }}</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
     </section>
 </main>
 {% endblock %}
