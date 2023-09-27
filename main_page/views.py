@@ -1,5 +1,14 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from metro_blog.models import *
+from main_page.utils import DataMixin
 
 
-def main(request):
-    return render(request, 'main_page/index.html')
+class MainPage(DataMixin, ListView):
+    model = Blog
+    template_name = 'main_page/index.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Главная страница')
+        return dict(list(context.items()) + list(c_def.items()))
