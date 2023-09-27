@@ -26,5 +26,5 @@ class Line(models.Model):
 
     class Meta:
         verbose_name = 'Линия'
-        verbose_name_plural = 'Линий'
+        verbose_name_plural = 'Линии'
         ordering = ['number']
