@@ -1,6 +1,5 @@
 menu = [{'title': 'Информация метрополитена', 'url_name': 'main'},
-        {'title': 'Новости метрополитена', 'url_name': 'blogs'},
-]
+        {'title': 'Новости метрополитена', 'url_name': 'blogs'}]
 
 
 class DataMixin:
