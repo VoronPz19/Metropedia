@@ -17,8 +17,7 @@ class City(models.Model):
 class CityInfo(models.Model):
     city = models.OneToOneField(City, on_delete=models.PROTECT, verbose_name='линия')
     info = models.TextField(blank=True, null=True, verbose_name='Текст')
-    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
-                              default='images/plugs/plug_city.jpg', verbose_name='Картинка')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
     def __str__(self):
         return self.city
@@ -46,8 +45,7 @@ class Line(models.Model):
 class LineInfo(models.Model):
     line = models.OneToOneField(Line, on_delete=models.PROTECT, verbose_name='линия')
     info = models.TextField(blank=True, null=True, verbose_name='Текст')
-    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True,
-                              default='images/plugs/plug_line.jpg', verbose_name='Картинка')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
     def __str__(self):
         return self.line
