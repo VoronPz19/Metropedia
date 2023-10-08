@@ -1,5 +1,6 @@
 {% extends 'main_page/base.html' %}
 {% load static %}
+{% load blog_filters %}
 
 {% block content %}
 <main class="content">
@@ -20,7 +21,7 @@
                         <img src="{{ p.image.url }}" alt="post_image">
                     </div>
                     <h2>{{ p.title }}</h2>
-                    <p>{{ p.content | linebreaksbr | truncatewords:15 }}</p>
+                    <p>{{ p.content | striptags | replace_ndash  | linebreaksbr | truncatewords:15 }}</p>
                     <div class="date_post">
                         <span>{{ p.time_update }}</span>
                     </div>
