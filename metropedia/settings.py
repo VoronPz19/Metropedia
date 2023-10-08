@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'metro_blog.apps.MetroBlogConfig',
     'metro_wiki.apps.MetroWikiConfig',
     'colorfield',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +124,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / STATIC_URL
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 MEDIA_URL = 'media/'
 
