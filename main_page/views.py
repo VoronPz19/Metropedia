@@ -3,7 +3,7 @@ from metro_blog.models import *
 from main_page.utils import DataMixin
 
 
-class MainPage(DataMixin, ListView):
+class LastNews(DataMixin, ListView):
     model = Blog
     template_name = 'main_page/index.html'
     context_object_name = 'posts'
