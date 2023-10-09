@@ -1,9 +1,9 @@
 from django.views.generic import ListView, DetailView
 from metro_blog.models import *
-from main_page.utils import DataMixin
+from main_page.utils import DataMixin, LastNewsMixin
 
 
-class LastNews(DataMixin, ListView):
+class LastNews(DataMixin, LastNewsMixin, ListView):
     model = Blog
     template_name = 'main_page/index.html'
     context_object_name = 'posts'
