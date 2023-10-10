@@ -36,5 +36,17 @@
         </ul>
         {% endif %}
     </section>
+    <h2 class="wrap">Города:</h2>
+    <section class="wrap post_sect">
+        <ul class="cities_list">
+            {% for p in posts %}
+            <li class="city_element">
+                <a href="{{ p.line.city.get_absolute_url }}">
+                    <button class="btn_c">{{ p.line.city.title }}</button>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
 </main>
 {% endblock %}
