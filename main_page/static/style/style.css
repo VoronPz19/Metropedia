@@ -110,7 +110,6 @@ h1, h2, h4{
 }
 
 .content li{
-    box-shadow: 0 2px 8px 2px #000;
     margin-bottom: 20px;
     font-size: 20px;
 }
@@ -292,4 +291,24 @@ color: #00000080;
     color: #fff;
     font-size: 30px;
     font-weight: bold;
+}
+
+.btn_c{
+    background: #ccc;
+}
+
+.cities_list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    align-items: stretch;
+}
+
+.city_element{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 10px;
 }
