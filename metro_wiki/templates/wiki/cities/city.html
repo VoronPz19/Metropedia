@@ -1,5 +1,13 @@
 {% extends 'main_page/base.html' %}
 
 {% block content %}
-<h1>город</h1>
+<main class="content">
+    <section class="wrap city_post">
+        {% if post.image %}
+            <img class="preview_img" src="{{ post.image.url }}" alt="post_image">
+        {% endif %}
+        <h1>{{ cities.title }}</h1>
+        <p>{{ cities.content | safe | linebreaksbr }}</p>
+    </section>
+</main>
 {% endblock %}
