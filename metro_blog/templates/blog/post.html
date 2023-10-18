@@ -2,7 +2,7 @@
 
 {% block content %}
 <main class="content post_style">
-    <section class="wrap">
+    <section class="wrap_post">
         {% if post.image %}
         <img class="preview_img" src="{{ post.image.url }}" alt="post_image">
         <div class="line_parent">
@@ -15,7 +15,7 @@
             </a>
         </div>
         {% else %}
-        <div class="line_parent mt30">
+        <div class="line_parent mt90">
             <div class="line"
                  style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ post.line.color }} 10%, {{ post.line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
             <a href="#">
@@ -25,12 +25,19 @@
             </a>
         </div>
         {% endif %}
-        <h1>{{ post.title }}</h1>
-        <div class="post">
-            <p> {{ post.content | safe | linebreaksbr }}</p>
-        </div>
-        <div class="date_post">
-            <span>{{ p.time_update }}</span>
+        <div class="wrap_text">
+            <h1>{{ post.title }}</h1>
+            <div class="post">
+                <p> {{ post.content | safe | linebreaksbr }}</p>
+            </div>
+            <div class="date_post">
+                <span>{{ post.time_update }}</span>
+                {% if post.source %}
+                <a href="{{ post.source }}" target="_blank" class="date_source">
+                    <span>Ссылка на источник:</span>
+                </a>
+                {% endif %}
+            </div>
         </div>
     </section>
 </main>
