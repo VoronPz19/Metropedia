@@ -4,49 +4,49 @@
 
 {% block content %}
 <main class="content">
-    <section class="wrap main_sect">
+    <div class="wrap">
         <h1>Добро пожаловать на сайт Метропедий</h1>
-    </section>
-    <h2 class="wrap">Последние новости:</h2>
-    <section class="wrap post_sect">
-        {% if posts %}
-        <ul class="post_list">
-            {% for p in posts %}
-            <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
-                <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                    <a href="{{ p.line.city.get_absolute_url }}"><span>{{ p.line.city.title }}</span></a>
-                    <a href=""><span>{{ p.line.title }}</span></a>
-                </div>
-                <a href="{{ p.get_absolute_url }}">
-                    <div class="prev_post">
-                        {% if p.image %}
+        <section class="post_sect">
+            <h2>Последние новости:</h2>
+            {% if posts %}
+            <ul class="post_list">
+                {% for p in posts %}
+                <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+                    <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
+                        <a href="{{ p.line.city.get_absolute_url }}"><span>{{ p.line.city.title }}</span></a>
+                        <a href=""><span>{{ p.line.title }}</span></a>
+                    </div>
+                    <a href="{{ p.get_absolute_url }}">
+                        <div class="prev_post">
+                            {% if p.image %}
                             <img src="{{ p.image.url }}" alt="post_image">
-                        {% else %}
+                            {% else %}
                             <img src="{% static 'images/plug.jpg' %}" alt="post_image">
-                        {% endif %}
-                    </div>
-                    <h2>{{ p.title }}</h2>
-                    <p>{{ p.content | striptags | replace_ndash  | linebreaksbr | truncatewords:15 }}</p>
-                    <div class="date_post">
-                        <span>{{ p.time_update }}</span>
-                    </div>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </section>
-    <h2 class="wrap">Города:</h2>
-    <section class="wrap post_sect">
-        <ul class="cities_list">
-            {% for c in cities %}
+                            {% endif %}
+                        </div>
+                        <h2>{{ p.title }}</h2>
+                        <p>{{ p.content | striptags | replace_ndash | linebreaksbr | truncatewords:15 }}</p>
+                        <div class="date_post">
+                            <span>{{ p.time_update }}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </section>
+        <section class="post_sect">
+            <h2>Города:</h2>
+            <ul class="cities_list">
+                {% for c in cities %}
                 <li class="city_element">
                     <a href="{{ c.get_absolute_url }}">
                         <button class="btn_c">{{ c.title }}</button>
                     </a>
                 </li>
-            {% endfor %}
-        </ul>
-    </section>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
 </main>
 {% endblock %}
