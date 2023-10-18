@@ -2,12 +2,14 @@
 
 {% block content %}
 <main class="content">
-    <section class="wrap city_post">
+    <section class="wrap_post">
         {% if post.image %}
             <img class="preview_img" src="{{ post.image.url }}" alt="post_image">
         {% endif %}
-        <h1>{{ cities.title }}</h1>
-        <p>{{ cities.content | safe | linebreaksbr }}</p>
+        <div class="wrap_text">
+            <h1>{{ cities.title }}</h1>
+            <p>{{ cities.content | safe | linebreaksbr }}</p>
+        </div>
     </section>
 </main>
 {% endblock %}
