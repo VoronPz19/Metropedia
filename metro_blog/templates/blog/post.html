@@ -8,9 +8,9 @@
         <div class="line_parent">
             <div class="line"
                  style="background: {{ post.line.color }};"></div>
-            <a href="#">
+            <a href="{{ post.line.get_absolute_url }}">
                 <div class="circle" style="background: {{ post.line.color }}">
-                    <p>{{ post.line.number }}</p>
+                    <p style="color: {{ post.line.text_color }};">{{ post.line.number }}</p>
                 </div>
             </a>
         </div>
