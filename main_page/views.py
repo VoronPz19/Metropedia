@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from metro_blog.models import *
 from metro_wiki.models import *
@@ -15,8 +14,3 @@ class LastNews(DataMixin, LastNewsMixin, ListView):
         c_def = self.get_user_context(title='Главная страница')
         return dict(list(context.items()) + list(c_def.items()))
 
-
-def cities(request):
-    city = City.objects.all()
-    context = {'cities': city}
-    return render(request, 'main_page/index.html', context)
