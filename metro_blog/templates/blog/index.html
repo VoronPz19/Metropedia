@@ -9,7 +9,7 @@
         {% if posts %}
         <ul class="post_list">
             {% for p in posts %}
-            <li class="element" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+            <li class="element mw-wrap" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                 <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
                     <a href="{{ p.line.city.get_absolute_url }}"><span>{{ p.line.city.title }}</span></a>
                     <a href=""><span>{{ p.line.title }}</span></a>
@@ -22,8 +22,8 @@
                             <img src="{% static 'images/plug.jpg' %}" alt="post_image">
                         {% endif %}
                     </div>
-                    <h2>{{ p.title }}</h2>
-                    <p>{{ p.content | striptags | replace_ndash  | linebreaksbr | truncatewords:15 }}</p>
+                    <h2>{{ p.title | truncatechars:50 }}</h2>
+                    <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15 }}</p>
                     <div class="date_post">
                         <span>{{ p.time_update }}</span>
                     </div>
