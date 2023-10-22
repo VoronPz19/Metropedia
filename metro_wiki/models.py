@@ -25,7 +25,8 @@ class Line(models.Model):
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     content = models.TextField(blank=True, null=True, verbose_name='Текст')
     number = models.CharField(max_length=3, blank=True, verbose_name='Номер линий')
-    color = ColorField(default='#EF161E', verbose_name='Цвет линий')
+    color_text = ColorField(default='#FFFFFF', verbose_name='Цвет текста')
+    color = ColorField(default='#EF161E', verbose_name='Цвет')
     city = models.ForeignKey(City, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
