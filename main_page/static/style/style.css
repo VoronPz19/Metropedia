@@ -176,11 +176,13 @@ h1, h2, h4{
     flex-direction: column;
     box-sizing: border-box;
     margin: 10px;
-    max-width: 30%;
 }
 
+.mw-wrap{
+    max-width: 30%;
+}
 @media (max-width: 1080px) {
-    .element{
+    .mw-wrap{
         max-width: 45%;
     }
     .post_list{
@@ -189,7 +191,7 @@ h1, h2, h4{
 }
 
 @media (max-width: 720px) {
-    .element{
+    .mw-wrap{
         max-width: 100%;
     }
     .post_list{
@@ -242,7 +244,7 @@ h1, h2, h4{
 
 .element a h2{
     margin: 0 20px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .element a p{
@@ -327,7 +329,6 @@ color: #00000080;
     margin: 0;
     margin-top: 25%;
     text-align: center;
-    color: #fff;
     font-size: 30px;
     font-weight: bold;
 }
@@ -370,4 +371,101 @@ color: #00000080;
 .city_post p img{
     width: 100%;
     margin-bottom: 10px;
+}
+
+.horizontal_list{
+    width: 50%;
+    height: 605px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.horizontal_list::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.horizontal_list::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.horizontal_list::-webkit-scrollbar-thumb
+{
+  background-color: #4388e4;
+}
+
+.horizontal_list .element{
+    height: 55px;
+}
+
+.horizontal_list .element a{
+    flex-direction: row;
+    align-items: center;
+}
+
+.horizontal_list .element a h2{
+    font-size: 15px;
+}
+
+.horizontal_list li{
+    border-radius: 27.5px;
+    height: 55px;
+}
+
+.circle_line{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.horizontal_list .element a .circle_line p{
+    margin: 0;
+    text-align: center;
+    margin-top: 30%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ml_32{
+	margin-left: 32px;
+}
+
+.scheme_line{
+    display: flex;
+}
+
+.scheme{
+    width: 50%;
+    height: 50%;
+}
+
+.list-pages{
+    display: flex;
+    justify-content: center;
+}
+
+.list-pages .page-num-selected{
+    background-color: #666;
+    padding: 20px;
+    border: 0;
+}
+
+.list-pages a{
+    background-color: #999;
+    padding: 20px;
+    border: 0;
+    display: block;
+    color: #000000;
+}
+
+.page_num{
+    margin: 6px;
+    border: 0;
+    font-weight: bold;
 }
