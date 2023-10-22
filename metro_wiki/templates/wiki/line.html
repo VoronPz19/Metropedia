@@ -1,0 +1,15 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <section class="wrap_post">
+        {% if line.image %}
+            <img class="preview_img" src="{{ line.image.url }}" alt="post_image">
+        {% endif %}
+        <div class="wrap_text">
+            <h1>{{ line.title }}</h1>
+            <p>{{ line.content | safe | linebreaksbr }}</p>
+        </div> 
+    </section>
+</main>
+{% endblock %}
