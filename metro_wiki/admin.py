@@ -38,7 +38,7 @@ class TransferAdmin(admin.ModelAdmin):
 class StationAdmin(admin.ModelAdmin):
     form = StationAdminForm
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ('id', 'title', 'status', 'line')
+    list_display = ('id', 'title', 'num_of_station', 'status', 'line')
     list_display_links = ('id', 'title',)
     search_fields = ('title', 'line',)
 
