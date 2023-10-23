@@ -28,6 +28,13 @@ class CityAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class TransferAdmin(admin.ModelAdmin):
+    form = StationAdminForm
+    list_display = ('station', 'line',)
+    list_display_links = ('station', 'line',)
+    search_fields = ('station', 'line',)
+
+
 class StationAdmin(admin.ModelAdmin):
     form = StationAdminForm
     prepopulated_fields = {'slug': ('title',)}
@@ -55,3 +62,4 @@ class CityAdmin(admin.ModelAdmin):
 admin.site.register(Station, StationAdmin)
 admin.site.register(Line, LineAdmin)
 admin.site.register(City, CityAdmin)
+admin.site.register(Transfers, TransferAdmin)

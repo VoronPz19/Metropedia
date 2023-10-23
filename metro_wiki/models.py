@@ -3,6 +3,21 @@ from colorfield.fields import ColorField
 from django.urls import reverse
 
 
+class Categories:
+    title = models.CharField(max_length=100, blank=False, verbose_name='Название категорий')
+    slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('categories', kwargs={'categories_slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+
 class City(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название метрополитена')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
@@ -68,3 +83,15 @@ class Station(models.Model):
         verbose_name = 'Станция'
         verbose_name_plural = 'Станций'
         ordering = ['num_of_station', 'title']
+
+
+class Transfers(models.Model):
+    line = models.ForeignKey(Line, on_delete=models.PROTECT, verbose_name='Линия')
+    station = models.ForeignKey(Station, on_delete=models.PROTECT, verbose_name='Станций')
+
+    def __str__(self):
+        return self.station.title
+
+    class Meta:
+        verbose_name = 'Пересадка'
+        verbose_name_plural = 'Пересадки'
