@@ -29,8 +29,7 @@
                             {% endif %}
                         </div>
                         <h2>{{ p.title | truncatechars:50 }}</h2>
-                        <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15
-                            }}</p>
+                        <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15 }}</p>
                         <div class="date_post">
                             <span>{{ p.time_update }}</span>
                         </div>
