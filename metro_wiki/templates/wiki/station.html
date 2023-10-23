@@ -3,12 +3,20 @@
 {% block content %}
 <main class="content">
     <section class="wrap_post">
-        {% if post.image %}
-            <img class="preview_img" src="{{ post.image.url }}" alt="post_image">
+        {% if station.image %}
+        <img class="preview_img" src="{{ station.image.url }}" alt="post_image">
         {% endif %}
+        <div class="station_nav" style="background: {{ station.line.color }}">
+            <a href="{{ station.line.city.get_absolute_url }}">
+                <span style="color: {{ station.line.color_text }};">{{ station.line.city.title }}</span>
+            </a>
+            <a href="{{ station.line.get_absolute_url }}">
+                <span style="color: {{ station.line.color_text }};">{{ station.line.title }}</span>
+            </a>
+        </div>
         <div class="wrap_text">
-            <h1>{{ cities.title }}</h1>
-            <p>{{ cities.content | safe | linebreaksbr }}</p>
+            <h1>{{ station.title }}</h1>
+            <p>{{ station.content | safe | linebreaksbr }}</p>
         </div>
     </section>
 </main>
