@@ -25,3 +25,15 @@ class ShowLine(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title=context['line'])
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class ShowStation(DataMixin, DetailView):
+    model = Station
+    template_name = 'wiki/station.html'
+    slug_url_kwarg = 'station_slug'
+    context_object_name = 'station'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title=context['station'])
+        return dict(list(context.items()) + list(c_def.items()))
