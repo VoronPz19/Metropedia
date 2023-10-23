@@ -39,3 +39,31 @@ class Line(models.Model):
     class Meta:
         verbose_name = 'Линия'
         verbose_name_plural = 'Линии'
+
+
+class Station(models.Model):
+    STATUS_TYPE = (
+        ('Эксплуатируется', '🚇 Эксплуатируется'),
+        ('Строящиеся', '🛠️ Строящиеся'),
+        ('Проектируемая', '📄 Проектируемая'),
+        ('Закрытая', '🔒 Закрытая'),
+    )
+
+    title = models.CharField(max_length=100, blank=False, verbose_name='Название станций')
+    slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
+    content = models.TextField(blank=True, null=True, verbose_name='Текст')
+    num_of_station = models.IntegerField(default=1, verbose_name='Номер линий (север-юг/восток-запад)')
+    status = models.CharField(max_length=200, choices=STATUS_TYPE, default='Эксплуатируется', verbose_name='Статус')
+    line = models.ForeignKey(Line, on_delete=models.PROTECT, verbose_name='Линия')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('station', kwargs={'station_slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Станция'
+        verbose_name_plural = 'Станций'
+        ordering = ['num_of_station', 'title']
