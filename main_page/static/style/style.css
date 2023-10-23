@@ -159,11 +159,28 @@ h1, h2, h4{
     margin-bottom: 60px;
 }
 
-.post_list{
+.post_list, .post_main_list{
     display: flex;
     flex-direction: row;
+    max-width: 1100px;
+    overflow: auto;
+}
+
+@media (max-width: 1400px) {
+    .post_main_list{
+        max-width: 900px;
+    }
+}
+
+
+.post_list{
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: left;
+}
+
+.post_main_list{
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 .post_style{
@@ -176,9 +193,14 @@ h1, h2, h4{
     margin: 10px;
 }
 
+.minw-330{
+    min-width: 330px;
+}
+
 .mw-wrap{
     max-width: 30%;
 }
+
 @media (max-width: 1080px) {
     .mw-wrap{
         max-width: 45%;
@@ -186,13 +208,20 @@ h1, h2, h4{
     .post_list{
         justify-content: space-around;
     }
+    .post_main_list{
+        overflow: none;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 790px) {
     .mw-wrap{
         max-width: 100%;
     }
-    .post_list{
+    .post_list, .post_main_list{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -207,6 +236,23 @@ h1, h2, h4{
     .post_list{
         max-width: 120%;
     }
+}
+
+.post_main_list_scroll::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.post_main_list_scroll::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.post_main_list_scroll::-webkit-scrollbar-thumb
+{
+  background-color: #4388e4;
 }
 
 .element a{
@@ -401,6 +447,7 @@ color: #00000080;
     flex-direction: column;
     justify-content: flex-start;
     overflow: auto;
+    align-items: flex-end;
 }
 
 .horizontal_list .element{
@@ -410,6 +457,21 @@ color: #00000080;
 
 .horizontal_stations_list .element{
     height: 110px;
+    width: 90%;
+}
+
+.horizontal_stations_list .element:hover{
+    animation: 500ms ease-in-out forwards slidein_st;
+}
+  
+  @keyframes slidein_st {
+    0% {
+        width: 90%;
+    }
+  
+    100% {
+        width: 95%;
+    }
 }
 
 .horizontal_list .element a, .horizontal_stations_list .element a{
@@ -452,7 +514,7 @@ color: #00000080;
 }
 
 .station_text{
-    margin: 0 auto;
+    width: 250px;
 }
 
 .horizontal_stations_list .element a .station_text h2{
@@ -471,14 +533,38 @@ color: #00000080;
 }
 
 .station_nav{
+    height: 25px;
     margin-top: -4px;
     display: flex;
     justify-content: space-around;
 }
 
+.station_nav a{
+    margin-top: 10px;
+}
+
 .station_nav a span{
     font-size: 20px;
     font-weight: bold;
+    display: block;
+    border-radius: 5px;
+    padding: 0 20px;
+    margin-top: -10px;
+}
+
+.station_nav a:hover {
+    animation: 500ms ease-in-out forwards slidein;
+}
+  
+  @keyframes slidein {
+    0% {
+        margin-top: 10px;
+    }
+  
+    100% {
+        margin-top: -10px;
+        padding-bottom: 10px;
+    }
 }
 
 .ml_32{
