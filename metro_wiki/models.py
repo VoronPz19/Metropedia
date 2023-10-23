@@ -27,7 +27,7 @@ class Line(models.Model):
     number = models.CharField(max_length=3, blank=True, verbose_name='Номер линий')
     color_text = ColorField(default='#FFFFFF', verbose_name='Цвет текста')
     color = ColorField(default='#EF161E', verbose_name='Цвет')
-    city = models.ForeignKey(City, on_delete=models.PROTECT)
+    city = models.ForeignKey(City, on_delete=models.PROTECT, verbose_name='Город')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
     def __str__(self):
