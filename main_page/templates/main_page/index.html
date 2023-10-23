@@ -29,7 +29,8 @@
                             {% endif %}
                         </div>
                         <h2>{{ p.title | truncatechars:50 }}</h2>
-                        <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15 }}</p>
+                        <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15
+                            }}</p>
                         <div class="date_post">
                             <span>{{ p.time_update }}</span>
                         </div>
@@ -43,7 +44,6 @@
             <h2>Города:</h2>
             <ul class="cities_list">
                 {% for c in posts.line_set.all %}
-                <h3>{{ c.line.city.title }}</h3>
                 <li class="city_element">
                     <a href="{{ c.get_absolute_url }}">
                         <button class="btn_c">{{ c.title }}</button>
