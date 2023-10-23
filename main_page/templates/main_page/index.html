@@ -9,9 +9,9 @@
         <section class="post_sect">
             <h2>Последние новости:</h2>
             {% if posts %}
-            <ul class="post_list">
-                {% for p in posts|slice:"3" %}
-                <li class="element mw-wrap" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+            <ul class="post_main_list post_main_list_scroll">
+                {% for p in posts|slice:"5" %}
+                <li class="element minw-330" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                     <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
                         <a href="{{ p.line.city.get_absolute_url }}">
                             <span style="color: {{ p.line.color_text }};">{{ p.line.city.title }}</span>
