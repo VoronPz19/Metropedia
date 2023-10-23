@@ -9,8 +9,8 @@
             <div class="line"
                  style="background: {{ post.line.color }};"></div>
             <a href="{{ post.line.get_absolute_url }}">
-                <div class="circle" style="background: {{ post.line.color }}">
-                    <p style="color: {{ post.line.text_color }};">{{ post.line.number }}</p>
+                <div class="circle circle_a" style="background: {{ post.line.color }}">
+                    <p style="color: {{ post.line.color_text }};">{{ post.line.number }}</p>
                 </div>
             </a>
         </div>
@@ -18,9 +18,9 @@
         <div class="line_parent mt90">
             <div class="line"
                  style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ post.line.color }} 10%, {{ post.line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
-            <a href="#">
-                <div class="circle" style="background: {{ post.line.color }}">
-                    <p>{{ post.line.number }}</p>
+            <a href="{{ post.line.get_absolute_url }}">
+                <div class="circle circle_a" style="background: {{ post.line.color }}">
+                    <p style="color: {{ post.line.color_text }};">{{ post.line.number }}</p>
                 </div>
             </a>
         </div>
