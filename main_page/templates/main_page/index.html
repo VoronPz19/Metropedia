@@ -13,8 +13,12 @@
                 {% for p in posts|slice:"3" %}
                 <li class="element mw-wrap" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                     <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                        <a href="{{ p.line.city.get_absolute_url }}"><span>{{ p.line.city.title }}</span></a>
-                        <a href="{{ p.line.get_absolute_url }}"><span>{{ p.line.title }}</span></a>
+                        <a href="{{ p.line.city.get_absolute_url }}">
+                            <span style="color: {{ p.line.color_text }};">{{ p.line.city.title }}</span>
+                        </a>
+                        <a href="{{ p.line.get_absolute_url }}">
+                            <span style="color: {{ p.line.color_text }};">{{ p.line.title }}</span>
+                        </a>
                     </div>
                     <a href="{{ p.get_absolute_url }}">
                         <div class="prev_post">
@@ -37,9 +41,9 @@
         </section>
         <section class="post_sect">
             <h2>Города:</h2>
-            {% if posts.line.cities %}
             <ul class="cities_list">
-                {% for c in posts.line.cities %}
+                {% for c in posts.line_set.all %}
+                <h3>{{ c.line.city.title }}</h3>
                 <li class="city_element">
                     <a href="{{ c.get_absolute_url }}">
                         <button class="btn_c">{{ c.title }}</button>
@@ -47,7 +51,6 @@
                 </li>
                 {% endfor %}
             </ul>
-            {% endif %}
         </section>
     </div>
 </main>
