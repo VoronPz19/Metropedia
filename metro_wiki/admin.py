@@ -4,6 +4,14 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 
 
+class StationAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Station
+        fields = '__all__'
+
+
 class LineAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorUploadingWidget())
 
@@ -18,6 +26,14 @@ class CityAdminForm(forms.ModelForm):
     class Meta:
         model = City
         fields = '__all__'
+
+
+class StationAdmin(admin.ModelAdmin):
+    form = StationAdminForm
+    prepopulated_fields = {'slug': ('title',)}
+    list_display = ('id', 'title', 'status', 'line')
+    list_display_links = ('id', 'title',)
+    search_fields = ('title', 'line',)
 
 
 class LineAdmin(admin.ModelAdmin):
@@ -36,5 +52,6 @@ class CityAdmin(admin.ModelAdmin):
     search_fields = ('title',)
 
 
+admin.site.register(Station, StationAdmin)
 admin.site.register(Line, LineAdmin)
 admin.site.register(City, CityAdmin)
