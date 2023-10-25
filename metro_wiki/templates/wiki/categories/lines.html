@@ -1,0 +1,193 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content post_style">
+    <section class="wrap_post">
+        {% if line.image %}
+        <img class="preview_img" src="{{ line.image.url }}" alt="post_image">
+        <div class="line_parent">
+            <div class="line"
+                 style="background: {{ line.color }};"></div>
+            <div class="circle" style="background: {{ line.color }}">
+                <p style="color: {{ line.color_text }};">{{ line.number }}</p>
+            </div>
+        </div>
+        {% else %}
+        <div class="line_parent mt90">
+            <div class="line"
+                 style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ line.color }} 10%, {{ line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
+            <div class="circle" style="background: {{ line.color }}">
+                <p style="color: {{ line.color_text }};">{{ line.number }}</p>
+            </div>
+        </div>
+        {% endif %}
+        <ul class="horizontal_stations_list">
+            {% for st in line.station_set.all %}
+            {{ st.num_of_station }}
+            {{ num_of_station.num_of_station__max }}
+            <li class="element">
+                <a href="{{ st.get_absolute_url }}">
+                    {% if st.num_of_station == 1 %}
+                    {% if st.status == 'Эксплуатируется' %}
+                        <div class="num_line" style="background: {{ line.color }};">
+                            <div class="num_line_top"></div>
+                            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                    <g display="none" overflow="visible"
+                                       id="canvasGrid">
+                                        <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                              width="100%"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                             fill="#ffffff"/>
+                                    <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="{{ line.color }}"/>
+                                    <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                </g>
+                            </svg>
+                        </div>
+                        {% else %}
+                        <div class="num_line" style="background: {{ line.color }};">
+                            <div class="num_line_top"></div>
+                            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                    <g display="none" overflow="visible"
+                                       id="canvasGrid">
+                                        <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                              width="100%"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                             fill="#ffffff"/>
+                                    <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="{{ line.color }}80"/>
+                                    <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                </g>
+                            </svg>
+                        </div>
+                        {% endif %}
+                    {% elif st.num_of_station == st.num_of_station.is_end_station__max %}
+                    {% if st.status == 'Эксплуатируется' %}
+                        <div class="num_line" style="background: {{ line.color }};">
+                            <div class="num_line_bottom"></div>
+                            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                    <g display="none" overflow="visible"
+                                       id="canvasGrid">
+                                        <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                              width="100%"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                             fill="#ffffff"/>
+                                    <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="{{ line.color }}"/>
+                                    <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                </g>
+                            </svg>
+                        </div>
+                        {% else %}
+                        <div class="num_line" style="background: {{ line.color }};">
+                            <div class="num_line_bottom"></div>
+                            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                    <g display="none" overflow="visible"
+                                       id="canvasGrid">
+                                        <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                              width="100%"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                             fill="#ffffff"/>
+                                    <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="{{ line.color }}80"/>
+                                    <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                </g>
+                            </svg>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        {% if st.status == 'Эксплуатируется' %}
+                            <div class="num_line" style="background: {{ line.color }};">
+                                <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                        <g display="none" overflow="visible"
+                                           id="canvasGrid">
+                                            <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                                  width="100%"/>
+                                        </g>
+                                    </g>
+                                    <g>
+                                        <title>Layer 1</title>
+                                        <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                                 fill="#ffffff"/>
+                                        <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                                 stroke-width="0" stroke="#000" fill="{{ line.color }}"/>
+                                        <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                                 stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        {% else %}
+                        <div class="num_line" style="background: {{ line.color }};">
+                            <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect fill="none" id="canvas_background" height="50" width="50" y="-1" x="-1"/>
+                                    <g display="none" overflow="visible"
+                                       id="canvasGrid">
+                                        <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%"
+                                              width="100%"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <title>Layer 1</title>
+                                    <ellipse stroke="#000" ry="25" rx="25" id="svg_1" cy="25" cx="25" stroke-width="0"
+                                             fill="#ffffff"/>
+                                    <ellipse ry="20" rx="20" id="svg_2" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="{{ line.color }}80"/>
+                                    <ellipse ry="10" rx="10" id="svg_5" cy="25" cx="25" stroke-opacity="null"
+                                             stroke-width="0" stroke="#000" fill="#ffffff"/>
+                                </g>
+                            </svg>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if st.image %}
+                    <img class="station_img" src="{{ st.image.url }}" alt="{{ st.title }}">
+                    {% else %}
+                    <img class="station_img" src="{% static 'images/plug.jpg' %}" alt="post_image">
+                    {% endif %}
+                    <div class="station_text">
+                        <h2>{{ st.title | truncatechars:50 }}</h2>
+                        <p>Соостояние: {{ st.status }}</p>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="wrap_text">
+            <h1>{{ line.title }}</h1>
+            <p>{{ line.content | safe | linebreaksbr }}</p>
+        </div>
+    </section>
+</main>
+{% endblock %}
