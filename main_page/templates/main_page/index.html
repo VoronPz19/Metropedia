@@ -40,12 +40,14 @@
             {% endif %}
         </section>
         <section class="post_sect">
-            <h2>Города:</h2>
-            <ul class="cities_list">
-                {% for c in posts.line_set.all %}
-                <li class="city_element">
-                    <a href="{{ c.get_absolute_url }}">
-                        <button class="btn_c">{{ c.title }}</button>
+            <h2>Категорий:</h2>
+            <ul class="cats_list">
+                {% for c in cats %}
+                <li class="element">
+                    <a href="{% url c.url_name %}">
+                        <button class="btn_cats">
+                            <img src="{% static c.image %}" alt="cat_image">
+                            <span>{{ c.title }}</span></button>
                     </a>
                 </li>
                 {% endfor %}
