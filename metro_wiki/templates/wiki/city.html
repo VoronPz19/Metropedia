@@ -3,14 +3,14 @@
 {% block content %}
 <main class="content post_style">
     <section class="wrap_post">
-        {% if cities.image %}
-        <img class="preview_img" src="{{ cities.image.url }}" alt="post_image">
+        {% if city.image %}
+        <img class="preview_img" src="{{ city.image.url }}" alt="post_image">
         {% endif %}
-        <h1 class="wrap">{{ cities.title }}</h1>
+        <h1 class="wrap">{{ city.title }}</h1>
         <h2>Схема и линий:</h2>
         <div class="scheme_line">
             <ul class="horizontal_list">
-                {% for line in cities.line_set.all %}
+                {% for line in city.line_set.all %}
                 <li class="element" style="box-shadow: 0px 2px 12px 2px {{ line.color }};">
                     <a href="{{ line.get_absolute_url }}">
                         <div class="circle_line" style="background: {{ line.color }};">
@@ -21,11 +21,11 @@
                 </li>
                 {% endfor %}
             </ul>
-            <img class="scheme" src="{{ cities.image.url }}" alt="schem">
+            <img class="scheme" src="{{ city.image.url }}" alt="schem">
         </div>
         <div class="wrap_text">
             <h2> Информация о метрополитене:</h2>
-            <p>{{ cities.content | safe | linebreaksbr }}</p>
+            <p>{{ city.content | safe | linebreaksbr }}</p>
         </div>
     </section>
 </main>
