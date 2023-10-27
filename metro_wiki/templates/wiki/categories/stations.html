@@ -2,49 +2,21 @@
 {% load static %}
 
 {% block content %}
-<main class="content">
-    <section class="wrap_post">
-        {% if station.image %}
-        <img class="preview_img" src="{{ station.image.url }}" alt="post_image">
-        {% endif %}
-        <div class="station_nav" style="background: {{ station.line.color }}">
-            <a  href="{{ station.line.city.get_absolute_url }}">
-                <span style="color: {{ station.line.color_text }}; background: {{ station.line.color }}">{{ station.line.city.title }}</span>
-            </a>
-            <a href="{{ station.line.get_absolute_url }}">
-                <span style="color: {{ station.line.color_text }}; background: {{ station.line.color }}">{{ station.line.title }}</span>
-            </a>
-        </div>
-        <ul class="horizontal_stations_list">
-                {% for st in line.station_set.all %}
-                    <li class="element" style="box-shadow: 0px 2px 12px 2px {{ line.color }};">
-                        <a href="{{ st.get_absolute_url }}">
-                            {% if st.status == 'Эксплуатируется' %}
-                                <div class="num_line" style="background: {{ line.color }};">
-                                    <p style="color: {{ line.color_text }};">{{ line.number }}</p>
-                                </div>
-                            {% else %}
-                                <div class="num_line" style="background: {{ line.color }}80;">
-                                    <p style="color: {{ line.color_text }};">{{ line.number }}</p>
-                                </div>
-                            {% endif %}
-                            {% if st.image %}
-                                <img class="station_img" src="{{ st.image.url }}" alt="{{ st.title }}">
-                            {% else %}
-                                <img class="station_img" src="{% static 'images/plug.jpg' %}" alt="post_image">
-                            {% endif %}
-                            <div class="station_text">
-                                <h2>{{ st.title | truncatechars:50 }}</h2>
-                                <p>Соостояние: {{ st.status }}</p>
-                            </div>
-                        </a>
-                    </li>
+    <main class="content post_style">
+        <section class="wrap_post">
+            <img class="preview_img" src="{% static 'images/stations.jpg' %}" alt="cities_image">
+            <h1 class="cat_title">Категория: станций</h1>
+            <ul class="cats_list categories">
+                {% for c in cities %}
+                <li class="element">
+                    <a href="{{ c.get_absolute_url }}">
+                        <button class="btn_cats">
+                            <img src="{{ c.image.url }}" alt="city_image">
+                            <span>{{ c.title }}</span></button>
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
-        <div class="wrap_text">
-            <h1>{{ station.title }}</h1>
-            <p>{{ station.content | safe | linebreaksbr }}</p>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 {% endblock %}
