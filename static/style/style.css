@@ -1,22 +1,53 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
 body{
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccc;
 }
 
 main{
     margin-top: 108px;
 }
 
-.wrap{
+.wrap_navbar{
     max-width: 1250px;
     margin: 0 auto;
     padding: 10px 30px;
-    box-sizing: border-box;
+}
+
+.wrap{
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 10px 30px;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.wrap_post{
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.wrap_text{
+    padding: 10px 30px;
+}
+
+.wrap_text h1{
+    font-size: 30px;
+    text-align: center;
+    max-width: 80%;
+    margin: 20px auto;
 }
 
 .menu{
     position: fixed;
+    z-index: 999;
     width: 100%;
     top: 0px;
     background: #ffffff;
@@ -74,6 +105,9 @@ a{
         font-size: 8px;
         padding: 5px 10px;
     }
+    .wrap{
+        max-width: 95%;
+    }
   }
 
 .content .wrap{
@@ -96,8 +130,8 @@ h1, h2, h4{
     text-align: left;
 }
 
-.main_sect{
-    margin: 50px auto;
+.main_sect, h2{
+    text-align: center;
 }
 
 .post_sect{
@@ -106,11 +140,9 @@ h1, h2, h4{
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    box-sizing: border-box;
 }
 
 .content li{
-    box-shadow: 0 2px 8px 2px #000;
     margin-bottom: 20px;
     font-size: 20px;
 }
@@ -118,7 +150,6 @@ h1, h2, h4{
 .content a{
     color: #000;
     display: block;
-    box-sizing: border-box;
 }
 
 .block{
@@ -128,35 +159,69 @@ h1, h2, h4{
     margin-bottom: 60px;
 }
 
-.post_list{
+.post_list, .post_main_list{
     display: flex;
     flex-direction: row;
+    max-width: 1100px;
+    overflow: auto;
+}
+
+@media (max-width: 1400px) {
+    .post_main_list{
+        max-width: 900px;
+    }
+}
+
+
+.post_list{
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: left;
+}
+
+.post_main_list{
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.post_style{
+    margin-top: 70px;
 }
 
 .element{
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     margin: 10px;
+}
+
+.minw-330{
+    min-width: 330px;
+}
+
+.mw-wrap{
     max-width: 30%;
 }
 
 @media (max-width: 1080px) {
-    .element{
+    .mw-wrap{
         max-width: 45%;
     }
     .post_list{
         justify-content: space-around;
     }
-}
-
-@media (max-width: 720px) {
-    .element{
+    .post_main_list{
+        overflow: none;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         max-width: 100%;
     }
-    .post_list{
+}
+
+@media (max-width: 790px) {
+    .mw-wrap{
+        max-width: 100%;
+    }
+    .post_list, .post_main_list{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -171,6 +236,23 @@ h1, h2, h4{
     .post_list{
         max-width: 120%;
     }
+}
+
+.post_main_list_scroll::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.post_main_list_scroll::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.post_main_list_scroll::-webkit-scrollbar-thumb
+{
+  background-color: #4388e4;
 }
 
 .element a{
@@ -189,7 +271,6 @@ h1, h2, h4{
 .cat_post span{
     text-align: center;
     vertical-align: middle;
-    color: #fff;
     font-size: 20px;
     font-weight: bold;
     margin: 0;
@@ -199,14 +280,13 @@ h1, h2, h4{
 }
 
 .prev_post img{
-    box-sizing: border-box;
     width: 100%;
     height: 216.9px;
 }
 
 .element a h2{
     margin: 0 20px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .element a p{
@@ -231,27 +311,40 @@ font-size: 16px;
 color: #00000080;
 }
 
-.post{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    align-items: center;
+.date_source span{
+    color: #000000;
+}
+
+.date_source span:visited{
+    color: #00000080;
+}
+
+.date_source span:hover{
+    color: #00000080;
 }
 
 .post p{
     line-height: 20px;
-    max-width: 45%;
+    max-width: 100%;
 }
 
-.post img{
-    max-width: 45%;
+.preview_img{
+    object-fit: cover;
+    width: 100%;
+    height: 120px;
 }
 
 .line_parent{
     position: relative;
-    margin: 30px 0;
+    z-index: 0;
+    margin-top: -30px;
+    margin-bottom: 30px;
     height: 80px;
     width: 100%;
+}
+
+.mt90{
+    margin-top: 90px; 
 }
 
 .line{
@@ -270,7 +363,7 @@ color: #00000080;
     border-radius: 50%;
 }
 
-.circle:hover{
+.circle_a:hover{
     box-shadow: 0 0 12px 2px #fff ;
 }
 
@@ -278,7 +371,244 @@ color: #00000080;
     margin: 0;
     margin-top: 25%;
     text-align: center;
-    color: #fff;
     font-size: 30px;
     font-weight: bold;
+}
+
+.btn_c{
+    background: #ccc;
+}
+
+.cities_list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    align-items: stretch;
+}
+
+.city_element{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.city_post{
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.city_post p{
+    font-size: 20px;
+    text-align: center;
+}
+
+.city_post p img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.horizontal_list{
+    width: 50%;
+    height: 605px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.horizontal_list::-webkit-scrollbar-track, .horizontal_stations_list::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.horizontal_list::-webkit-scrollbar, .horizontal_stations_list::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.horizontal_list::-webkit-scrollbar-thumb, .horizontal_stations_list::-webkit-scrollbar-thumb
+{
+  background-color: #4388e4;
+}
+
+.horizontal_stations_list{
+    width: 50%;
+    max-height: 550px;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+    align-items: flex-end;
+}
+
+.horizontal_list .element{
+    height: 55px;
+    border-radius: 27.5px;
+}
+
+.horizontal_stations_list .element{
+    height: 110px;
+    width: 90%;
+    margin: 0;
+}
+
+.horizontal_stations_list .element:hover{
+    animation: 500ms ease-in-out forwards slidein_st;
+}
+  
+  @keyframes slidein_st {
+    0% {
+        width: 90%;
+    }
+  
+    100% {
+        width: 95%;
+    }
+}
+
+.horizontal_list .element a, .horizontal_stations_list .element a{
+    flex-direction: row;
+    align-items: center;
+}
+
+.horizontal_stations_list .element a{
+    justify-content: flex-start;
+}
+
+.horizontal_list .element a h2 {
+    font-size: 15px;
+}
+
+.circle_line{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.num_line{
+    position: relative;
+    height: 110px;
+    width: 16px;
+    margin: 0 30px;
+}
+
+.num_line_top, .num_line_bottom{
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
+}
+
+.num_line_bottom{
+    position: absolute;
+    top: 50%;
+}
+
+.num_line svg{
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    right: 50%;
+    margin-right: -25px;
+    
+}
+
+.horizontal_list .element a .circle_line p{
+    margin: 0;
+    text-align: center;
+    margin-top: 30%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.station_text{
+    width: 250px;
+}
+
+.horizontal_stations_list .element a .station_text h2{
+    font-size: 27px;
+}
+
+.horizontal_stations_list .element a .station_text p{
+    font-size: 14px;
+    text-align: center;
+}
+
+.station_img{
+    object-fit: cover;
+    width: 150px;
+    height: 100%;
+}
+
+.station_nav{
+    height: 25px;
+    margin-top: -4px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.station_nav a{
+    margin-top: 10px;
+}
+
+.station_nav a span{
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    border-radius: 5px;
+    padding: 0 20px;
+    margin-top: -10px;
+}
+
+.station_nav a:hover {
+    animation: 500ms ease-in-out forwards slidein;
+}
+  
+  @keyframes slidein {
+    0% {
+        margin-top: 10px;
+    }
+  
+    100% {
+        margin-top: -10px;
+        padding-bottom: 10px;
+    }
+}
+
+.ml_32{
+	margin-left: 32px;
+}
+
+.scheme_line{
+    display: flex;
+}
+
+.scheme{
+    width: 50%;
+    height: 50%;
+}
+
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+input:focus {
+    border: 3px solid #4388e4;
+  }
+
+.w-100{
+    width: 100%;
 }
