@@ -14,10 +14,10 @@
                 <li class="element minw-330" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                     <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
                         <a href="{{ p.line.city.get_absolute_url }}">
-                            <span style="color: {{ p.line.color_text }};">{{ p.line.city.title }}</span>
+                            <span class="hover_replace" style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
                         </a>
                         <a href="{{ p.line.get_absolute_url }}">
-                            <span style="color: {{ p.line.color_text }};">{{ p.line.title }}</span>
+                            <span class="hover_replace" style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.title }}</span>
                         </a>
                     </div>
                     <a href="{{ p.get_absolute_url }}">
@@ -43,7 +43,7 @@
             <h2>Категорий:</h2>
             <ul class="cats_list">
                 {% for c in cats %}
-                <li class="element">
+                <li class="element cat_list">
                     <a href="{% url c.url_name %}">
                         <button class="btn_cats">
                             <img src="{% static c.image %}" alt="cat_image">
