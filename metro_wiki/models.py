@@ -68,15 +68,3 @@ class Station(models.Model):
         verbose_name = 'Станция'
         verbose_name_plural = 'Станций'
         ordering = ['num_of_station', 'title']
-
-
-class Transfers(models.Model):
-    line = models.ForeignKey(Line, on_delete=models.PROTECT, verbose_name='Линия')
-    station = models.ForeignKey(Station, on_delete=models.PROTECT, verbose_name='Станций')
-
-    def __str__(self):
-        return self.station.title
-
-    class Meta:
-        verbose_name = 'Пересадка'
-        verbose_name_plural = 'Пересадки'
