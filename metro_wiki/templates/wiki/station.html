@@ -8,7 +8,7 @@
         <img class="preview_img" src="{{ station.image.url }}" alt="post_image">
         {% endif %}
         <div class="station_nav" style="background: {{ station.line.color }}">
-            <a  href="{{ station.line.city.get_absolute_url }}">
+            <a href="{{ station.line.city.get_absolute_url }}">
                 <span style="color: {{ station.line.color_text }}; background: {{ station.line.color }}">{{ station.line.city.title }}</span>
             </a>
             <a href="{{ station.line.get_absolute_url }}">
