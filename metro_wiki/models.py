@@ -18,6 +18,7 @@ class City(models.Model):
     class Meta:
         verbose_name = 'Город'
         verbose_name_plural = 'Города'
+        ordering = ['title']
 
 
 class Line(models.Model):
@@ -39,6 +40,7 @@ class Line(models.Model):
     class Meta:
         verbose_name = 'Линия'
         verbose_name_plural = 'Линии'
+        ordering = ['number', 'title']
 
 
 class Station(models.Model):
