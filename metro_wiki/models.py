@@ -50,11 +50,31 @@ class Station(models.Model):
         ('Закрыта', '🔒 Закрыта'),
     )
 
+    PATH_TYPE = (
+        ('Эксплуатируется', '🚇 Эксплуатируется'),
+        ('Строится', '🛠️ Строится'),
+        ('Ничего', 'Ничего'),
+    )
+
+    PATH_DIRECTION = (
+        ('Основной путь', 'Основной путь'),
+        ('Ответвление', 'Ответвление'),
+        ('Начало ответвления', 'Начало ответвления'),
+        ('Конец ответвления', 'Конец ответвления'),
+    )
+
     title = models.CharField(max_length=100, blank=False, verbose_name='Название станций')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     content = models.TextField(blank=True, null=True, verbose_name='Текст')
-    num_of_station = models.IntegerField(default=1, verbose_name='Номер линий (север-юг/восток-запад)')
+    num_of_station = models.IntegerField(default=1, verbose_name='Номер станций (север-юг/восток-запад)')
+    transfer = models.ManyToManyField('Station', blank=True, related_name='+', verbose_name='Пересадки')
+    path_direction = models.CharField(max_length=200, choices=PATH_DIRECTION,
+                                      default='Основной путь', verbose_name='Тип пути')
+    prev_path = models.CharField(max_length=200, choices=PATH_TYPE,
+                                 default='Эксплуатируется', verbose_name='Путь к предыдущей станций')
     status = models.CharField(max_length=200, choices=STATUS_TYPE, default='Эксплуатируется', verbose_name='Статус')
+    next_path = models.CharField(max_length=200, choices=PATH_TYPE,
+                                 default='Эксплуатируется', verbose_name='Путь к следующей станций')
     line = models.ForeignKey(Line, on_delete=models.PROTECT, verbose_name='Линия')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
