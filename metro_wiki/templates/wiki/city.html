@@ -9,16 +9,18 @@
         <h1 class="wrap">{{ city.title }}</h1>
         <h2>Схема и линий:</h2>
         <div class="scheme_line">
-            <ul class="horizontal_list">
-                {% for line in city.line_set.all %}
-                <li class="element" style="box-shadow: 0px 2px 12px 2px {{ line.color }};">
-                    <a href="{{ line.get_absolute_url }}">
-                        <div class="circle_line" style="background: {{ line.color }};">
-                            <p style="color: {{ line.color_text }};">{{ line.number }}</p>
-                        </div>
-                        <h2>{{ line.title | truncatechars:50 }}</h2>
-                    </a>
-                </li>
+            <ul class="vertical_list">
+                {% for line in lines %}
+                    {% if line.city == city %}
+                        <li class="element color_hover" style="box-shadow: 0px 2px 12px 2px {{ line.color }}; --ch:{{ line.color }};">
+                            <a href="{{ line.get_absolute_url }}">
+                                <div class="circle_line" style="background: {{ line.color }};">
+                                    <p style="color: {{ line.color_text }};">{{ line.number }}</p>
+                                </div>
+                                <h2 style="--cth:{{ line.color_text }};">{{ line.title | truncatechars:50 }}</h2>
+                            </a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             <img class="scheme" src="{{ city.image.url }}" alt="schem">
