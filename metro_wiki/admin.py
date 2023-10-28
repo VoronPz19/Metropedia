@@ -31,7 +31,7 @@ class CityAdminForm(forms.ModelForm):
 class StationAdmin(admin.ModelAdmin):
     form = StationAdminForm
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ('id', 'title', 'num_of_station', 'status', 'line')
+    list_display = ('id', 'title', 'index', 'status', 'line')
     list_display_links = ('id', 'title',)
     search_fields = ('title', 'line',)
 
