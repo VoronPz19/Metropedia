@@ -2,21 +2,34 @@
 {% load static %}
 
 {% block content %}
-    <main class="content post_style">
-        <section class="wrap_post">
-            <img class="preview_img" src="{% static 'images/stations.jpg' %}" alt="cities_image">
-            <h1 class="cat_title">Категория: станций</h1>
-            <ul class="cats_list categories">
-                {% for c in cities %}
-                <li class="element">
-                    <a href="{{ c.get_absolute_url }}">
-                        <button class="btn_cats">
-                            <img src="{{ c.image.url }}" alt="city_image">
-                            <span>{{ c.title }}</span></button>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-    </main>
+<main class="content post_style">
+    <section class="wrap_post">
+        <img class="preview_img" src="{% static 'images/stations.jpg' %}" alt="cities_image">
+        <h1 class="cat_title">Категория: станций</h1>
+        <ul class="cities_line_list">
+            {% for city in cities %}
+            <li>
+                <h1>{{ city.title }}</h1>
+                <hr class="hr-washed">
+                <ul class="vertical_station_cat_list">
+                    {% for st in stations %}
+                    {% if st.line.city == city %}
+                    <li class="stations_element">
+                        <a href="{{ st.get_absolute_url }}">
+                            <button class="st_button">
+                                <span>{{ st.title | truncatechars:50 }}</span>
+                                <p class="circle_line" style="color: {{ st.line.color_text }};
+                                 background: {{ st.line.color }};">{{ st.line.number }}</p>
+                            </button>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <hr class="hr-line">
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
 {% endblock %}
