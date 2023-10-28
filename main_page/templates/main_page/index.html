@@ -4,14 +4,14 @@
 
 {% block content %}
 <main class="content">
-    <div class="wrap">
-        <h1>Добро пожаловать на сайт Метропедий</h1>
+    <div class="wrap" style="flex-direction: column;">
+        <h1 class="title_wrap">Добро пожаловать на сайт Метропедий</h1>
+        {% if posts %}
+        <h2>Последние новости:</h2>
         <section class="post_sect">
-            <h2>Последние новости:</h2>
-            {% if posts %}
             <ul class="post_main_list post_main_list_scroll">
                 {% for p in posts|slice:"5" %}
-                <li class="element minw-330" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
+                <li class="element mmw-330" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                     <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
                         <a href="{{ p.line.city.get_absolute_url }}">
                             <span class="hover_replace" style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
@@ -31,14 +31,14 @@
                         <h2>{{ p.title | truncatechars:50 }}</h2>
                         <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15 }}</p>
                         <div class="date_post">
-                            <span>{{ p.time_update }}</span>
+                            <span>{{ p.owner.username }}|{{ p.time_update }}</span>
                         </div>
                     </a>
                 </li>
                 {% endfor %}
             </ul>
-            {% endif %}
         </section>
+        {% endif %}
         <section class="post_sect">
             <h2>Категорий:</h2>
             <ul class="cats_list">
