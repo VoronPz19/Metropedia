@@ -81,7 +81,7 @@ class Station(models.Model):
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
 
     def __str__(self):
-        return self.title
+        return f'{self.title} - {self.line.title}'
 
     def get_absolute_url(self):
         return reverse('station', kwargs={'station_slug': self.slug})
