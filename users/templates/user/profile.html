@@ -1,0 +1,15 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <section class="wrap">
+        {% for u in profile%}
+        <p>{{ u.username }}</p>
+        <p>{{ user.username }}</p>
+        {% if u == user %}
+            <h2>{{ u }}</h2>
+        {% endif %}
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}
