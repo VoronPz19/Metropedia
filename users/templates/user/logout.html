@@ -1,0 +1,33 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <div class="wrap">
+        <div class="logout">
+            <h2>Вы вышли из системы</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'main' %}">
+                        <button class="w-100">На главную</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'blogs' %}">
+                        <button class="w-100">Новости</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'blogs' %}">
+                        <button class="w-100">Информация</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}">
+                        <button class="w-100">Войти снова</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
