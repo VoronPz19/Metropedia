@@ -9,10 +9,10 @@
         {% endif %}
         <div class="station_nav" style="background: {{ station.line.color }}">
             <a href="{{ station.line.city.get_absolute_url }}">
-                <span style="color: {{ station.line.color_text }}; background: {{ station.line.color }}">{{ station.line.city.title }}</span>
+                <span class="hover_replace" style="color: {{ station.line.color_text }}; background: {{ station.line.color }}; --hr:{{ station.line.color_text }}80;">{{ station.line.city.title }}</span>
             </a>
             <a href="{{ station.line.get_absolute_url }}">
-                <span style="color: {{ station.line.color_text }}; background: {{ station.line.color }}">{{ station.line.title }}</span>
+                <span class="hover_replace" style="color: {{ station.line.color_text }}; background: {{ station.line.color }}; --hr:{{ station.line.color_text }}80;">{{ station.line.title }}</span>
             </a>
         </div>
         <ul class="vertical_stations_list">
