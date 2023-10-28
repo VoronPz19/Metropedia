@@ -5,13 +5,12 @@ from .forms import *
 from django.urls import reverse_lazy
 from main_page.utils import DataMixin
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import AuthenticationForm
 
 
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
-    template_name = 'main_page/register.html'
-    success_url = reverse_lazy('main')
+    template_name = 'user/register.html'
+    success_url = reverse_lazy('account')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -21,14 +20,14 @@ class RegisterUser(DataMixin, CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('main')
+        return redirect('account')
 
 
 class LoginUser(DataMixin, LoginView):
-    form_class = AuthenticationForm
+    form_class = AuthenticationUserForm
 
-    template_name = 'main_page/login.html'
-    success_url = reverse_lazy('main')
+    template_name = 'user/login.html'
+    success_url = reverse_lazy('account')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,9 +36,9 @@ class LoginUser(DataMixin, LoginView):
 
 
 class Account(DataMixin, ListView):
-    model = Blog
-    template_name = 'main_page/index.html'
-    context_object_name = 'posts'
+    model = Profile
+    template_name = 'user/profile.html'
+    context_object_name = 'user'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

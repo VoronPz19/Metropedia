@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from users.forms import *
+from metro_blog.models import *
 from main_page.utils import DataMixin, LastNewsMixin
 
 
