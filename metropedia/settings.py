@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main_page.apps.MainPageConfig',
     'metro_blog.apps.MetroBlogConfig',
     'metro_wiki.apps.MetroWikiConfig',
+    'users.apps.UsersConfig',
     'colorfield',
     'ckeditor',
     'ckeditor_uploader',

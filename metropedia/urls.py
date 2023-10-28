@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('main_page.urls')),
     path('blog/', include('metro_blog.urls')),
     path('wiki/', include('metro_wiki.urls')),
+    path('users/', include('users.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
