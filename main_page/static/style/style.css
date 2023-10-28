@@ -337,14 +337,6 @@ td img{
     margin: 10px;
 }
 
-.minw-330{
-    min-width: 330px;
-}
-
-.mw-wrap{
-    max-width: 30%;
-}
-
 @media (max-width: 1080px) {
     .mw-wrap{
         max-width: 45%;
@@ -519,10 +511,6 @@ color: #00000080;
     width: 100%;
 }
 
-.mt20{
-    margin-top: 20px; 
-}
-
 .line{
     position: absolute;
     top: 20px;
@@ -606,7 +594,15 @@ color: #00000080;
     flex-wrap: wrap;
 }
 
-.vertical_lines_cat_list .element{
+.vertical_station_cat_list{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.vertical_lines_cat_list .element, .vertical_station_cat_list .element{
     width: 45%;
 }
 
@@ -656,7 +652,7 @@ color: #00000080;
     align-items: flex-end;
 }
 
-.vertical_list .element, .vertical_lines_cat_list .element{
+.vertical_list .element, .vertical_lines_cat_list .element, .vertical_station_cat_list .element{
     height: 55px;
     border-radius: 27.5px;
 }
@@ -682,7 +678,9 @@ color: #00000080;
     }
 }
 
-.vertical_list .element a, .vertical_lines_cat_list a, .vertical_stations_list .element .vertical_stations_info_block .line_link_text{
+.vertical_list .element a, .vertical_lines_cat_list a,
+.vertical_stations_list .element .vertical_stations_info_block .line_link_text,
+.vertical_station_cat_list a{
     flex-direction: row;
 }
 
@@ -720,6 +718,14 @@ color: #00000080;
     margin-top: 30%;
     font-size: 20px;
     font-weight: bold;
+}
+
+.vertical_station_cat_list .element a button span{
+    font-size: 10px;
+}
+
+.stations_element{
+    width: 30%;
 }
 
 .trans_list{
@@ -838,8 +844,28 @@ color: #00000080;
     background-color: var(--th) !important;
 }
 
-.ml_32{
-	margin-left: 32px;
+.st_button{
+    width: 100%;
+    margin: 2px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.st_button span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+}
+
+.st_button .circle_line{
+    border-radius: 15px;width: 45px;
+    height: 30px;
+    margin: 0;
 }
 
 .scheme_line{
@@ -922,4 +948,20 @@ color: #00000080;
 
 .ptb-30{
     padding: 30px 0;
+}
+
+.ml_32{
+	margin-left: 32px;
+}
+
+.mt20{
+    margin-top: 20px; 
+}
+
+.minw-330{
+    min-width: 330px;
+}
+
+.mw-wrap{
+    max-width: 30%;
 }
