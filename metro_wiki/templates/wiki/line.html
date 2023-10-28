@@ -3,7 +3,7 @@
 
 {% block content %}
 <main class="content post_style">
-    <section class="wrap_post">
+    <section class="wrap_post {% if line.image %} ptb30 {% endif %}">
         {% if line.image %}
         <img class="preview_img" src="{{ line.image.url }}" alt="post_image">
         <div class="line_parent">
@@ -14,7 +14,7 @@
             </div>
         </div>
         {% else %}
-        <div class="line_parent mt90">
+        <div class="line_parent mt20">
             <div class="line"
                  style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ line.color }} 10%, {{ line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
             <div class="circle" style="background: {{ line.color }}">
