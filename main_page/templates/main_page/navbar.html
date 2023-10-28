@@ -3,7 +3,12 @@
     <section class="wrap_navbar">
         <ul class="navbar">
             {% if request.user.is_authenticated %}
-            <li class="logo"><a href="{% url 'main' %}">{{ user.username }}</a></li>
+            <li class="logo">
+                <a href="{% url 'account' %}">
+                    <img src="{{ user.image.url }}" alt="{{ user.username }}" class="avatar">
+                    <p>{{ user.username }}</p>
+                </a>
+            </li>
             {% else %}
             <li class="logo"><a href="{% url 'main' %}">MetroPedia</a></li>
             {% endif %}
