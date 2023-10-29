@@ -12,3 +12,8 @@ def replace_ndash(value):
 @register.filter
 def replace_aquo(value):
     return value.replace('&laquo;', '«').replace('&raquo;', '»')
+
+
+@register.filter
+def replace_nbsp(value):
+    return value.replace('&nbsp;', ' \n')
