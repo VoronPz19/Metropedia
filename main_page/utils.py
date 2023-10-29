@@ -1,6 +1,6 @@
 menu = [{'title': 'Главная страница', 'url_name': 'main'},
         {'title': 'Новости метрополитена', 'url_name': 'blogs'},
-        {'title': 'Предложить новость', 'url_name': 'main'}]
+        {'title': 'Предложить новость', 'url_name': 'add_post'}]
 
 cats = [{'title': 'Города', 'url_name': 'cities', 'image': 'images/cities.jpg'},
         {'title': 'Линий', 'url_name': 'lines', 'image': 'images/lines.jpg'},
