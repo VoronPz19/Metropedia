@@ -22,7 +22,7 @@
                         <div class="inner" style="--news-count: calc(100% * {{ count }});">
                             {% for p in posts %}
                             <div class="frame frame_{{ forloop.counter }}" style="--news-count: calc(100% / {{ count }});">
-                                <div class="frame-content" style="box-shadow: 0px 2px 10px 2px {{ p.line.color }}";>
+                                <div class="frame-content" style="box-shadow: 0px 2px 10px 2px {{ p.line.color }};">
                                     <div class="prev_post_slider">
                                             {% if p.image %}
                                             <img src="{{ p.image.url }}" alt="post_image">
