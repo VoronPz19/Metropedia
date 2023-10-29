@@ -9,34 +9,56 @@
         {% if posts %}
         <h2>Последние новости:</h2>
         <section class="post_sect">
-            <ul class="post_main_list post_main_list_scroll">
-                {% for p in posts|slice:"5" %}
-                <li class="element mmw-330" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
-                    <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                        <a href="{{ p.line.city.get_absolute_url }}">
-                            <span class="hover_replace" style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
-                        </a>
-                        <a href="{{ p.line.get_absolute_url }}">
-                            <span class="hover_replace" style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.title }}</span>
-                        </a>
-                    </div>
-                    <a href="{{ p.get_absolute_url }}">
-                        <div class="prev_post">
-                            {% if p.image %}
-                            <img src="{{ p.image.url }}" alt="post_image">
-                            {% else %}
-                            <img src="{% static 'images/plug.jpg' %}" alt="post_image">
-                            {% endif %}
-                        </div>
-                        <h2>{{ p.title | truncatechars:50 }}</h2>
-                        <p>{{ p.content | striptags | replace_ndash | replace_aquo | linebreaksbr | truncatewords:15 }}</p>
-                        <div class="date_post">
-                            <span>{{ p.owner.username }}|{{ p.time_update }}</span>
-                        </div>
-                    </a>
-                </li>
+            <div id="frame">
+                {% for p in posts %}
+                    {% if forloop.first %}
+                    <input type="radio" name="frame" id="frame{{ forloop.counter }}" checked/>
+                    {% else %}
+                    <input type="radio" name="frame" id="frame{{ forloop.counter }}"/>
+                    {% endif %}
                 {% endfor %}
-            </ul>
+                <div id="slides">
+                    <div id="overflow">
+                        <div class="inner" style="--news-count: calc(100% * {{ count }});">
+                            {% for p in posts %}
+                            <div class="frame frame_{{ forloop.counter }}" style="--news-count: calc(100% / {{ count }});">
+                                <div class="frame-content" style="box-shadow: 0px 2px 10px 2px {{ p.line.color }}";>
+                                    <div class="prev_post_slider">
+                                            {% if p.image %}
+                                            <img src="{{ p.image.url }}" alt="post_image">
+                                            {% else %}
+                                            <img src="{% static 'images/plug.jpg' %}" alt="post_image">
+                                            {% endif %}
+                                        </div>
+                                    <a class="post_info" href="{{ p.get_absolute_url }}">
+                                        <h2>{{ p.title | truncatechars:50 }}</h2>
+                                        <p>{{ p.content | striptags | replace_nbsp | replace_ndash | replace_aquo | linebreaksbr | truncatewords:50 }}</p>
+                                        <div class="date_post">
+                                            <span>{{ p.owner.username }}|{{ p.time_update }}</span>
+                                        </div>
+                                    </a>
+                                    <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
+                                        <a href="{{ p.line.city.get_absolute_url }}">
+                                            <span class="hover_replace"
+                                                  style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
+                                        </a>
+                                        <a href="{{ p.line.get_absolute_url }}">
+                                            <span class="hover_replace"
+                                                  style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.title }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div id="bullets">
+                    {% for p in posts %}
+                    <label for="frame{{ forloop.counter }}">Новость {{ forloop.counter }}</label>
+                    {% endfor %}
+                </div>
+            </div>
         </section>
         {% endif %}
         <section class="post_sect">
