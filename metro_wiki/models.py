@@ -1,13 +1,14 @@
 from django.db import models
 from colorfield.fields import ColorField
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 
 class City(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название метрополитена')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
-    content = models.TextField(blank=True, null=True, verbose_name='Текст')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
 
     def __str__(self):
         return self.title
@@ -24,7 +25,7 @@ class City(models.Model):
 class Line(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название линий')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
-    content = models.TextField(blank=True, null=True, verbose_name='Текст')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     number = models.CharField(max_length=3, blank=True, verbose_name='Номер линий')
     color_text = ColorField(default='#FFFFFF', verbose_name='Цвет текста')
     color = ColorField(default='#EF161E', verbose_name='Цвет')
@@ -67,7 +68,7 @@ class Station(models.Model):
 
     title = models.CharField(max_length=100, blank=False, verbose_name='Название станций')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
-    content = models.TextField(blank=True, null=True, verbose_name='Текст')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     index = models.IntegerField(default=1, verbose_name='Номер станций (север-юг/восток-запад)')
     transfer = models.ManyToManyField('Station', blank=True, related_name='+', verbose_name='Пересадки')
     path_direction = models.CharField(max_length=200, choices=PATH_DIRECTION,
