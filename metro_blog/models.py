@@ -2,13 +2,14 @@ from django.db import models
 from metro_wiki.models import Line
 from django.urls import reverse
 from users.models import Profile
+from ckeditor.fields import RichTextField
 
 
 class Blog(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     title = models.CharField(max_length=250, blank=False, verbose_name='Название')
     slug = models.CharField(max_length=250, unique=True, verbose_name='Ссылка')
-    content = models.TextField(blank=True, null=True, verbose_name='Текст')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     source = models.CharField(max_length=250, blank=True, null=True, verbose_name='Источник')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     is_public = models.BooleanField(default=False)
