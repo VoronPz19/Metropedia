@@ -15,11 +15,11 @@ class DataMixin:
         user_menu = menu.copy()
         if not self.request.user.is_authenticated:
             user_menu.pop(-1)
+        if self.request.user.is_staff:
+            user_menu.append({'title': 'Добавить станцию', 'url_name': 'add_station'})
         context['menu'] = user_menu
         context['cats'] = cats
 
-        if 'cat_selected' not in context:
-            context['cat_selected'] = 0
         return context
 
 
