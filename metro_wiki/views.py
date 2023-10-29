@@ -1,5 +1,6 @@
-from django.views.generic import ListView, DetailView
-from .models import *
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import *
+from django.urls import reverse_lazy
 from main_page.utils import DataMixin
 
 
@@ -77,4 +78,15 @@ class ShowStation(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['station_list'] = Station.objects.all
         c_def = self.get_user_context(title=context['station'])
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class AddStation(DataMixin, CreateView):
+    form_class = AddStationForm
+    template_name = 'wiki/forms/station.html'
+    success_url = reverse_lazy('main')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Добавить/редактировать станцию станцию')
         return dict(list(context.items()) + list(c_def.items()))
