@@ -188,7 +188,7 @@
                 </a>
 
                 <div class="vertical_stations_info_block">
-                    <a class="line_link_text" href="{{ st.get_absolute_url }}">
+                    <a class="line_link_text" style="margin: 0 auto;" href="{{ st.get_absolute_url }}">
                         <div class="station_text">
                             <h2 class="list_title">{{ st.title | truncatechars:50 }}</h2>
                             <p>Соостояние: {{ st.status }}</p>
@@ -199,7 +199,10 @@
                         <li>
                             <a href="{{ tr.get_absolute_url }}">
                                 <div class="transfer_line transfer_hover"
-                                     style="background:{{ tr.line.color }}; --th:{{ tr.line.color }}80;">
+                                     style="background:{% if tr.status == 'Эксплуатируется' %}{{ tr.line.color }}
+                                     {% else %}{{ tr.line.color }}80{% endif %};
+                                      --th:{% if tr.status == 'Эксплуатируется' %}{{ tr.line.color }}80
+                                      {% else %}{{ tr.line.color }}40{% endif %};">
                                     <span style="color:{{ tr.line.color_text }};">{{ tr.line.number }}</span>
                                 </div>
                             </a>
