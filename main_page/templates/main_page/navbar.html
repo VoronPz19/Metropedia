@@ -4,10 +4,10 @@
         <ul class="navbar">
             {% if request.user.is_authenticated %}
             <li class="logo">
-                <a href="{% url 'account' %}">
+                <div>
                     <img src="{{ user.image.url }}" alt="{{ user.username }}" class="avatar">
                     <p>{{ user.username }}</p>
-                </a>
+                </div>
             </li>
             {% else %}
             <li class="logo"><a href="{% url 'main' %}">MetroPedia</a></li>
@@ -15,13 +15,24 @@
             {% for m in menu %}
             <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
             {% endfor %}
+            {% if request.user.is_staff %}
+            <li><p class="p-as-a">Добавить запись</p>
+                <ul class="submenu">
+                    {% for sm in submenu %}
+                    <li><a href="{% url sm.url_name %}">{{ sm.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% elif request.user.is_authenticated %}
+            <li><a href="{% url 'add_post' %}">Преложить новость</a></li>
+            {% endif %}
             {% if request.user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Выйти</a></li>
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
             {% else %}
-                <li>
-                    <a href="{% url 'register' %}">Регистрация</a> |
-                    <a href="{% url 'login' %}">Войти</a>
-                </li>
+            <li>
+                <a href="{% url 'register' %}">Регистрация</a> |
+                <a href="{% url 'login' %}">Войти</a>
+            </li>
             {% endif %}
         </ul>
     </section>
