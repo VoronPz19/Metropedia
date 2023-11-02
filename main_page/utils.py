@@ -1,6 +1,11 @@
 menu = [{'title': 'Главная страница', 'url_name': 'main'},
-        {'title': 'Новости метрополитена', 'url_name': 'blogs'},
-        {'title': 'Предложить новость', 'url_name': 'add_post'}]
+        {'title': 'Новости метрополитена', 'url_name': 'blogs'}]
+
+submenu = [{'title': 'Добавить город', 'url_name': 'add_city'},
+           {'title': 'Добавить линию', 'url_name': 'add_line'},
+           {'title': 'Добавить станцию', 'url_name': 'add_station'},
+           {'title': 'Добавить новость', 'url_name': 'add_post'},
+           {'title': 'Посмотреть предложенные новости', 'url_name': 'post_list'}]
 
 cats = [{'title': 'Города', 'url_name': 'cities', 'image': 'images/cities.jpg'},
         {'title': 'Линий', 'url_name': 'lines', 'image': 'images/lines.jpg'},
@@ -9,15 +14,12 @@ cats = [{'title': 'Города', 'url_name': 'cities', 'image': 'images/cities.
 
 class DataMixin:
 
-    def get_user_context(self, **kwargs):
+    @staticmethod
+    def get_user_context(**kwargs):
         context = kwargs
 
-        user_menu = menu.copy()
-        if not self.request.user.is_authenticated:
-            user_menu.pop(-1)
-        if self.request.user.is_staff:
-            user_menu.append({'title': 'Добавить станцию', 'url_name': 'add_station'})
-        context['menu'] = user_menu
+        context['menu'] = menu
+        context['submenu'] = submenu
         context['cats'] = cats
 
         return context
