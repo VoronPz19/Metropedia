@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from main_page.utils import DataMixin
 
 
-class Blogs(DataMixin, ListView):
+class PublicPosts(DataMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
