@@ -83,7 +83,7 @@ class ShowStation(DataMixin, DetailView):
 
 class AddStation(DataMixin, CreateView):
     form_class = AddStationForm
-    template_name = 'wiki/forms/station.html'
+    template_name = 'main_page/forms.html'
     success_url = reverse_lazy('main')
 
     def get_context_data(self, **kwargs):
