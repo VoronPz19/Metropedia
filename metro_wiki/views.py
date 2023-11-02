@@ -81,6 +81,28 @@ class ShowStation(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
+class AddCity(DataMixin, CreateView):
+    form_class = AddCityForm
+    template_name = 'main_page/forms.html'
+    success_url = reverse_lazy('main')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Добавить/редактировать город')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class AddLine(DataMixin, CreateView):
+    form_class = AddLineForm
+    template_name = 'main_page/forms.html'
+    success_url = reverse_lazy('main')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Добавить/редактировать линию')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 class AddStation(DataMixin, CreateView):
     form_class = AddStationForm
     template_name = 'main_page/forms.html'
