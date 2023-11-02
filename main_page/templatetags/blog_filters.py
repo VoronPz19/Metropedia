@@ -5,15 +5,10 @@ register = template.Library()
 
 
 @register.filter
-def replace_ndash(value):
-    return value.replace('&ndash;', '-')
+def replacer(text):
+    filtration = {'&ndash;': '-', '&laquo;': '«', '&raquo;': '»', '&nbsp;': ' \n'}
 
+    for key, value in filtration.items():
+        text = text.replace(key, value)
 
-@register.filter
-def replace_aquo(value):
-    return value.replace('&laquo;', '«').replace('&raquo;', '»')
-
-
-@register.filter
-def replace_nbsp(value):
-    return value.replace('&nbsp;', ' \n')
+    return text
