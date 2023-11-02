@@ -10,5 +10,7 @@ urlpatterns = [
     path('line/<slug:line_slug>/', ShowLine.as_view(), name='line'),
     path('station/<slug:station_slug>/', ShowStation.as_view(), name='station'),
 
-    path('station/add/station', AddStation.as_view(), name='add_station'),
+    path('city/special/add/', AddCity.as_view(), name='add_city'),
+    path('line/special/add/', AddLine.as_view(), name='add_line'),
+    path('station/special/add/', AddStation.as_view(), name='add_station'),
 ]
