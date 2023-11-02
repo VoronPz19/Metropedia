@@ -40,6 +40,39 @@
                 {% endif %}
             </div>
         </div>
+        <hr class="hr-line">
+        {% if request.user.is_staff %}
+        <div class="post-settings">
+            <a href="">
+                <button>Редактировать</button>
+            </a>
+            {% if post.is_public %}
+            <a href="">
+                <button>Отозвать новость</button>
+            </a>
+            {% else %}
+            <a href="">
+                <button>Опубликовать новость</button>
+            </a>
+            {% endif %}
+            <a href="">
+                <button class="btn-delete">Удалить новость</button>
+            </a>
+        </div>
+        <hr class="hr-line">
+        {% endif %}
+        <div class="comments">
+            <h2>Комментарий: {{ comment_count }}</h2>
+            {% if request.user.is_authenticated %}
+            <form class="form" action="{% url 'post' post.slug %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn btn--sub btn--lg" type="submit" value="Comments"/>
+            </form>
+            {% endif %}
+            {% if comment %}
+            {% endif %}
+        </div>
     </section>
 </main>
 {% endblock %}
