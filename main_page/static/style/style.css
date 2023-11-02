@@ -107,12 +107,12 @@ button:hover{
     color: #4388e4;
 }
 
-.logo a{
+.logo div{
     display: flex;
     align-items: center;
 }
 
-.logo a p{
+.logo div p{
     margin: 0 20px;
     font-weight: bold;
 }
@@ -198,12 +198,104 @@ td img{
     padding: 0;
 }
 
+p label{
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4388e4;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+option{
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .navbar li{
     text-align: center;
+    display: flex
 }
 
 .navbar li .logo{
     text-align: left;
+}
+ 
+ .navbar a {
+    padding: 0 10px;
+    display: block;
+    transition: .4s ease-in-out;
+ }
+
+ 
+ @media(max-width:599px) {
+    .navbar>li>a {
+       padding: 15px 20px;
+    }
+    .submenu li a {
+       padding: 10px 20px;
+       margin: 0 20px;
+    }
+ }
+ 
+ @media(min-width: 600px) {
+    .navbar>li {
+       position: relative;
+    }
+    .navbar>li:after {
+       position: absolute;
+       right: 0;
+       width: 1px;
+       height: 12px;
+       top: 24px;
+       box-shadow: 4px -2px 0 #d2d2d2;
+       transform: rotate(30deg);
+    }
+    .navbar>li:last-child:after {
+       background: none;
+       box-shadow: none;
+    }
+    .submenu {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        width: 250px;
+        margin-left: -125px;
+        background: #F5F5F5C8;
+        border: 2px solid #ededed;
+        z-index: 5;
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(.8);
+        transition: .4s ease-out;
+        flex-direction: column;
+        border-radius: 10px;
+     }
+     .navbar>li:hover .submenu {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+     }
+     .submenu li a {
+        padding: 10px 0;
+        margin: 0 auto;
+     }
+  }
+
+.p-as-a{
+    padding: 0 10px;
+    font-size: 20px;
+    display: block;
+    transition: .4s ease-in-out;
+    color: #4388e4;
+}
+
+.p-as-a:hover{
+    color: #4388e480;
+    cursor: pointer;
 }
 
 .main_sect, h2{
@@ -482,14 +574,20 @@ td img{
 }
 
 .prev_post_slider{
-    width: 30%;
+    position: absolute;
+    z-index: -1;
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.7);
 }
 
 .prev_post_slider img{
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
 }
 
 .post_info{
@@ -553,6 +651,11 @@ color: #00000080;
     max-width: 100%;
 }
 
+.post-settings{
+    display: flex;
+    justify-content: space-around;
+}
+
 .preview_img{
     object-fit: cover;
     width: 100%;
@@ -598,6 +701,24 @@ color: #00000080;
 
 .btn_c{
     background: #ccc;
+}
+
+.btn-delete{
+    border-radius: 16px;
+    box-shadow: 0px 2px 12px 2px #d81111;
+    padding: 10px 40px;
+    font-size: 24px;
+    border: 0;
+    margin-top: 0;
+    background: transparent;
+    border: none;
+    color: #d81111;
+}
+
+.btn-delete:hover{
+    cursor: pointer;
+    background: #d81111;
+    color: #fff;
 }
 
 .cities_list{
@@ -922,6 +1043,7 @@ color: #00000080;
 }
 
 .st_button span{
+    max-width: 80%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -942,6 +1064,14 @@ color: #00000080;
     object-fit: contain;
     width: 50%;
     height: 605px;
+}
+
+.form-style{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .form-input{
@@ -1010,14 +1140,6 @@ color: #00000080;
 
 .django-ckeditor-widget{
     width: 100%;
-}
-
-.line-creator{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 33%;
-    margin: 0;
 }
 
 #id_status, #id_prev_path, #id_next_path{
@@ -1125,10 +1247,37 @@ color: #00000080;
 .frame-content{
     width: 98%;
     height: 96%;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
     border-radius: 10px;
+}
+
+.frame-content-with-image .post_info h2{
+    color: #F5F5F5;
+    font-size: 22px;
+    font-weight: 800;
+    height: 40px;
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.frame-content-with-image .post_info p{
+    color: #F5F5F5;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.frame-content-with-image .post_info .date_post span{
+    color: #F5F5F5;
+}
+
+.frame-content-with-image .post_info h2:hover, .frame-content-with-image .post_info p:hover{
+    color: #F5F5F580
 }
 
 #bullets { 
@@ -1159,6 +1308,16 @@ color: #00000080;
         margin: 0 auto; 
     } 
 } 
+
+
+.w-25{
+    width: 25%;
+}
+
+
+.w-50{
+    width: 50%;
+}
 
 .w-100{
     width: 100%;
