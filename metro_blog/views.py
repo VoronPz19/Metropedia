@@ -1,3 +1,4 @@
+from urllib.request import Request
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import *
 from django.urls import reverse_lazy
