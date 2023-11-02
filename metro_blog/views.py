@@ -24,8 +24,23 @@ class ShowPost(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['comment'] = Comment.objects.all()
+        context['comment_count'] = Comment.objects.count()
+        context['form'] = CommentForm()
         c_def = self.get_user_context(title=context['post'])
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse('request: post', kwargs={'slug': self.object.post.slug})
+
+    def form_valid(self, form):
+        form.instance.post = Request
+        return super().form_valid(form)
 
 
 class AddPost(DataMixin, CreateView):
