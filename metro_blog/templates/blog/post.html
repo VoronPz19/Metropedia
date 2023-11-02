@@ -40,9 +40,9 @@
                 {% endif %}
             </div>
         </div>
-        <hr class="hr-line">
         {% if request.user.is_staff %}
-        <div class="post-settings">
+        <hr class="hr-line">
+        <div class="post-settings {% if not post.is_public %} pb-20 {% endif %}">
             <a href="">
                 <button>Редактировать</button>
             </a>
@@ -59,8 +59,9 @@
                 <button class="btn-delete">Удалить новость</button>
             </a>
         </div>
-        <hr class="hr-line">
         {% endif %}
+        {% if post.is_public %}
+        <hr class="hr-line">
         <div class="comments">
             <h2>Комментарий: {{ comment_count }}</h2>
             {% if request.user.is_authenticated %}
@@ -73,6 +74,7 @@
             {% if comment %}
             {% endif %}
         </div>
+        {% endif %}
     </section>
 </main>
 {% endblock %}
