@@ -45,7 +45,7 @@ class CommentCreateView(CreateView):
 
 class AddPost(DataMixin, CreateView):
     form_class = AddPostForm
-    template_name = 'wiki/forms/station.html'
+    template_name = 'main_page/forms.html'
     success_url = reverse_lazy('blogs')
     login_url = reverse_lazy('main')
 
