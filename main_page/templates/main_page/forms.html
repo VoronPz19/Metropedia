@@ -4,7 +4,7 @@
 <main class="content">
     <div class="wrap">
         <h1>{{ title }}</h1>
-        <form class="form-style" method="post">
+        <form class="form-style" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {% for f in form %}
@@ -17,7 +17,7 @@
                         <div class="form-error">{{ f.errors }}</div>
                     {% endif %}
             {% endfor %}
-            <button class="w-50">Добавить</button>
+            <button class="w-50 m-30">Сохранить</button>
         </form>
     </div>
 </main>
