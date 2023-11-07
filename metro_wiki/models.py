@@ -113,7 +113,7 @@ class Train(models.Model):
 
 class Depot(models.Model):
     number_of_depot = models.IntegerField(default=1, verbose_name='Номер депо')
-    title = models.CharField(max_length=100, blank=False, verbose_name='Модель метровагона')
+    title = models.CharField(max_length=100, blank=False, verbose_name='Название депо')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
