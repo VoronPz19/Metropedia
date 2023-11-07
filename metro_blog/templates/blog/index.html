@@ -6,8 +6,8 @@
 <main class="content">
     {% if posts %}
     <section class="wrap">
-        <h1>{{ title }}</h1>
-        <ul class="post_list">
+        <h1 class="w-100">{{ title }}</h1>
+        <ul class="post_list w-100">
             {% for p in posts %}
             <li class="element mw-wrap" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
                 <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
@@ -21,6 +21,7 @@
                     </a>
                 </div>
                 <a href="{{ p.get_absolute_url }}">
+                    <div class="hover_background"></div>
                     <div class="prev_post">
                         {% if p.image %}
                         <img src="{{ p.image.url }}" alt="post_image">
@@ -31,6 +32,11 @@
                     <h2>{{ p.title | truncatechars:50 }}</h2>
                     <p>{{ p.content | striptags | replacer | linebreaksbr | truncatewords:15 }}</p>
                     <div class="date_post">
+                        <div class="post_status">
+                            {% if status %}
+                            <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость{% if not p.is_public %} не{% endif %} опубликована</p>
+                            {% endif %}
+                        </div>
                         <span>{{ p.owner.username }}|{{ p.time_update }}</span>
                     </div>
                 </a>
