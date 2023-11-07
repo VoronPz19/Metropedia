@@ -10,7 +10,7 @@ body{
 }
 
 main{
-    margin-top: 108px;
+    margin-top: 132px;
 }
 
 .wrap_navbar{
@@ -158,8 +158,13 @@ a{
     justify-content: space-evenly;
 }
 
+h1{
+    text-align: center;
+}
+
 h1, h2, h4{
     color: #4388e4;
+    text-transform: uppercase;
 }
 
 br{
@@ -486,28 +491,40 @@ option{
     }
 }
 
-.post_main_list_scroll::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
-}
-
-.post_main_list_scroll::-webkit-scrollbar
-{
-  width: 6px;
-  background-color: #F5F5F5;
-}
-
-.post_main_list_scroll::-webkit-scrollbar-thumb
-{
-  background-color: #4388e4;
-}
+.post_status p{
+    margin: 0 10px !important;
+    color: #00000080 !important;
+    font-size: 16px !important;
+  }
 
 .element a{
     height: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.hover_background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background: transparent;
+}
+
+.hover_background:hover{
+    animation: 500ms ease-in-out forwards hover_background;
+}
+
+@keyframes hover_background {
+    0% {
+        background: transparent;
+    }
+  
+    100% {
+    background: #00000020;
+    }
 }
 
 .cat_post{
@@ -550,7 +567,7 @@ option{
   
 @keyframes background_color_st {
     0% {
-        background: #00000000;
+        background: transparent;
     }
   
     100% {
@@ -845,23 +862,18 @@ color: #00000080;
 
 .vertical_stations_list .element{
     height: 110px;
-    width: 90%;
+    width: 100%;
     margin: 0;
+    padding-left: 20px;
     flex-direction: row;
 }
 
 .vertical_stations_list .element:hover{
-    animation: 500ms ease-in-out forwards slidein_st;
+    background: linear-gradient(0deg, transparent 0%, #00000020 5%, transparent 15%, transparent 85%, #00000020 95%, transparent 100%);;
 }
-  
-  @keyframes slidein_st {
-    0% {
-        width: 90%;
-    }
-  
-    100% {
-        width: 95%;
-    }
+
+.vertical_stations_list .element .hover_background{
+    z-index: 0;
 }
 
 .vertical_list .element a, .vertical_lines_cat_list a,
@@ -936,6 +948,7 @@ color: #00000080;
 
 .trans_list li a{
     flex-direction: row;
+    justify-content: center;
 }
 
 .trans_list li a p{
@@ -950,8 +963,9 @@ color: #00000080;
 
 .transfer_line{
     height: 25px;
-    width: 40px;
+    min-width: 40px;
     margin: 0 10px;
+    padding: 0 10px;
     border-radius: 4px;
 }
 
@@ -963,6 +977,15 @@ color: #00000080;
 
 .transfer_hover:hover{
     background-color: var(--th) !important;
+}
+
+.trans_title:hover{
+    color: var(--tth) !important;
+}
+
+.simple-transfer{
+    width: 100%;
+    margin: 0 !important;
 }
 
 .vertical_stations_list .element a .station_text h2{
@@ -1138,6 +1161,22 @@ color: #00000080;
     margin: 0 auto;
 }
 
+.form_wrap p{
+    text-align: center;
+    font-size: 20px;
+}
+
+.deleting{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.del-sizing{
+    width: 30% !important;
+    margin: 0 !important;
+}
+
 .django-ckeditor-widget{
     width: 100%;
 }
@@ -1258,7 +1297,7 @@ color: #00000080;
 .frame-content-with-image .post_info h2{
     color: #F5F5F5;
     font-size: 22px;
-    font-weight: 800;
+    font-weight: bold;
     height: 40px;
     width: 100%;
     margin: 0;
@@ -1266,6 +1305,7 @@ color: #00000080;
 }
 
 .frame-content-with-image .post_info p{
+    text-transform: lowercase;
     color: #F5F5F5;
     font-weight: 600;
     width: 100%;
@@ -1323,6 +1363,10 @@ color: #00000080;
     width: 100%;
 }
 
+.m-30{
+    margin: 30px;
+}
+
 .ptb-30{
     padding: 30px 0;
 }
@@ -1342,6 +1386,10 @@ color: #00000080;
 .mmw-330{
     min-width: 330px;
     max-width: 330px;
+}
+
+.mw-210{
+    max-width: 210px;
 }
 
 .mw-wrap{
