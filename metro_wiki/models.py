@@ -112,6 +112,7 @@ class Train(models.Model):
 
 
 class Depot(models.Model):
+    number_of_depot = models.IntegerField(default=1, verbose_name='Номер депо')
     title = models.CharField(max_length=100, blank=False, verbose_name='Модель метровагона')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
@@ -123,7 +124,7 @@ class Depot(models.Model):
     trains = models.ManyToManyField(Train, blank=True, related_name='+', verbose_name='Поезда')
 
     def __str__(self):
-        return self.title
+        return [self.number_of_depot, self.title]
 
     def get_absolute_url(self):
         return reverse('depot', kwargs={'depot_slug': self.slug})
