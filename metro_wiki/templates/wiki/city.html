@@ -29,6 +29,14 @@
             <h2> Информация о метрополитене:</h2>
             <p>{{ city.content | safe | linebreaksbr }}</p>
         </div>
+        {% if request.user.is_staff %}
+        <hr class="hr-line">
+        <div class="wiki-settings">
+            <a href="{% url 'update_city' city.slug %}">
+                <button>Редактировать</button>
+            </a>
+        </div>
+        {% endif %}
     </section>
 </main>
 {% endblock %}

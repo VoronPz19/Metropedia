@@ -186,20 +186,31 @@
                 <div class="vertical_stations_info_block">
                     <a class="line_link_text" style="margin: 0 auto;" href="{{ st.get_absolute_url }}">
                         <div class="station_text">
-                            <h2 class="list_title">{{ st.title | truncatechars:50 }}</h2>
+                            <h2 class="list_title">{{ st.title | truncatechars:30 }}</h2>
                             <p>Соостояние: {{ st.status }}</p>
                         </div>
                     </a>
                     <ul class="trans_list">
                         {% for tr in st.transfer.all %}
-                        <li>
+                        <li class="{% if forloop.first and forloop.last %} w-100 {% else %} mw-210 {% endif %}"
+                            title="{{ tr.line.title }} - {{ tr.title }}">
+
                             <a href="{{ tr.get_absolute_url }}">
-                                <div class="transfer_line transfer_hover"
+
+                                <div class="transfer_line transfer_hover
+                                {% if forloop.first and forloop.last %} simple-transfer {% endif %}"
+
                                      style="background:{% if tr.status == 'Эксплуатируется' %}{{ tr.line.color }}
                                      {% else %}{{ tr.line.color }}80{% endif %};
                                       --th:{% if tr.status == 'Эксплуатируется' %}{{ tr.line.color }}80
                                       {% else %}{{ tr.line.color }}40{% endif %};">
-                                    <span style="color:{{ tr.line.color_text }};">{{ tr.line.number }}</span>
+
+                                    <span class="{% if forloop.first and forloop.last %} trans_title {% endif %}"
+                                          style="color:{{ tr.line.color_text }};
+                                          --tth:{{ tr.line.color_text }}80;">
+                                        {{ tr.line.number }}
+                                        {% if forloop.first and forloop.last %} {{ tr.title | truncatechars:13 }}{% endif %}
+                                    </span>
                                 </div>
                             </a>
                         </li>
@@ -214,6 +225,14 @@
             <h1>{{ station.title }}</h1>
             <p>{{ station.content | safe | linebreaksbr }}</p>
         </div>
+        {% if request.user.is_staff %}
+        <hr class="hr-line">
+        <div class="wiki-settings">
+            <a href="{% url 'update_station' station.slug %}">
+                <button>Редактировать</button>
+            </a>
+        </div>
+        {% endif %}
     </section>
 </main>
 {% endblock %}
