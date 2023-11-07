@@ -91,7 +91,7 @@ class ShowStation(DataMixin, DetailView):
 class AddCity(DataMixin, CreateView):
     form_class = AddCityForm
     template_name = 'main_page/forms.html'
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('cities')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -103,7 +103,7 @@ class AddCity(DataMixin, CreateView):
 class AddLine(DataMixin, CreateView):
     form_class = AddLineForm
     template_name = 'main_page/forms.html'
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('lines')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -115,7 +115,7 @@ class AddLine(DataMixin, CreateView):
 class AddStation(DataMixin, CreateView):
     form_class = AddStationForm
     template_name = 'main_page/forms.html'
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('stations')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
