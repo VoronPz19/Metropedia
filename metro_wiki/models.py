@@ -116,6 +116,8 @@ class Depot(models.Model):
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
+    index = models.IntegerField(default=0, verbose_name='Номер станций под которым находится',
+                                help_text='Укажите 0, чтобы депо отображалось сверху')
     city = models.ForeignKey(City, on_delete=models.PROTECT, verbose_name='Город')
     lines = models.ManyToManyField(Line, blank=True, related_name='+', verbose_name='Обслуживаемые линий')
     trains = models.ManyToManyField(Train, blank=True, related_name='+', verbose_name='Поезда')
