@@ -91,3 +91,42 @@ class Station(models.Model):
         verbose_name = 'Станция'
         verbose_name_plural = 'Станций'
         ordering = ['index', 'title']
+
+
+class Train(models.Model):
+    title = models.CharField(max_length=100, blank=False, verbose_name='Модель метровагона')
+    slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('train', kwargs={'train_slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Метровагон'
+        verbose_name_plural = 'Метровагоны'
+        ordering = ['title']
+
+
+class Depot(models.Model):
+    title = models.CharField(max_length=100, blank=False, verbose_name='Модель метровагона')
+    slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
+    image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
+    content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
+    city = models.ForeignKey(City, on_delete=models.PROTECT, verbose_name='Город')
+    lines = models.ManyToManyField(Line, blank=True, related_name='+', verbose_name='Обслуживаемые линий')
+    trains = models.ManyToManyField(Train, blank=True, related_name='+', verbose_name='Поезда')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('depot', kwargs={'depot_slug': self.slug})
+
+    class Meta:
+        verbose_name = 'Депо'
+        verbose_name_plural = 'Депо'
+        ordering = ['title']
