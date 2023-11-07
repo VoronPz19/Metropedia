@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import *
 from metro_blog.models import Blog
 from django.urls import reverse_lazy
@@ -122,3 +122,63 @@ class AddStation(DataMixin, CreateView):
         context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить/редактировать станцию')
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class UpdateCity(DataMixin, UpdateView):
+    model = City
+    form_class = AddCityForm
+    template_name = 'main_page/forms.html'
+    slug_url_kwarg = 'city_slug'
+
+    success_url = reverse_lazy('cities')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        update = True
+        context['update'] = update
+        c_def = self.get_user_context(title='Редактировать город')
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+
+class UpdateLine(DataMixin, UpdateView):
+    model = City
+    form_class = AddLineForm
+    template_name = 'main_page/forms.html'
+    slug_url_kwarg = 'line_slug'
+
+    success_url = reverse_lazy('lines')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        update = True
+        context['update'] = update
+        c_def = self.get_user_context(title='Редактировать линию')
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+
+class UpdateStation(DataMixin, UpdateView):
+    model = City
+    form_class = AddStationForm
+    template_name = 'main_page/forms.html'
+    slug_url_kwarg = 'station_slug'
+
+    success_url = reverse_lazy('stations')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        update = True
+        context['update'] = update
+        c_def = self.get_user_context(title='Редактировать станцию')
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return self.model.objects.all()
