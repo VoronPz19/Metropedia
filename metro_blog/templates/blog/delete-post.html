@@ -1,0 +1,17 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <div class="form_wrap">
+        <h2>Удаление новости ({{ post.slug | truncatechars:25 }})</h2>
+        <p>Вы действительно хотите удалить эту новость?</p>
+        <form class="deleting" method="post">
+            {% csrf_token %}
+            <a href="{% url 'post' post.slug %}">
+                <button type="button">Вернуться</button>
+            </a>
+            <button class="btn-delete del-sizing" type="submit">Удалить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
