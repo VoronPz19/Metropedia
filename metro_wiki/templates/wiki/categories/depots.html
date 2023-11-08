@@ -1,0 +1,26 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="content post_style">
+        <section class="wrap_post">
+            <img class="preview_img" src="{% static 'images/depots.jpg' %}" alt="cities_image">
+            <h1 class="cat_title">Категория: Депо</h1>
+            <ul class="cats_list categories">
+                {% for d in depots %}
+                <li class="element">
+                    <a href="{{ d.get_absolute_url }}">
+                        <button class="btn_cats">
+                            {% if d.image %}
+                            <img src="{{ d.image.url }}" alt="depot_image">
+                            {% else %}
+                            <img class="station_img" src="{% static 'images/plug.jpg' %}" alt="depot_image">
+                            {% endif %}
+                            <span>{{ d.title }}</span></button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+{% endblock %}
