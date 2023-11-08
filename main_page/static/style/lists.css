@@ -1,0 +1,238 @@
+.vertical_lines_cat_list{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.vertical_station_cat_list{
+    margin: 0;
+    max-height: 600px;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.vertical_lines_cat_list .element, .vertical_station_cat_list .element{
+    width: 45%;
+}
+
+.vertical_list, .vertical_train_list{
+    width: 50%;
+    height: 605px;
+    margin: 0;
+    padding-top: 40px;
+    background-color: #F5F5F5;
+    box-shadow: inset 0px 2px 12px 2px #4388e4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.vertical_list::-webkit-scrollbar-track,
+.vertical_stations_list::-webkit-scrollbar-track,
+.vertical_train_list::-webkit-scrollbar-track,
+.vertical_station_cat_list::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.vertical_list::-webkit-scrollbar,
+.vertical_stations_list::-webkit-scrollbar,
+.vertical_train_list::-webkit-scrollbar,
+.vertical_station_cat_list::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.vertical_list::-webkit-scrollbar-thumb,
+.vertical_stations_list::-webkit-scrollbar-thumb,
+.vertical_train_list::-webkit-scrollbar-thumb,
+.vertical_station_cat_list::-webkit-scrollbar-thumb
+{
+  background-color: #4388e4;
+}
+
+.vertical_stations_list{
+    width: 50%;
+    background-color: #F5F5F5;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    box-shadow: inset 0px 2px 12px 2px #4388e4;
+    max-height: 550px;
+    padding: 15px 0;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: flex-end;
+}
+
+.vertical_list .element, .vertical_lines_cat_list .element, .vertical_station_cat_list .element{
+    height: 55px;
+    border-radius: 27.5px;
+}
+
+.vertical_stations_list .element{
+    height: 110px;
+    width: 100%;
+    margin: 0;
+    padding-left: 20px;
+    flex-direction: row;
+}
+
+.vertical_stations_list .element:hover, .vertical_train_list .element a:hover{
+    background: linear-gradient(0deg, transparent 0%, #4388e480 5%, transparent 15%, transparent 85%, #4388e480 95%, transparent 100%);;
+}
+
+.vertical_list .element a, .vertical_lines_cat_list a,
+.vertical_stations_list .element .vertical_stations_info_block .line_link_text,
+.vertical_station_cat_list a{
+    flex-direction: row;
+}
+
+.vertical_stations_list .vertical_stations_info_block .line_link_text{
+    height: 70%;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.vertical_stations_list .line_link_image{
+    height: 100%;
+    display: block;
+}
+
+.vertical_stations_info_block{
+    width: 262px;
+    display: flex;
+    flex-direction: column;
+}
+
+.vertical_list .element a h2, .vertical_lines_cat_list .element a h2{
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.circle_line{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.vertical_list .element a .circle_line p, .vertical_lines_cat_list .element a p{
+    margin: 0;
+    text-align: center;
+    margin-top: 30%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.vertical_station_cat_list .element a button span{
+    font-size: 10px;
+}
+
+.double_list{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.stations_element{
+    width: 30%;
+}
+
+.trans_list{
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    align-content: center;
+    padding: 0;
+}
+
+.trans_list li{
+    margin: 0;
+    height: 25px;
+    max-width: 210px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.trans_list li a{
+    flex-direction: row;
+    justify-content: center;
+}
+
+.trans_list li a p{
+    margin: 0;
+    max-width: 150px;
+    display: flex;
+}
+
+.trans_list li a p:hover{
+    color: #00000080;
+}
+
+.transfer_line{
+    height: 25px;
+    min-width: 40px;
+    margin: 0 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+}
+
+.transfer_line span{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+}
+
+.transfer_hover:hover{
+    background-color: var(--th) !important;
+}
+
+.trans_title:hover{
+    color: var(--tth) !important;
+}
+
+.simple-transfer{
+    width: 100%;
+    margin: 0 !important;
+}
+
+.vertical_stations_list .element a .station_text h2{
+    margin: 0 auto;
+    max-width: 250px;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+.vertical_stations_list .element a .station_text p{
+    font-size: 14px;
+    text-align: center;
+}
+
+.vertical_stations_list .element a .station_text h2:hover{
+    color: #4388e480;
+}
+
+.vertical_train_list .element a{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 125px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 2px 0px 12px 2px #4388e4;
+}

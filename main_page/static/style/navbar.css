@@ -1,0 +1,142 @@
+.menu{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0px;
+    background: #ffffff;
+    box-shadow: 0px 2px 12px 2px #4388e4;;
+}
+
+.menu ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    padding-bottom: 0;
+}
+
+.menu .logo{
+    color: #4388e4;
+}
+
+.logo div{
+    display: flex;
+    align-items: center;
+}
+
+.logo div p{
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+.menu a{
+    color: #4388e4;
+}
+
+.menu a:hover{
+    color: #4388e480;
+}
+
+@media (max-width: 720px) {
+    .menu ul{
+        font-size: 10px;
+        font-weight: bold;
+    }
+    button{
+        font-size: 8px;
+        padding: 5px 10px;
+    }
+    .wrap, .form_wrap{
+        max-width: 95%;
+    }
+}
+
+.avatar{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.navbar li{
+    text-align: center;
+    display: flex
+}
+
+.navbar li .logo{
+    text-align: left;
+}
+ 
+ .navbar a {
+    padding: 0 10px;
+    display: block;
+    transition: .4s ease-in-out;
+ }
+
+ 
+ @media(max-width:599px) {
+    .navbar>li>a {
+       padding: 15px 20px;
+    }
+    .submenu li a {
+       padding: 10px 20px;
+       margin: 0 20px;
+    }
+ }
+ 
+ @media(min-width: 600px) {
+    .navbar>li {
+       position: relative;
+    }
+    .navbar>li:after {
+       position: absolute;
+       right: 0;
+       width: 1px;
+       height: 12px;
+       top: 24px;
+       box-shadow: 4px -2px 0 #d2d2d2;
+       transform: rotate(30deg);
+    }
+    .navbar>li:last-child:after {
+       background: none;
+       box-shadow: none;
+    }
+    .submenu {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        width: 250px;
+        margin-left: -125px;
+        background: #F5F5F5C8;
+        border: 2px solid #ededed;
+        z-index: 5;
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(.8);
+        transition: .4s ease-out;
+        flex-direction: column;
+        border-radius: 10px;
+     }
+     .navbar>li:hover .submenu {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1);
+     }
+     .submenu li a {
+        padding: 10px 0;
+        margin: 0 auto;
+     }
+  }
+
+.p-as-a{
+    padding: 0 10px;
+    font-size: 20px;
+    display: block;
+    transition: .4s ease-in-out;
+    color: #4388e4;
+}
+
+.p-as-a:hover{
+    color: #4388e480;
+    cursor: pointer;
+}

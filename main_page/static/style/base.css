@@ -1,0 +1,104 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccc;
+}
+
+main{
+    margin-top: 132px;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    padding-bottom: 40px;
+}
+
+button{
+    border-radius: 16px;
+    box-shadow: 0px 2px 12px 2px #4388e4;
+    padding: 10px 40px;
+    font-size: 24px;
+    border: 0;
+    margin-top: 0;
+    background: transparent;
+    border: none;
+    color: #4388e4;
+}
+
+button:hover{
+    cursor: pointer;
+    background: #4388e4;
+    color: #fff;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+}
+
+h1, h2, h4{
+    color: #4388e4;
+    text-transform: uppercase;
+}
+
+br{
+    display: none !important;
+}
+
+p{
+    line-height: 1.4;
+    font-size: 0.92em;
+}
+
+tbody{
+    background: #ccc;
+    box-shadow: 0px 2px 12px 2px #4388e4;
+}
+
+tbody, tr, th, td{
+    border: 0;
+    padding: 5px;
+}
+
+th{
+    color: #4388e4;
+    padding: 5px;
+}
+
+td{
+    font-weight: bold;
+    text-align: center;
+}
+
+td img{
+    object-fit: cover;
+    width: 100% !important;
+    height: 200px !important;
+    padding: 0;
+}
+
+p label{
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4388e4;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+option{
+    font-size: 16px;
+    font-weight: bold;
+}

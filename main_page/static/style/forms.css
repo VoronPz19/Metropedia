@@ -1,0 +1,66 @@
+.form-style{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-input{
+    width: 100%;
+    border: 3px solid transparent;
+    border-bottom: 3px solid #4388e4;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    outline: none;
+    background-color: #F5F5F5;
+    color: #4388e4;
+    font-weight: bold;
+}
+
+.form-input[type="file"]{
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+}
+
+.form-input[type="file"]:hover {
+    color: #4388e480;
+}
+
+
+.form-input[type="text"]:link, .form-input[type="text"]:hover, .form-input[type="text"]:active, .form-input[type="text"]:focus,
+.form-input[type="password"]:link, .form-input[type="password"]:hover, .form-input[type="password"]:active, .form-input[type="password"]:focus,
+.form-input[type="email"]:link, .form-input[type="email"]:hover, .form-input[type="email"]:active, .form-input[type="email"]:focus{
+    animation: 500ms ease-in-out forwards animation-form;
+}
+  
+  @keyframes animation-form {
+    0% {
+        border: 3px solid transparent;
+        border-bottom: 3px solid #4388e4;
+        border-radius: 10px;
+    }
+  
+    100% {
+        border: 3px solid #4388e4;
+        border-radius: 0;
+    }
+}
+
+.form-error{
+    background-color: #FF000080;
+    color: #000000aa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    padding-top: 20px;
+    margin-top: -30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-error ul, .form-error ul li{
+    padding: 0;
+    margin: 0;
+}
