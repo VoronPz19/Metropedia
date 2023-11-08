@@ -1,0 +1,22 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="content post_style">
+        <section class="wrap_post">
+            <img class="preview_img" src="{% static 'images/trains.jpg' %}" alt="cities_image">
+            <h1 class="cat_title">Категория: Метровагоны</h1>
+            <ul class="cats_list categories">
+                {% for t in trains %}
+                <li class="element">
+                    <a href="{{ t.get_absolute_url }}">
+                        <button class="btn_cats">
+                            <img src="{{ t.image.url }}" alt="train_image">
+                            <span>{{ t.title }}</span></button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+{% endblock %}
