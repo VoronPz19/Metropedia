@@ -67,7 +67,7 @@ class AddStationForm(ModelForm):
 
 class AddTrainForm(ModelForm):
     class Meta:
-        model = Line
+        model = Train
         fields = '__all__'
         widgets = {
             'title': forms.TextInput(),
