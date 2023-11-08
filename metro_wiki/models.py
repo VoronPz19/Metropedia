@@ -112,19 +112,30 @@ class Train(models.Model):
 
 
 class Depot(models.Model):
+    STATUS_TYPE = (
+        ('Эксплуатируется', '🚇 Эксплуатируется'),
+        ('Строится', '🛠️ Строится'),
+        ('Проектируется', '✏ Проектируется'),
+        ('Планируется', '📄 Планируется'),
+        ('Закрыта', '🔒 Закрыта'),
+    )
+
     number_of_depot = models.IntegerField(default=1, verbose_name='Номер депо')
     title = models.CharField(max_length=100, blank=False, verbose_name='Название депо')
     slug = models.CharField(max_length=100, blank=False, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
+    status = models.CharField(max_length=200, choices=STATUS_TYPE, default='Эксплуатируется', verbose_name='Статус')
     index = models.IntegerField(default=0, verbose_name='Номер станций под которым находится',
                                 help_text='Укажите 0, чтобы депо отображалось сверху')
     city = models.ForeignKey(City, on_delete=models.PROTECT, verbose_name='Город')
-    lines = models.ManyToManyField(Line, blank=True, related_name='+', verbose_name='Обслуживаемые линий')
+    main_line = models.ForeignKey(Line, on_delete=models.CASCADE, null=True,
+                                  verbose_name='Линия на котором она расположена')
+    lines = models.ManyToManyField(Line, blank=True, related_name='+', verbose_name='Другие обслуживаемые линии')
     trains = models.ManyToManyField(Train, blank=True, related_name='+', verbose_name='Поезда')
 
     def __str__(self):
-        return [self.number_of_depot, self.title]
+        return f'ТЧ-{self.number_of_depot} {self.title}'
 
     def get_absolute_url(self):
         return reverse('depot', kwargs={'depot_slug': self.slug})
@@ -132,4 +143,4 @@ class Depot(models.Model):
     class Meta:
         verbose_name = 'Депо'
         verbose_name_plural = 'Депо'
-        ordering = ['title']
+        ordering = ['city', 'number_of_depot']
