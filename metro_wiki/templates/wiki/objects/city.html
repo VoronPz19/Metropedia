@@ -6,7 +6,7 @@
         {% if city.image %}
         <img class="preview_img" src="{{ city.image.url }}" alt="post_image">
         {% endif %}
-        <h1 class="wrap">{{ city.title }}</h1>
+        <h1 class="title_wrap">{{ city.title }}</h1>
         <h2>Схема и линий:</h2>
         <div class="scheme_line">
             <ul class="vertical_list">
@@ -28,15 +28,12 @@
         <div class="wrap_text">
             <h2> Информация о метрополитене:</h2>
             <p>{{ city.content | safe | linebreaksbr }}</p>
+            {% if request.user.is_staff %}
+                <a href="{% url 'update_city' city.slug %}">
+                    <button class="mb-20 mt-20">Редактировать</button>
+                </a>
+            {% endif %}
         </div>
-        {% if request.user.is_staff %}
-        <hr class="hr-line">
-        <div class="wiki-settings">
-            <a href="{% url 'update_city' city.slug %}">
-                <button>Редактировать</button>
-            </a>
-        </div>
-        {% endif %}
     </section>
 </main>
 {% endblock %}

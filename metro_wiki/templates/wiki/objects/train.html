@@ -1,0 +1,21 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content post_style">
+    <section class="wrap_post">
+        {% if train.image %}
+        <img class="preview_img" src="{{ train.image.url }}" alt="post_image">
+        {% endif %}
+        <h1 class="title_wrap">{{ train.title }}</h1>
+        <div class="wrap_text">
+            <h2> Информация о составе:</h2>
+            <p>{{ train.content | safe | linebreaksbr }}</p>
+            {% if request.user.is_staff %}
+                <a href="{% url 'update_train' train.slug %}">
+                    <button class="mb-20 mt-20">Редактировать</button>
+                </a>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

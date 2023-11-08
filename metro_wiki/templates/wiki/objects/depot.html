@@ -1,0 +1,73 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content post_style">
+    <section class="wrap_post {% if not depot.image %} ptb-30 {% endif %}">
+        {% if depot.image %}
+        <img class="preview_img" src="{{ depot.image.url }}" alt="depot_image">
+        {% endif %}
+        <h1 class="title_wrap">ТЧ-{{ depot.number_of_depot }} {{ depot.title }}</h1>
+        <div class="wrap_text">
+            <h2> Информация о электродепо:</h2>
+            <p>{{ depot.content | safe | linebreaksbr }}</p>
+            {% if request.user.is_staff %}
+                <a href="{% url 'update_depot' depot.slug %}">
+                    <button class="mb-20 mt-20">Редактировать</button>
+                </a>
+            {% endif %}
+        </div>
+        <div class="wrap_text pb-20">
+            <h2>Обслуживаемые линий{% if depot.trains.all %} и подвижной состав{% endif %}:</h2>
+            <div class="double_list">
+                {% if depot.trains.all %}
+                    <ul class="vertical_train_list">
+                        {% for train in depot.trains.all %}
+                        <li class="element">
+                            <a href="{{ train.get_absolute_url }}">
+                                <div class="prev_train">
+                                    {% if train.image %}
+                                    <img src="{{ train.image.url }}" alt="post_image">
+                                    {% else %}
+                                    <img src="{% static 'images/plug.jpg' %}" alt="post_image">
+                                    {% endif %}
+                                </div>
+                                <div class="info_train">
+                                    <span>{{ train.title }}</span>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <ul class="vertical_list">
+                    <li class="element color_hover"
+                        style="box-shadow: 0px 2px 12px 2px {{ depot.main_line.color }}; --ch:{{ depot.main_line.color }};">
+                        <a href="{{ depot.main_line.get_absolute_url }}">
+                            <div class="circle_line" style="background: {{ depot.main_line.color }};">
+                                <p style="color: {{ depot.main_line.color_text }};">{{ depot.main_line.number }}</p>
+                            </div>
+                            <h2 style="--cth:{{ depot.main_line.color_text }};">{{ depot.main_line.title | truncatechars:50 }}</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <h4 class="title_wrap">Другие обслуживаемые линий:</h4>
+                        <hr class="hr-line">
+                    </li>
+                    {% for sl in depot.lines.all %}
+                        <li class="element color_hover"
+                            style="box-shadow: 0px 2px 12px 2px {{ sl.color }}; --ch:{{ sl.color }};">
+                            <a href="{{ depot.main_line.get_absolute_url }}">
+                                <div class="circle_line" style="background: {{ sl.color }};">
+                                    <p style="color: {{ sl.color_text }};">{{ sl.number }}</p>
+                                </div>
+                                <h2 style="--cth:{{ sl.color_text }};">{{ sl.title | truncatechars:50 }}</h2>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
