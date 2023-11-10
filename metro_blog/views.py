@@ -15,7 +15,8 @@ class PublicPosts(DataMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = Blog.objects.filter(is_public=True)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Новости')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -28,7 +29,8 @@ class AllPosts(DataMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['status'] = Blog.is_public
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Предложенные новости')
         return dict(list(context.items()) + list(c_def.items()))
 
