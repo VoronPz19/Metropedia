@@ -15,7 +15,7 @@
             </a>
         </div>
         {% else %}
-        <div class="line_parent mt20">
+        <div class="line_parent mt-20">
             <div class="line"
                  style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ post.line.color }} 10%, {{ post.line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
             <a href="{{ post.line.get_absolute_url }}">
@@ -40,12 +40,13 @@
                 {% endif %}
             </div>
         </div>
-        {% if request.user.is_staff %}
+        {% if request.user.is_staff or post.owner == request.user %}
         <hr class="hr-line">
         <div class="post-settings {% if not post.is_public %} pb-20 {% endif %}">
-            <a href="">
+            <a href="{% url 'update_post' post.slug %}">
                 <button>Редактировать</button>
             </a>
+            {% if request.user.is_staff %}
             {% if post.is_public %}
             <a href="">
                 <button>Отозвать новость</button>
@@ -55,7 +56,8 @@
                 <button>Опубликовать новость</button>
             </a>
             {% endif %}
-            <a href="">
+            {% endif %}
+            <a href="{% url 'delete_post' post.slug %}">
                 <button class="btn-delete">Удалить новость</button>
             </a>
         </div>
@@ -63,11 +65,20 @@
         {% if post.is_public %}
         <hr class="hr-line">
         <div class="comments">
-            <h2>Комментарий: {{ comment_count }}</h2>
+            <h2>Комментарий: {{ comments.count|pluralize }}</h2>
             {% if request.user.is_authenticated %}
-            <form class="form" action="{% url 'post' post.slug %}" method="POST">
+            <form class="form" method="POST">
                 {% csrf_token %}
-                {{ form }}
+                {% for f in form %}
+                <p class="{% if f.label == 'Цвет текста' or f.label == 'Цвет' or f.label == 'Путь к предыдущей станций' or f.label == 'Статус' or f.label == 'Путь к следующей станций' or f.label == 'Тип пути' %} w-50
+                {% else %} w-100 {% endif %}">
+                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                    {{ f }}
+                </p>
+                {% if f.errors %}
+                <div class="form-error">{{ f.errors }}</div>
+                {% endif %}
+                {% endfor %}
                 <input class="btn btn--sub btn--lg" type="submit" value="Comments"/>
             </form>
             {% endif %}

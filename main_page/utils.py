@@ -1,7 +1,7 @@
 menu = [{'title': 'Главная страница', 'url_name': 'main'},
         {'title': 'Новости метрополитена', 'url_name': 'blogs'}]
 
-submenu = [{'title': 'Добавить город', 'url_name': 'add_city'},
+submenu_editor = [{'title': 'Добавить город', 'url_name': 'add_city'},
            {'title': 'Добавить линию', 'url_name': 'add_line'},
            {'title': 'Добавить станцию', 'url_name': 'add_station'},
            {'title': 'Добавить новость', 'url_name': 'add_post'},
@@ -23,7 +23,7 @@ class DataMixin:
         context = kwargs
 
         context['menu'] = menu
-        context['submenu'] = submenu
+        context['submenu_editor'] = submenu_editor
         context['cats'] = cats
 
         return context

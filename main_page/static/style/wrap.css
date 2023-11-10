@@ -39,6 +39,16 @@
     margin: 20px auto;
 }
 
+.user_wrap{
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 10px 30px;
+    border-radius: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .content .form_wrap{
     display: flex;
     flex-direction: column;

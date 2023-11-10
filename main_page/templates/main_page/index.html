@@ -11,23 +11,25 @@
         <section class="post_sect">
             <div id="frame">
                 {% for p in posts %}
-                    {% if forloop.first %}
-                    <input type="radio" name="frame" id="frame{{ forloop.counter }}" checked/>
-                    {% else %}
-                    <input type="radio" name="frame" id="frame{{ forloop.counter }}"/>
-                    {% endif %}
+                {% if forloop.first %}
+                <input type="radio" name="frame" id="frame{{ forloop.counter }}" checked/>
+                {% else %}
+                <input type="radio" name="frame" id="frame{{ forloop.counter }}"/>
+                {% endif %}
                 {% endfor %}
                 <div id="slides">
                     <div id="overflow">
                         <div class="inner" style="--news-count: calc(100% * {{ count }});">
                             {% for p in posts %}
-                            <div class="frame frame_{{ forloop.counter }}" style="--news-count: calc(100% / {{ count }});">
-                                <div class="frame-content {% if p.image %} frame-content-with-image {% endif %}" style="box-shadow: 0px 2px 10px 2px {{ p.line.color }};">
+                            <div class="frame frame_{{ forloop.counter }}"
+                                 style="--news-count: calc(100% / {{ count }});">
+                                <div class="frame-content {% if p.image %} frame-content-with-image {% endif %}"
+                                     style="box-shadow: 0px 2px 10px 2px {{ p.line.color }};">
                                     <div class="prev_post_slider">
-                                            {% if p.image %}
-                                            <img src="{{ p.image.url }}" alt="post_image">
-                                            {% endif %}
-                                        </div>
+                                        {% if p.image %}
+                                        <img src="{{ p.image.url }}" alt="post_image">
+                                        {% endif %}
+                                    </div>
                                     <a class="post_info" href="{{ p.get_absolute_url }}">
                                         <h2>{{ p.title | truncatechars:50 }}</h2>
                                         <p>{{ p.content | striptags | replacer | linebreaksbr | truncatewords:50 }}</p>
@@ -35,15 +37,44 @@
                                             <span>{{ p.owner.username }}|{{ p.time_update }}</span>
                                         </div>
                                     </a>
-                                    <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                                        <a href="{{ p.line.city.get_absolute_url }}">
-                                            <span class="hover_replace"
-                                                  style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
+                                    <div class="cat_post" id="fixed_container" style="background: #f5f5f5">
+                                        <a href="{{ p.city.get_absolute_url }}">
+                                            <span class="link_city_main">{{ p.city.title }}</span>
                                         </a>
-                                        <a href="{{ p.line.get_absolute_url }}">
-                                            <span class="hover_replace"
-                                                  style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.title }}</span>
-                                        </a>
+                                        <ul class="post_lines_list">
+                                            {% for l in p.line.all|slice:"5" %}
+                                            <li class="post_multiple_line">
+                                                <a class="main_post_line_number" href="{{ l.get_absolute_url }}">
+                                                    <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
+                                                         style="--svgh: {{ l.color }}80">
+                                                        <g>
+                                                            <title>background</title>
+                                                            <rect fill="none" id="canvas_background" height="62"
+                                                                  width="102" y="-1" x="-1"/>
+                                                        </g>
+                                                        <g>
+                                                            <title>{{ l.title }}</title>
+                                                            <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212"
+                                                                  x="0.0001"
+                                                                  stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
+                                                            <text font-weight="bold" xml:space="preserve"
+                                                                  text-anchor="middle"
+                                                                  font-family="Helvetica, Arial, sans-serif"
+                                                                  font-size="24" id="svg_4"
+                                                                  y="23.31122"
+                                                                  x="25" fill-opacity="null" stroke-opacity="null"
+                                                                  stroke-width="0"
+                                                                  stroke="#000"
+                                                                  fill="{{ l.color_text }}">{{ l.number }}</text>
+                                                        </g>
+                                                    </svg>
+                                                    {% if forloop.first and forloop.last %}
+                                                    <p class="link_line">{{ l.title }}</p>
+                                                    {% endif %}
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

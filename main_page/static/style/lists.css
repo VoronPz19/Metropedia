@@ -1,3 +1,19 @@
+.post_lines_list{
+    padding: 0;
+    padding-top: 3px;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.post_lines_list li{
+    margin: 0;
+}
+
 .vertical_lines_cat_list{
     margin: 0;
     display: flex;

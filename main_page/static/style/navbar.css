@@ -19,12 +19,12 @@
     color: #4388e4;
 }
 
-.logo div{
-    display: flex;
+.logo a{
+    display: flex !important;
     align-items: center;
 }
 
-.logo div p{
+.logo a p{
     margin: 0 20px;
     font-weight: bold;
 }

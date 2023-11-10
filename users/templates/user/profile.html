@@ -1,15 +1,177 @@
 {% extends 'main_page/base.html' %}
+{% load blog_filters %}
+{% load static %}
 
 {% block content %}
 <main class="content">
-    <section class="wrap">
-        {% for u in profile%}
-        <p>{{ u.username }}</p>
-        <p>{{ user.username }}</p>
-        {% if u == user %}
-            <h2>{{ u }}</h2>
-        {% endif %}
-        {% endfor %}
+    <section class="user_wrap">
+        <div class="main_user_info bg-fff">
+            <img src="{{ request.user.image.url}}" alt="{{request.user}}">
+            <h2>{{request.user}} {% if request.user.is_staff %}👑{% endif %}</h2>
+        </div>
+        <div class="other_user_info bg-fff">
+            <div>
+                <span>Город:</span>
+                <hr class="hr-line mtb-5">
+                <span>{{ request.user.city }}</span>
+            </div>
+            <div>
+                <span>Email:</span>
+                <hr class="hr-line mtb-5">
+                <span>{{ request.user.email }}</span>
+            </div>
+            <div class="central_user_info">
+                <span>Статус:</span>
+                <hr class="hr-line mtb-5">
+                <span>{% if request.user.is_staff %}Администратор сайта{% else %}Пользователь{% endif %}</span>
+            </div>
+            <div>
+                <span>Количество предложенных постов:</span>
+                <hr class="hr-line mtb-5">
+                <span>{{ post_user_count }}</span>
+            </div>
+            <div>
+                <span>Количество опубликованных постов:</span>
+                <hr class="hr-line mtb-5">
+                <span>{{ ppuc }}</span>
+            </div>
+        </div>
+        <div class="tracked_metro bg-fff">
+            <h2>Ваши новости</h2>
+            <ul class="profile-news">
+                {% for p in post_user|slice:"12" %}
+                <li class="element mw-wrap brad-10 black-shadow">
+                    <div class="cat_post">
+                        <a href="{{ p.city.get_absolute_url }}">
+                            <span class="link_city">{{ p.city.title }}</span>
+                        </a>
+                        <ul class="post_lines_list">
+                            {% for l in p.line.all|slice:"5" %}
+                                {% if forloop.first and forloop.last %}
+                                <li class="post_single_line hover_line"
+                                    style="background: {{ l.color }}; --hl:{{ l.color }}80;">
+                                    <a href="{{ l.get_absolute_url }}">
+                                    <span style="color: {{ l.color_text }};">
+                                        {{ l.title }}
+                                    </span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="post_multiple_line">
+                                    <a href="{{ l.get_absolute_url }}">
+                                        <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
+                                             style="--svgh: {{ l.color }}80">
+                                            <g>
+                                                <title>background</title>
+                                                <rect fill="none" id="canvas_background" height="62" width="102" y="-1"
+                                                      x="-1"/>
+                                            </g>
+                                            <g>
+                                                <title>{{ l.title }}</title>
+                                                <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212" x="0.0001"
+                                                      stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
+                                                <text font-weight="bold" xml:space="preserve" text-anchor="middle"
+                                                      font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4"
+                                                      y="23.31122"
+                                                      x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0"
+                                                      stroke="#000" fill="{{ l.color_text }}">{{ l.number }}</text>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <a href="{{ p.get_absolute_url }}">
+                        <div class="hover_background"></div>
+                        <div class="prev_post">
+                            {% if p.image %}
+                            <img src="{{ p.image.url }}" alt="post_image">
+                            {% else %}
+                            <img src="{% static 'images/plug.jpg' %}" alt="post_image">
+                            {% endif %}
+                        </div>
+                        <h2>{{ p.title | truncatewords:15 }}</h2>
+                        <div class="date_post">
+                            <div class="post_status">
+                                <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость
+                                    {% if not p.is_public %} не{% endif %} опубликована</p>
+                            </div>
+                            <span>{{ p.owner.username }}|{{ p.time_update }}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="tracked_metro bg-fff">
+            <h2>Мы отлеживаем "{{ request.user.tracked_city }}"</h2>
+            <ul class="profile-news">
+                {% for p in posts|slice:"12" %}
+                {% if p.city == request.user.tracked_city %}
+                <li class="element mw-wrap brad-10 black-shadow">
+                    <div class="cat_post">
+                        <a href="{{ p.city.get_absolute_url }}">
+                            <span class="link_city">{{ p.city.title }}</span>
+                        </a>
+                        <ul class="post_lines_list">
+                            {% for l in p.line.all|slice:"5" %}
+                                {% if forloop.first and forloop.last %}
+                                <li class="post_single_line hover_line"
+                                    style="background: {{ l.color }}; --hl:{{ l.color }}80;">
+                                    <a href="{{ l.get_absolute_url }}">
+                                    <span style="color: {{ l.color_text }};">
+                                        {{ l.title }}
+                                    </span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="post_multiple_line">
+                                    <a href="{{ l.get_absolute_url }}">
+                                        <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
+                                             style="--svgh: {{ l.color }}80">
+                                            <g>
+                                                <title>background</title>
+                                                <rect fill="none" id="canvas_background" height="62" width="102" y="-1"
+                                                      x="-1"/>
+                                            </g>
+                                            <g>
+                                                <title>{{ l.title }}</title>
+                                                <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212" x="0.0001"
+                                                      stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
+                                                <text font-weight="bold" xml:space="preserve" text-anchor="middle"
+                                                      font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4"
+                                                      y="23.31122"
+                                                      x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0"
+                                                      stroke="#000" fill="{{ l.color_text }}">{{ l.number }}</text>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <a href="{{ p.get_absolute_url }}">
+                        <div class="hover_background"></div>
+                        <div class="prev_post">
+                            {% if p.image %}
+                            <img src="{{ p.image.url }}" alt="post_image">
+                            {% else %}
+                            <img src="{% static 'images/plug.jpg' %}" alt="post_image">
+                            {% endif %}
+                        </div>
+                        <h2>{{ p.title | truncatewords:15 }}</h2>
+                        <div class="date_post">
+                            <span>{{ p.owner.username }}|{{ p.time_update }}</span>
+                        </div>
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     </section>
 </main>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, RadioSelect
+from django.forms import ModelForm, CheckboxSelectMultiple
 from .models import *
 
 
@@ -9,7 +9,7 @@ class AddPostForm(ModelForm):
         model = Blog
         exclude = ['time_created', 'time_update', 'is_public', 'owner']
         widgets = {
-            'line': RadioSelect(),
+            'line': CheckboxSelectMultiple(),
             'content': forms.TextInput(attrs={'cols': 60, 'rows': 10}),
                    }
 

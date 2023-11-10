@@ -1,13 +1,14 @@
 {% load static %}
+
 <header class="menu">
     <section class="wrap_navbar">
         <ul class="navbar">
             {% if request.user.is_authenticated %}
             <li class="logo">
-                <div>
-                    <img src="{{ user.image.url }}" alt="{{ user.username }}" class="avatar">
-                    <p>{{ user.username }}</p>
-                </div>
+                <a href="{% url 'account' %}">
+                    <img src="{{ request.user.image.url }}" alt="{{ request.user.username }}" class="avatar">
+                    <p>{{ request.user.username }}{% if request.user.is_staff %}👑{% endif %}</p>
+                </a>
             </li>
             {% else %}
             <li class="logo"><a href="{% url 'main' %}">MetroPedia</a></li>
@@ -18,7 +19,7 @@
             {% if request.user.is_staff %}
             <li><p class="p-as-a">Добавить запись</p>
                 <ul class="submenu">
-                    {% for sm in submenu %}
+                    {% for sm in submenu_editor %}
                     <li><a href="{% url sm.url_name %}">{{ sm.title }}</a></li>
                     {% endfor %}
                 </ul>
@@ -28,8 +29,6 @@
             {% endif %}
             {% if post_user_count > 0 and request.user.is_authenticated and not request.user.is_staff %}
             <li><a href="{% url 'post_user_list' %}">Преложенные новости</a></li>
-            {% elif post_user_count > 0 and request.user.is_staff %}
-            <li><a href="{% url 'post_user_list' %}">Ваши новости</a></li>
             {% endif %}
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Выйти</a></li>

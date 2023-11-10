@@ -9,16 +9,46 @@
         <h1 class="w-100">{{ title }}</h1>
         <ul class="post_list w-100">
             {% for p in posts %}
-            <li class="element mw-wrap brad-10" style="box-shadow: 0px 2px 12px 2px {{ p.line.color }};">
-                <div class="cat_post" id="fixed_container" style="background: {{ p.line.color }}">
-                    <a href="{{ p.line.city.get_absolute_url }}">
-                        <span class="hover_replace"
-                              style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.city.title }}</span>
+            <li class="element mw-wrap brad-10 black-shadow">
+                <div class="cat_post" id="fixed_container">
+                    <a href="{{ p.city.get_absolute_url }}">
+                        <span class="link_city">{{ p.city.title }}</span>
                     </a>
-                    <a href="{{ p.line.get_absolute_url }}">
-                        <span class="hover_replace"
-                              style="color: {{ p.line.color_text }}; --hr:{{ p.line.color_text }}80;">{{ p.line.title }}</span>
-                    </a>
+                    <ul class="post_lines_list">
+                        {% for l in p.line.all|slice:"5" %}
+                        {% if forloop.first and forloop.last %}
+                        <li class="post_single_line hover_line" style="background: {{ l.color }}; --hl:{{ l.color }}80;">
+                            <a href="{{ l.get_absolute_url }}">
+                                <span style="color: {{ l.color_text }};">
+                                    {{ l.title }}
+                                </span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="post_multiple_line">
+                            <a href="{{ l.get_absolute_url }}">
+                                <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
+                                     style="--svgh: {{ l.color }}80">
+                                    <g>
+                                        <title>background</title>
+                                        <rect fill="none" id="canvas_background" height="62" width="102" y="-1" x="-1"/>
+                                    </g>
+                                    <g>
+                                        <title>{{ l.title }}</title>
+                                        <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212" x="0.0001"
+                                              stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
+                                        <text font-weight="bold" xml:space="preserve" text-anchor="middle"
+                                              font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4"
+                                              y="23.31122"
+                                              x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0"
+                                              stroke="#000" fill="{{ l.color_text }}">{{ l.number }}</text>
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
                 <a href="{{ p.get_absolute_url }}">
                     <div class="hover_background"></div>
@@ -33,7 +63,8 @@
                     <div class="date_post">
                         <div class="post_status">
                             {% if status %}
-                            <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость{% if not p.is_public %} не{% endif %} опубликована</p>
+                            <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость{% if not p.is_public %} не{% endif %}
+                                опубликована</p>
                             {% endif %}
                         </div>
                         <span>{{ p.owner.username }}|{{ p.time_update }}</span>

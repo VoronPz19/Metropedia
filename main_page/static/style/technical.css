@@ -31,6 +31,11 @@
     margin-bottom: 20px;
 }
 
+.mtb-5{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .pb-20{
     padding-bottom: 20px;
 }
@@ -51,4 +56,12 @@
 
 .mw-wrap{
     max-width: 30%;
+}
+
+.black-shadow{
+    box-shadow: 2px 0 10px 2px #000;
+}
+
+.bg-fff{
+    background-color: #ffffff;
 }

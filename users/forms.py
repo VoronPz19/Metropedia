@@ -19,12 +19,13 @@ class RegisterUserForm(UserCreationForm):
     image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'form-input'}))
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-input'}))
+    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
     class Meta:
         model = Profile
-        fields = ('image', 'username', 'email', 'password1', 'password2',)
+        fields = ('image', 'username', 'email', 'city', 'password1', 'password2',)
 
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
@@ -38,7 +39,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = Profile
-        fields = ('email', )
+        fields = ('email', 'city',)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -68,7 +69,7 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = Profile
-        fields = ('email', )
+        fields = ('email',)
 
     def clean_password(self):
-        return self.initial["password1"]
+        return self.initial["password"]
