@@ -12,7 +12,8 @@ class LastNews(DataMixin, LastNewsMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['posts'] = Blog.objects.filter(is_public=True)
         context['count'] = Blog.objects.filter(is_public=True).count
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Главная страница')
         return dict(list(context.items()) + list(c_def.items()))
 

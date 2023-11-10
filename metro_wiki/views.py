@@ -14,7 +14,8 @@ class Cities(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Города')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -29,7 +30,8 @@ class Lines(DataMixin, ListView):
         context['cities'] = City.objects.all
         context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'})\
             .order_by('sorted_num')
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Линий')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -43,7 +45,8 @@ class Stations(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['cities'] = City.objects.all
         context['stations'] = Station.objects.order_by('title', 'line')
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Станций')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -55,7 +58,8 @@ class Trains(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Поезда')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -67,7 +71,8 @@ class Depots(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Депо')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -85,7 +90,8 @@ class ShowCity(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'})\
             .order_by('sorted_num')
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title=context['city'])
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -99,7 +105,8 @@ class ShowLine(DataMixin, DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['depot'] = Depot.objects.all()
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title=context['line'])
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -114,7 +121,8 @@ class ShowStation(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['station_list'] = Station.objects.all()
         context['depot'] = Depot.objects.all()
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title=context['station'])
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -141,7 +149,8 @@ class ShowDepot(DataMixin, DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['station_list'] = Station.objects.all()
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title=context['depot'])
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -156,7 +165,8 @@ class AddCity(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить город')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -168,7 +178,8 @@ class AddLine(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить линию')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -180,7 +191,8 @@ class AddStation(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить станцию')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -192,7 +204,8 @@ class AddTrain(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить метровагон')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -204,7 +217,8 @@ class AddDepot(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Добавить депо')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -222,7 +236,8 @@ class UpdateCity(DataMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать город')
@@ -242,7 +257,8 @@ class UpdateLine(DataMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать линию')
@@ -262,7 +278,8 @@ class UpdateStation(DataMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать станцию')
@@ -282,7 +299,8 @@ class UpdateTrain(DataMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать поезд')
@@ -302,7 +320,8 @@ class UpdateDepot(DataMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать депо')
