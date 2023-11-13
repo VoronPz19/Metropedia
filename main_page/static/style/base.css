@@ -86,18 +86,6 @@ td img{
     padding: 0;
 }
 
-p label{
-    display: block;
-    width: 100%;
-    font-size: 20px;
-    font-weight: bold;
-    color: #4388e4;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-}
-
 option{
     font-size: 16px;
     font-weight: bold;

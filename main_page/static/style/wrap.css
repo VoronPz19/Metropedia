@@ -124,3 +124,8 @@
     text-align: center;
     font-size: 20px;
 }
+
+.file_wrap{
+    display: flex;
+    flex-direction: column;
+}

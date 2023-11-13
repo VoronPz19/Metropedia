@@ -14,8 +14,13 @@
     border-top-right-radius: 5px;
 }
 
+.main_user_info div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.main_user_info h2{
+.main_user_info div h2{
     text-transform: capitalize;
 }
 
@@ -48,13 +53,43 @@
     font-weight: bold;
 }
 
-.tracked_metro{
+.your_news, .tracked_metro{
     width: 100%;
     border-radius: 10px;
     margin: 20px 0;
     box-shadow: 0 0 10px 1px #4388e4;
     display: flex;
     flex-direction: column;
+}
+
+.no_city_news{
+    width: 100%;
+    border-radius: 10px;
+    padding: 80px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px 1px #4388e4;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.no_city_news img{
+    margin: 50px 0;
+    width: 30%;
+}
+
+.no_city_news span{
+    color: #4388e4;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.all_news_button{
+    width: fit-content;
+    margin: -30px auto 30px;
 }
 
 .profile-news{
