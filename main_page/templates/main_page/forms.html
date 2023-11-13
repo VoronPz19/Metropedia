@@ -17,7 +17,15 @@
                         <div class="form-error">{{ f.errors }}</div>
                     {% endif %}
             {% endfor %}
-            <button class="w-50 m-30">Сохранить</button>
+            <button class="w-25 m-30">Сохранить</button>
+            <h2>{{ post }} {{ post.slug }}</h2>
+            {% if request.user.is_staff and public_form %}
+            {% if post.is_public %}
+                <button class="w-25 m-30" type="submit" name="save_non_public">Сохранить и отозвать</button>
+                {% else %}
+                <button class="w-25 m-30" type="submit" name="save_public">Сохранить и опубликовать</button>
+                {% endif %}
+            {% endif %}
         </form>
     </div>
 </main>
