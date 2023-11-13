@@ -5,7 +5,7 @@
         <ul class="navbar">
             {% if request.user.is_authenticated %}
             <li class="logo">
-                <a href="{% url 'account' %}">
+                <a href="{% url 'user' %}">
                     <img src="{{ request.user.image.url }}" alt="{{ request.user.username }}" class="avatar">
                     <p>{{ request.user.username }}{% if request.user.is_staff %}👑{% endif %}</p>
                 </a>
