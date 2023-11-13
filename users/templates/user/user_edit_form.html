@@ -1,0 +1,34 @@
+{% extends 'main_page/base.html' %}
+
+{% block content %}
+<main class="content">
+    <div class="wrap">
+        <h1>{{ title }}</h1>
+        <form class="form-style" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="w-100 file_wrap">
+                <label for="{{ form.image.id_for_label }}" class="form-label">Картинка</label>
+                {{ form.image }}
+            </div>
+            {% if form.image.errors %}
+            <div class="form-error">{{ form.image.errors }}</div>
+            {% endif %}
+            <p class="w-50">
+                <label for="{{ form.city.id_for_label }}" class="form-label">Город</label>
+                {{ form.city }}
+            </p>
+            {% if form.city.errors %}
+            <div class="form-error">{{ form.city.errors }}</div>
+            {% endif %}
+            <p class="w-50">
+                <label for="{{ form.tracked_city.id_for_label }}" class="form-label">Отслеживаемый город</label>
+                {{ form.tracked_city }}
+            </p>
+            {% if form.tracked_city.errors %}
+            <div class="form-error">{{ form.tracked_city.errors }}</div>
+            {% endif %}
+            <button class="w-50 m-30">Сохранить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
