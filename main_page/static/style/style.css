@@ -297,13 +297,14 @@
 }
 
 .prev_post_slider{
+    background-color: #fff;
     position: absolute;
     z-index: -1;
     object-fit: cover;
     border-radius: 10px;
     width: 100%;
     height: 100%;
-    filter: brightness(0.7);
+    filter: brightness(0.65);
 }
 
 .prev_post_slider img{
@@ -613,204 +614,7 @@ color: #00000080;
     justify-content: space-around;
 }
 
-#id_trains, #id_city, #id_lines{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-#id_trains div, #id_city div, #id_lines div{
-    width: 30%;
-    margin: 2px 0;
-    padding: 0 10px;
-    border-left: 5px solid #4388e4;
-    border-right: 5px solid #4388e4;
-}
-
-#id_trains div label, #id_city div label, #id_lines div label{
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-}
-
-#id_trains div input, #id_city div input, #id_lines div input{
-    width: 20px;
-}
-
 .del-sizing{
     width: 30% !important;
     margin: 0 !important;
 }
-
-.django-ckeditor-widget{
-    width: 100%;
-}
-
-#id_status, #id_prev_path, #id_next_path{
-    width: 100%;
-}
-
-#id_transfer div label input, #id_line div label input{
-    width: 20px;
-}
-
-#id_transfer div label, #id_line div label{
-    display: block;
-}
-
-#id_transfer div, #id_line div{
-    display: flex;
-    flex-direction: row;
-    margin: 10px 0;
-    box-shadow: 2px 2px 12px 2px #4388e4;
-    border-radius: 5px;
-    width: 30%;
-    height: 30px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: clip;
-}
-
-#id_transfer, #id_line{
-    height: 300px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    overflow: auto;
-}
-
-#id_transfer div:hover {
-    background-color: #4388e4;
-    color: #fff;
-}
-
-#frame { 
-    margin: 0 auto; 
-    width: 100%; 
-    max-width: 100%; 
-    text-align: center; 
-} 
-
-#frame input[type=radio] { 
-    display: none; 
-} 
-
-#frame label { 
-    cursor: pointer; 
-} 
-
-#slides { 
-    padding: 10px; 
-    position: relative; 
-    z-index: 1; 
-} 
-
-#overflow { 
-    width: 100%; 
-    overflow: hidden; 
-} 
-
-#frame1:checked~#slides .inner { 
-    margin-left: 0; 
-} 
-
-#frame2:checked~#slides .inner { 
-    margin-left: -100%; 
-} 
-
-#frame3:checked~#slides .inner { 
-    margin-left: -200%; 
-} 
-
-#frame4:checked~#slides .inner { 
-    margin-left: -300%; 
-} 
-
-#frame5:checked~#slides .inner { 
-    margin-left: -400%; 
-} 
-
-#slides .inner { 
-    transition: margin-left 800ms  
-        cubic-bezier(0.770, 0.000, 0.175, 1.000); 
-    width: var(--news-count); 
-    height: 400px; 
-} 
-
-#slides .frame { 
-    width: var(--news-count);
-    float: left; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100%; 
-} 
-
-.frame-content{
-    width: 98%;
-    height: 96%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 10px;
-}
-
-.frame-content-with-image .post_info h2{
-    color: #F5F5F5;
-    font-size: 22px;
-    font-weight: bold;
-    height: 40px;
-    width: 100%;
-    margin: 0;
-    margin-top: 20px;
-}
-
-.frame-content-with-image .post_info p{
-    text-transform: lowercase;
-    color: #F5F5F5;
-    font-weight: 600;
-    width: 100%;
-    text-align: center;
-}
-
-.frame-content-with-image .post_info .date_post span{
-    color: #F5F5F5;
-}
-
-.frame-content-with-image .post_info h2:hover, .frame-content-with-image .post_info p:hover{
-    color: #F5F5F580
-}
-
-#bullets { 
-    text-align: center; 
-} 
-
-#bullets label { 
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 5px;
-    background: #44444480;
-    margin: 0 5px;
-    color: #FFF;
-    font-weight: bold;
-} 
-
-#frame1:checked~#bullets label:nth-child(1), 
-#frame2:checked~#bullets label:nth-child(2), 
-#frame3:checked~#bullets label:nth-child(3), 
-#frame4:checked~#bullets label:nth-child(4),
-#frame5:checked~#bullets label:nth-child(5) { 
-    background: #444; 
-} 
-
-@media screen and (max-width: 900px) { 
-    #slides { 
-        max-width: calc(100% - 140px); 
-        margin: 0 auto; 
-    } 
-} 
-

@@ -104,4 +104,68 @@ p label, .file_wrap label{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50%;
-  }
+}
+
+#id_trains, #id_city, #id_lines{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#id_trains div, #id_city div, #id_lines div{
+    width: 30%;
+    margin: 2px 0;
+    padding: 0 10px;
+    border-left: 5px solid #4388e4;
+    border-right: 5px solid #4388e4;
+}
+
+#id_trains div label, #id_city div label, #id_lines div label{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+#id_trains div input, #id_city div input, #id_lines div input{
+    width: 20px;
+}
+
+#id_status, #id_prev_path, #id_next_path{
+    width: 100%;
+}
+
+#id_transfer div label input, #id_line div label input{
+    width: 20px;
+}
+
+#id_transfer div label, #id_line div label{
+    display: block;
+}
+
+#id_transfer div, #id_line div{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    box-shadow: 2px 2px 12px 2px #4388e4;
+    border-radius: 5px;
+    width: 30%;
+    height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+
+#id_transfer, #id_line{
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+}
+
+#id_transfer div:hover {
+    background-color: #4388e4;
+    color: #fff;
+}
