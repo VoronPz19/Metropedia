@@ -23,7 +23,7 @@
                             {% for p in posts %}
                             <div class="frame frame_{{ forloop.counter }}"
                                  style="--news-count: calc(100% / {{ count }});">
-                                <div class="frame-content {% if p.image %} frame-content-with-image {% endif %}"
+                                <div class="frame-content frame-content-with-image"
                                      style="box-shadow: 0px 2px 10px 2px {{ p.line.color }};">
                                     <div class="prev_post_slider">
                                         {% if p.image %}
@@ -31,7 +31,7 @@
                                         {% endif %}
                                     </div>
                                     <a class="post_info" href="{{ p.get_absolute_url }}">
-                                        <h2>{{ p.title | truncatechars:50 }}</h2>
+                                        <h2>{{ p.title| truncatewords:10 }}</h2>
                                         <p>{{ p.content | striptags | replacer | linebreaksbr | truncatewords:50 }}</p>
                                         <div class="date_post">
                                             <span>{{ p.owner.username }}|{{ p.time_update }}</span>
@@ -82,9 +82,14 @@
                         </div>
                     </div>
                 </div>
+                <div id="controls">
+                    {% for p in posts %}
+                    <label for="frame{{ forloop.counter }}"></label>
+                    {% endfor %}
+                </div>
                 <div id="bullets">
                     {% for p in posts %}
-                    <label for="frame{{ forloop.counter }}">Новость {{ forloop.counter }}</label>
+                    <label for="frame{{ forloop.counter }}"></label>
                     {% endfor %}
                 </div>
             </div>
@@ -106,4 +111,57 @@
         </section>
     </div>
 </main>
+
+<style>
+    {% for p in posts %}
+    #frame{{ forloop.counter }}:checked~#slides .inner {
+    margin-left: calc(-100% * {{ forloop.counter }} + 100%);
+    }
+    {% endfor %}
+    {% for p in posts %}
+    {% if forloop.last %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child(1)
+    {% else %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter|add:1 }}),
+    {% endif %}
+    {% endfor %}{
+        background:
+        url({% static 'images/right_arrow.svg' %}) no-repeat;
+        float: right;
+        display: block;
+    }
+    {% for p in posts %}
+    {% if forloop.first %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ count }}),
+    {% elif forloop.last %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter0 }})
+    {% else %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter0 }}),
+    {% endif %}
+    {% endfor %}{
+        background:
+        url({% static 'images/left_arrow.svg' %}) no-repeat;
+        float: left;
+        display: block;
+    }
+
+    {% for p in posts %}
+    #frame{{ forloop.counter }}:checked~#bullets label:nth-child({{ forloop.counter }}){% if not forloop.last %},{% endif %}
+    {% endfor %}{
+        background: #444;
+    }
+
+    @media screen and (max-width: 900px) {
+    {% for p in posts %}
+    {% if forloop.last %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child(1)
+    {% else %}
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter|add:1 }}),
+    {% endif %}
+    {% endfor %}{
+        margin: 0;
+    }
+}
+
+</style>
 {% endblock %}

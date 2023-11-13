@@ -1,0 +1,13 @@
+<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG Editor - http://github.com/mzalive/SVG Editor/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="52" width="52" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <line stroke-width="3" stroke-linecap="null" stroke-linejoin="null" id="svg_2" y2="25" x2="48" y1="0" x1="0" stroke-opacity="null" stroke="#fff" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_3" y2="25.09154" x2="48" y1="50" x1="0" stroke-opacity="null" stroke-width="3" stroke="#fff" fill="none"/>
+  <ellipse stroke="#000" ry="1.652894" rx="1.652891" id="svg_5" cy="25.041305" cx="47.685935" stroke-opacity="null" stroke-width="0" fill="#fff"/>
+ </g>
+</svg>
