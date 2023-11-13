@@ -1,9 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
-from django.db.models import fields
 from django import forms
 from .models import Profile
-from django.contrib.auth import get_user_model
 
 
 class AuthenticationUserForm(AuthenticationForm):
@@ -16,7 +14,7 @@ class AuthenticationUserForm(AuthenticationForm):
 
 
 class RegisterUserForm(UserCreationForm):
-    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'form-input'}))
+    image = forms.ImageField(label='Аватарка', widget=forms.FileInput(attrs={'class': 'form-input'}))
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-input'}))
     city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-input'}))
@@ -30,6 +28,25 @@ class RegisterUserForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
         self.fields['image'].required = False
+
+
+class EditingUserForm(UserChangeForm):
+    image = forms.ImageField(label='Аватарка', widget=forms.FileInput(attrs={'class': 'form-file-input'}))
+
+    class Meta:
+        model = Profile
+        fields = ['image', 'city', 'tracked_city']
+        exclude = ('password',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-input'})
+
+        self.fields['image'].required = False
+        self.fields['city'].required = False
+        self.fields['tracked_city'].required = False
 
 
 class CustomUserCreationForm(UserCreationForm):
