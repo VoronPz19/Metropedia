@@ -29,7 +29,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
         return True
 
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'profile_pk': self.pk})
+        return reverse('profile_pk', kwargs={'profile_pk': self.pk})
 
 
 def is_staff(self):
