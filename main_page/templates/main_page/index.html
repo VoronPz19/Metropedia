@@ -4,6 +4,14 @@
 
 {% block content %}
 <main class="content">
+    <!--
+    <section class="main_sect">
+        <video autoplay loop muted class="bgvideo" id="bgvideo">
+            <source src="{% static 'trains.mp4' %}" type="video/mp4">
+        </video>
+        <h1 class="title_wrap">Добро пожаловать на сайт Метропедий</h1>
+    </section>
+    -->
     <div class="wrap" style="flex-direction: column;">
         <h1 class="title_wrap">Добро пожаловать на сайт Метропедий</h1>
         {% if posts %}
@@ -41,6 +49,7 @@
                                         <a href="{{ p.city.get_absolute_url }}">
                                             <span class="link_city_main">{{ p.city.title }}</span>
                                         </a>
+                                        {% if p.line.all %}
                                         <ul class="post_lines_list">
                                             {% for l in p.line.all|slice:"5" %}
                                             <li class="post_multiple_line">
@@ -75,6 +84,7 @@
                                             </li>
                                             {% endfor %}
                                         </ul>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -133,10 +143,8 @@
     {% for p in posts %}
     {% if forloop.first %}
     #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ count }}),
-    {% elif forloop.last %}
-    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter0 }})
     {% else %}
-    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter0 }}),
+    #frame{{ forloop.counter }}:checked~#controls label:nth-child({{ forloop.counter0 }}){% if not forloop.last %},{% endif %}
     {% endif %}
     {% endfor %}{
         background:
