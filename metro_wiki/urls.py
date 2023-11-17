@@ -20,6 +20,8 @@ urlpatterns = [
     path('train/special/add/', AddTrain.as_view(), name='add_train'),
     path('depot/special/add/', AddDepot.as_view(), name='add_depot'),
 
+    path('station/special/search/', StationSelectorResult.as_view(), name='search_station'),
+
     path('city/<slug:city_slug>/update/', UpdateCity.as_view(), name='update_city'),
     path('line/<slug:line_slug>/update/', UpdateLine.as_view(), name='update_line'),
     path('station/<slug:station_slug>/update/', UpdateStation.as_view(), name='update_station'),
