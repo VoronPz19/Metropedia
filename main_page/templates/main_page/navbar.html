@@ -27,9 +27,6 @@
             {% elif request.user.is_authenticated %}
             <li><a href="{% url 'add_post' %}">Предложить новость</a></li>
             {% endif %}
-            {% if post_user_count > 0 and request.user.is_authenticated and not request.user.is_staff %}
-            <li><a href="{% url 'post_user_list' %}">Предложенные новости</a></li>
-            {% endif %}
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Выйти</a></li>
             {% else %}
