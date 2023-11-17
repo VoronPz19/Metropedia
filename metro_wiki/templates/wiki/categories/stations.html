@@ -6,6 +6,11 @@
     <section class="wrap_post">
         <img class="preview_img" src="{% static 'images/stations.jpg' %}" alt="cities_image">
         <h1 class="cat_title">Категория: станций</h1>
+        <form action="{% url 'search_station' %}" method="get" class="search-form" autocomplete="off">
+            <input type="search" placeholder="Введите название станций" name="q" required="" value="{{ q }}" class="form-input">
+            <button type="submit">Найти станцию</button>
+            <p class="ordering_form">{{ ordering }}</p>
+        </form>
         <ul class="cities_line_list">
             {% for city in cities %}
             <li>
@@ -17,7 +22,7 @@
                     <li class="stations_element">
                         <a href="{{ st.get_absolute_url }}">
                             <button class="st_button">
-                                <span>{{ st.title | truncatechars:50 }}</span>
+                                <span class="mw-80">{{ st.title | truncatechars:50 }}</span>
                                 <p class="circle_line" style="color: {{ st.line.color_text }};
                                  background: {{ st.line.color }};">{{ st.line.number }}</p>
                             </button>
