@@ -1,8 +1,10 @@
+from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .forms import *
 from metro_blog.models import Blog
 from django.urls import reverse_lazy
 from main_page.utils import DataMixin
+
 
 # -- Categories --
 
@@ -28,7 +30,7 @@ class Lines(DataMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cities'] = City.objects.all
-        context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'})\
+        context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'}) \
             .order_by('sorted_num')
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
@@ -40,11 +42,13 @@ class Stations(DataMixin, ListView):
     model = Station
     template_name = 'wiki/categories/stations.html'
     context_object_name = 'stations'
+    sort_form = OrderingStationForm
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cities'] = City.objects.all
-        context['stations'] = Station.objects.order_by('title', 'line')
+        context['stations'] = Station.objects.order_by('line', 'title')
+        context['ordering'] = OrderingStationForm()
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Станций')
@@ -88,7 +92,7 @@ class ShowCity(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'})\
+        context['lines'] = Line.objects.extra(select={'sorted_num': 'CAST(number AS INTEGER)'}) \
             .order_by('sorted_num')
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
@@ -329,3 +333,28 @@ class UpdateDepot(DataMixin, UpdateView):
 
     def get_queryset(self):
         return self.model.objects.all()
+
+
+# -- selectors --
+
+
+class StationSelectorResult(DataMixin, ListView):
+    template_name = 'wiki/search/stations.html'
+    paginate_by = 64
+    context_object_name = 'stations'
+
+    def get_context_data(self, object_list=None, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['q'] = self.request.GET.get('q')
+        context['ordering'] = OrderingStationForm()
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title=f'Результаты поиска: {self.request.GET.get("q")}')
+
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return Station.objects.filter(title__icontains=self.request.GET.get('q'))\
+            .order_by(self.request.GET.get('ordering'), 'title') if self.request.GET.get('ordering')\
+            != 'По алфавиту (По убиванию)' else Station.objects.filter(title__icontains=self.request.GET.get('q'))\
+            .order_by(self.request.GET.get('ordering'))
