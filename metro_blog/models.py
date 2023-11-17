@@ -1,4 +1,3 @@
-from django.db import models
 from metro_wiki.models import *
 from django.urls import reverse
 from users.models import Profile
@@ -16,7 +15,7 @@ class Blog(models.Model):
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     source = models.CharField(max_length=250, blank=True, null=True, verbose_name='Источник')
 
-    is_public = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=False, verbose_name='Публичный')
 
     time_created = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     time_update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
