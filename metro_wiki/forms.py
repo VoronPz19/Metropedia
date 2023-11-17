@@ -65,6 +65,21 @@ class AddStationForm(ModelForm):
         self.fields['content'].required = False
 
 
+class OrderingStationForm(forms.Form):
+    ordering = forms.ChoiceField(label='Сортировка', required=False, choices=[
+        ['title', 'По алфавиту (По возрастанию)'], ['-title', 'По алфавиту (По убиванию)'],
+        ['line', 'По номеру линий (По возрастанию)'], ['-line', 'По номеру линий (По убиванию)'],
+        ['index', 'По индексаций (С севера/востока на юг/запад)'],
+        ['-index', 'По индексаций (С юга/запада на север/восток)']
+    ])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-input'})
+
+
 class AddTrainForm(ModelForm):
     class Meta:
         model = Train
