@@ -5,24 +5,46 @@
     <section class="wrap_post {% if not post.image %} ptb-30 {% endif %}">
         {% if post.image %}
         <img class="preview_img" src="{{ post.image.url }}" alt="post_image">
-        <div class="line_parent">
-            <div class="line"
-                 style="background: {{ post.line.color }};"></div>
-            <a href="{{ post.line.get_absolute_url }}">
-                <div class="circle circle_a" style="background: {{ post.line.color }}">
-                    <p style="color: {{ post.line.color_text }};">{{ post.line.number }}</p>
+        <div class="{% for l in post.line.all %}{% if forloop.first and forloop.last %}
+        line_parent {% elif forloop.first %} lines_parent {% endif %}{% endfor %}">
+        {% for l in post.line.all|slice:"10" %}
+        {% if forloop.first and forloop.last %}
+            <div class="line" style="background: {{ l.color }};"></div>
+            <a href="{{ l.get_absolute_url }}">
+                <div class="circle circle_a" style="background: {{ l.color }}">
+                    <p style="color: {{ l.color_text }};">{{ l.number }}</p>
                 </div>
             </a>
+        {% else %}
+        <a href="{{ l.get_absolute_url }}">
+            <div class="multi_line_post {% if forloop.first %} blr-20 {% elif forloop.last %} brr-20 {% endif %}"
+                 style="background: {{ l.color }}; --mlph: {{ l.color }}80;">
+                <p style="color: {{ l.color_text }};">{{ l.number }}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
         </div>
         {% else %}
-        <div class="line_parent mt-20">
-            <div class="line"
-                 style="background: linear-gradient(90deg, rgba(0,0,0,0) 0%, {{ post.line.color }} 10%, {{ post.line.color }} 90%, rgba(0,0,0,0) 100%);"></div>
-            <a href="{{ post.line.get_absolute_url }}">
-                <div class="circle circle_a" style="background: {{ post.line.color }}">
-                    <p style="color: {{ post.line.color_text }};">{{ post.line.number }}</p>
+        <div class="{% for l in post.line.all %}{% if forloop.first and forloop.last %}
+        line_parent {% elif forloop.first %} lines_parent {% endif %}{% endfor %}">
+        {% for l in post.line.all|slice:"10" %}
+        {% if forloop.first and forloop.last %}
+            <div class="line" style="background: {{ l.color }};"></div>
+            <a href="{{ l.get_absolute_url }}">
+                <div class="circle circle_a" style="background: {{ l.color }}">
+                    <p style="color: {{ l.color_text }};">{{ l.number }}</p>
                 </div>
             </a>
+        {% else %}
+        <a href="{{ l.get_absolute_url }}">
+            <div class="multi_line_post {% if forloop.first %} blr-20 {% elif forloop.last %} brr-20 {% endif %}"
+                 style="background: {{ l.color }}; --mlph: {{ l.color }}80;">
+                <p style="color: {{ l.color_text }};">{{ l.number }}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
         </div>
         {% endif %}
         <div class="wrap_text">
@@ -31,13 +53,15 @@
                 <p> {{ post.content | safe | linebreaksbr }}</p>
             </div>
             <div class="date_post">
-                <span>{{ post.owner.username }}</span>
-                <span>{{ post.time_update }}</span>
                 {% if post.source %}
                 <a href="{{ post.source }}" target="_blank" class="date_source">
-                    <span>Ссылка на источник:</span>
+                    <span class="to_black">Ссылка на источник:</span>
                 </a>
                 {% endif %}
+                <a href="{% url 'user_profile' post.owner.id %}">
+                    <span class="to_black">{{ post.owner.username }}</span>
+                </a>
+                <span>{{ post.time_update }}</span>
             </div>
         </div>
         {% if request.user.is_staff or post.owner == request.user %}
@@ -46,17 +70,6 @@
             <a href="{% url 'update_post' post.slug %}">
                 <button>Редактировать</button>
             </a>
-            {% if request.user.is_staff %}
-            {% if post.is_public %}
-            <a href="">
-                <button>Отозвать новость</button>
-            </a>
-            {% else %}
-            <a href="">
-                <button>Опубликовать новость</button>
-            </a>
-            {% endif %}
-            {% endif %}
             <a href="{% url 'delete_post' post.slug %}">
                 <button class="btn-delete">Удалить новость</button>
             </a>
