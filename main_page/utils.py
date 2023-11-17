@@ -27,7 +27,3 @@ class DataMixin:
         context['cats'] = cats
 
         return context
-
-
-class LastNewsMixin:
-    paginate_by = 5
