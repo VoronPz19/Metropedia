@@ -61,13 +61,9 @@ class ShowPost(DetailView, DataMixin):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        context['form'] = CommentForm
         c_def = self.get_user_context(title=context['post'])
         return dict(list(context.items()) + list(c_def.items()))
-
-
-class AddComment(LoginRequiredMixin, DataMixin, CreateView):
-    template_name = 'metro_blog/post.html'
-    form_class = CommentForm
 
     def form_valid(self, form):
         new_comment = form.save(commit=False)
@@ -76,10 +72,6 @@ class AddComment(LoginRequiredMixin, DataMixin, CreateView):
         new_comment.save()
         return super().form_valid(form)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Конструктор новостей')
-        return dict(list(context.items()) + list(c_def.items()))
 
 
 class AddPost(LoginRequiredMixin, DataMixin, CreateView):
@@ -134,7 +126,7 @@ class UpdatePost(LoginRequiredMixin, DataMixin, UpdateView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return self.model.objects.filter(owner=self.request.user)
+        return self.model.objects.all()
 
 
 class PostDelete(LoginRequiredMixin, DataMixin, DeleteView):
