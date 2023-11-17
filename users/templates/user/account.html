@@ -53,10 +53,10 @@
             <div>
                 <span>Количество опубликованных постов:</span>
                 <hr class="hr-line mtb-5">
-                <span>{{ ppuc }}</span>
+                <span>{{ pppc }}</span>
             </div>
         </div>
-        <div>
+        <div class="w-100">
             {% if post_user %}
             <div class="your_news bg-fff">
                 <h2>Ваши новости</h2>
@@ -106,7 +106,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <a href="{{ p.get_absolute_url }}">
+                        <a class="post_card" href="{{ p.get_absolute_url }}">
                             <div class="hover_background"></div>
                             <div class="prev_post">
                                 {% if p.image %}
@@ -116,14 +116,37 @@
                                 {% endif %}
                             </div>
                             <h2>{{ p.title | truncatewords:15 }}</h2>
-                            <div class="date_post">
-                                <div class="post_status">
-                                    <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость
-                                        {% if not p.is_public %} не{% endif %} опубликована</p>
-                                </div>
-                                <span>{{ p.owner.username }}|{{ p.time_update }}</span>
-                            </div>
                         </a>
+                        <div class="date_post">
+                            <div class="post_status">
+                                <p>{% if p.is_public %}✅{% else %}❌{% endif %} Новость{% if not p.is_public %} не{% endif %}
+                                    опубликована</p>
+                            </div>
+                            <div class="post_date_wrap">
+                                <a href="{% url 'update_post' p.slug %}">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="485.219px" height="485.22px" viewBox="0 0 485.219 485.22"
+                                         xml:space="preserve" fill="#4388e4" class="btn-icon">
+                    <g>
+                    	<path d="M467.476,146.438l-21.445,21.455L317.35,39.23l21.445-21.457c23.689-23.692,62.104-23.692,85.795,0l42.886,42.897
+                    		C491.133,84.349,491.133,122.748,467.476,146.438z M167.233,403.748c-5.922,5.922-5.922,15.513,0,21.436
+                    		c5.925,5.955,15.521,5.955,21.443,0L424.59,189.335l-21.469-21.457L167.233,403.748z M60,296.54c-5.925,5.927-5.925,15.514,0,21.44
+                    		c5.922,5.923,15.518,5.923,21.443,0L317.35,82.113L295.914,60.67L60,296.54z M338.767,103.54L102.881,339.421
+                    		c-11.845,11.822-11.815,31.041,0,42.886c11.85,11.846,31.038,11.901,42.914-0.032l235.886-235.837L338.767,103.54z
+                    		 M145.734,446.572c-7.253-7.262-10.749-16.465-12.05-25.948c-3.083,0.476-6.188,0.919-9.36,0.919
+                    		c-16.202,0-31.419-6.333-42.881-17.795c-11.462-11.491-17.77-26.687-17.77-42.887c0-2.954,0.443-5.833,0.859-8.703
+                    		c-9.803-1.335-18.864-5.629-25.972-12.737c-0.682-0.677-0.917-1.596-1.538-2.338L0,485.216l147.748-36.986
+                    		C147.097,447.637,146.36,447.193,145.734,446.572z"/>
+                    </g>
+                    </svg>
+                                </a>
+                                <a href="{% url 'user_profile' p.owner.id %}">
+                                    <span>{{ p.owner.username }}</span>
+                                </a>
+                                <span>|{{ p.time_update }}</span>
+                            </div>
+                        </div>
                     </li>
                     {% endfor %}
                 </ul>
@@ -142,58 +165,15 @@
             </div>
             {% endif %}
         </div>
-        <div>
+        <div class="w-100">
             {% if request.user.tracked_city %}
             {% if tracked_city_posts %}
             <div class="tracked_metro bg-fff">
                 <h2>Мы отлеживаем "{{ request.user.tracked_city }}"</h2>
                 <ul class="profile-news">
                     {% for p in tracked_city_posts|slice:"12" %}
-                    <li class="element mw-wrap brad-10 black-shadow">
-                        <div class="cat_post">
-                            <a href="{{ p.city.get_absolute_url }}">
-                                <span class="link_city">{{ p.city.title }}</span>
-                            </a>
-                            <ul class="post_lines_list">
-                                {% for l in p.line.all|slice:"5" %}
-                                {% if forloop.first and forloop.last %}
-                                <li class="post_single_line hover_line"
-                                    style="background: {{ l.color }}; --hl:{{ l.color }}80;">
-                                    <a href="{{ l.get_absolute_url }}">
-                                        <span style="color: {{ l.color_text }};">
-                                            {{ l.title }}
-                                        </span>
-                                    </a>
-                                </li>
-                                {% else %}
-                                <li class="post_multiple_line">
-                                    <a href="{{ l.get_absolute_url }}">
-                                        <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
-                                             style="--svgh: {{ l.color }}80">
-                                            <g>
-                                                <title>background</title>
-                                                <rect fill="none" id="canvas_background" height="62" width="102" y="-1"
-                                                      x="-1"/>
-                                            </g>
-                                            <g>
-                                                <title>{{ l.title }}</title>
-                                                <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212" x="0.0001"
-                                                      stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
-                                                <text font-weight="bold" xml:space="preserve" text-anchor="middle"
-                                                      font-family="Helvetica, Arial, sans-serif" font-size="24"
-                                                      id="svg_4"
-                                                      y="23.31122"
-                                                      x="25" fill-opacity="null" stroke-opacity="null" stroke-width="0"
-                                                      stroke="#000" fill="{{ l.color_text }}">{{ l.number }}</text>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                </li>
-                                {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <a href="{{ p.get_absolute_url }}">
+                    <li class="element brad-10 black-shadow">
+                        <a class="post_card" href="{{ p.get_absolute_url }}">
                             <div class="hover_background"></div>
                             <div class="prev_post">
                                 {% if p.image %}
@@ -202,11 +182,73 @@
                                 <img src="{% static 'images/plug.jpg' %}" alt="post_image">
                                 {% endif %}
                             </div>
-                            <h2>{{ p.title | truncatewords:15 }}</h2>
-                            <div class="date_post">
-                                <span>{{ p.owner.username }}|{{ p.time_update }}</span>
-                            </div>
                         </a>
+                            <div class="cat_post">
+                                <a href="{{ p.city.get_absolute_url }}">
+                                    <span class="link_city">{{ p.city.title }}</span>
+                                </a>
+                                <ul class="post_lines_list">
+                                    {% for l in p.line.all|slice:"5" %}
+                                    <li class="post_multiple_line">
+                                        <a href="{{ l.get_absolute_url }}">
+                                            <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg"
+                                                 style="--svgh: {{ l.color }}80">
+                                                <g>
+                                                    <title>background</title>
+                                                    <rect fill="none" id="canvas_background" height="62" width="102"
+                                                          y="-1"
+                                                          x="-1"/>
+                                                </g>
+                                                <g>
+                                                    <title>{{ l.title }}</title>
+                                                    <rect rx="10" id="svg_1" height="30" width="50" y="-0.01212"
+                                                          x="0.0001"
+                                                          stroke-width="0" stroke="#000" fill="{{ l.color }}"/>
+                                                    <text font-weight="bold" xml:space="preserve" text-anchor="middle"
+                                                          font-family="Helvetica, Arial, sans-serif" font-size="24"
+                                                          id="svg_4"
+                                                          y="23.31122"
+                                                          x="25" fill-opacity="null" stroke-opacity="null"
+                                                          stroke-width="0"
+                                                          stroke="#000" fill="{{ l.color_text }}">{{ l.number }}</text>
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        <a class="post_card" href="{{ p.get_absolute_url }}">
+                            <h2>{{ p.title | truncatewords:15 }}</h2>
+                        </a>
+                        <div class="date_post">
+                            <div class="post_date_wrap">
+                                {% if request.user.is_staff %}
+                                <a href="{% url 'update_post' p.slug %}">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="485.219px" height="485.22px" viewBox="0 0 485.219 485.22"
+                                         xml:space="preserve" fill="#4388e4" class="btn-icon">
+                    <g>
+                    	<path d="M467.476,146.438l-21.445,21.455L317.35,39.23l21.445-21.457c23.689-23.692,62.104-23.692,85.795,0l42.886,42.897
+                    		C491.133,84.349,491.133,122.748,467.476,146.438z M167.233,403.748c-5.922,5.922-5.922,15.513,0,21.436
+                    		c5.925,5.955,15.521,5.955,21.443,0L424.59,189.335l-21.469-21.457L167.233,403.748z M60,296.54c-5.925,5.927-5.925,15.514,0,21.44
+                    		c5.922,5.923,15.518,5.923,21.443,0L317.35,82.113L295.914,60.67L60,296.54z M338.767,103.54L102.881,339.421
+                    		c-11.845,11.822-11.815,31.041,0,42.886c11.85,11.846,31.038,11.901,42.914-0.032l235.886-235.837L338.767,103.54z
+                    		 M145.734,446.572c-7.253-7.262-10.749-16.465-12.05-25.948c-3.083,0.476-6.188,0.919-9.36,0.919
+                    		c-16.202,0-31.419-6.333-42.881-17.795c-11.462-11.491-17.77-26.687-17.77-42.887c0-2.954,0.443-5.833,0.859-8.703
+                    		c-9.803-1.335-18.864-5.629-25.972-12.737c-0.682-0.677-0.917-1.596-1.538-2.338L0,485.216l147.748-36.986
+                    		C147.097,447.637,146.36,447.193,145.734,446.572z"/>
+                    </g>
+                    </svg>
+                                </a>
+                                {% endif %}
+                                <a href="{% url 'user_profile' p.owner.id %}">
+                                    <span>{{ p.owner.username }}</span>
+                                </a>
+                                <span>|{{ p.time_update }}</span>
+                            </div>
+                        </div>
                     </li>
                     {% endfor %}
                 </ul>
