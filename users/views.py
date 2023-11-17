@@ -68,13 +68,14 @@ class Account(LoginRequiredMixin, DataMixin, DetailView):
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
 
-        # ppuc =(public post user count)
-        context['ppuc'] = Blog.objects.filter(owner=self.request.user, is_public=True).count
+        # pppc = (public post profile count)
+        context['post_profile_count'] = Blog.objects.filter(owner=context['user']).count
+        context['pppc'] = Blog.objects.filter(owner=context['user'], is_public=True).count
         context['post_user'] = Blog.objects.filter(owner=self.request.user)
-        context['tracked_city_posts'] = Blog.objects.filter(city=self.request.user.tracked_city)
+        context['tracked_city_posts'] = Blog.objects.filter(city=self.request.user.tracked_city, is_public=True)
         context['posts'] = Blog.objects.filter(is_public=True)
 
-        c_def = self.get_user_context(title=self.request.user)
+        c_def = self.get_user_context(title=context['user'])
         return dict(list(context.items()) + list(c_def.items()))
 
 
@@ -89,10 +90,10 @@ class UserAccount(LoginRequiredMixin, DataMixin, ListView):
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
 
-        # ppuc =(public post user count)
-        context['ppuc'] = Blog.objects.filter(owner=self.request.user, is_public=True).count
+        # pppc = (public post profile count)
+        context['pppc'] = Blog.objects.filter(owner=self.request.user, is_public=True).count
         context['post_user'] = Blog.objects.filter(owner=self.request.user)
-        context['tracked_city_posts'] = Blog.objects.filter(city=self.request.user.tracked_city)
+        context['tracked_city_posts'] = Blog.objects.filter(city=self.request.user.tracked_city, is_public=True)
         context['posts'] = Blog.objects.filter(is_public=True)
 
         c_def = self.get_user_context(title=self.request.user)
