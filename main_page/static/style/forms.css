@@ -46,7 +46,8 @@ p label, .file_wrap label{
 
 .form-input[type="text"]:link, .form-input[type="text"]:hover, .form-input[type="text"]:active, .form-input[type="text"]:focus,
 .form-input[type="password"]:link, .form-input[type="password"]:hover, .form-input[type="password"]:active, .form-input[type="password"]:focus,
-.form-input[type="email"]:link, .form-input[type="email"]:hover, .form-input[type="email"]:active, .form-input[type="email"]:focus{
+.form-input[type="email"]:link, .form-input[type="email"]:hover, .form-input[type="email"]:active, .form-input[type="email"]:focus,
+.form-input[type="search"]:link, .form-input[type="search"]:hover, .form-input[type="search"]:active, .form-input[type="search"]:focus{
     animation: 500ms ease-in-out forwards animation-form;
 }
   
@@ -168,4 +169,44 @@ p label, .file_wrap label{
 #id_transfer div:hover {
     background-color: #4388e4;
     color: #fff;
+}
+
+.search-form{
+    margin: 0 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-form input{
+    width: 60%;
+}
+
+.search-form button{
+    width: 25%;
+    margin: 0;
+    margin-left: 5%;
+    font-size: 20px;
+    height: 100%;
+}
+
+.search-form a button{
+    width: 100% !important;
+}
+
+.ordering_form{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.ordering_form label{
+    width: 27.779%;
+}
+
+.ordering_form select{
+    width: 66.668%;
 }

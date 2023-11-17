@@ -11,7 +11,7 @@
 }
 
 .link_line{
-    margin: 20px 10px;
+    margin: 0 10px;
     font-size: 20px;
     font-weight: bold;
     display: block;
@@ -62,7 +62,7 @@
 }
 
 .content li{
-    margin-bottom: 20px;
+    margin: 10px auto;
     font-size: 20px;
 }
 
@@ -132,6 +132,15 @@
     width: calc(50% - 20px);
 }
 
+.btn_return{
+    display: flex !important;
+}
+
+.btn_return button{
+    margin: 10px auto;
+    width: 90%;
+}
+
 .btn_cats{
     padding: 0;
 }
@@ -195,10 +204,15 @@
     margin: 0 10px !important;
     color: #00000080 !important;
     font-size: 16px !important;
-  }
+}
+
+.post_card{
+    height: 100% !important;
+    justify-content: flex-start !important;
+}
 
 .element a{
-    height: 100%;
+    height: fit-content;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -332,8 +346,10 @@
 }
 
 .element a h2{
-    margin: 0 20px;
+    margin: 0 10px;
     font-size: 19px;
+    max-height: 90px;
+    overflow: hidden;
 }
 
 .element a p{
@@ -350,24 +366,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: center;
+    align-content: flex-end;
 }
 
 .date_post span{
-margin: 0 10px;
+margin: 0;
+margin-left: 15px;
 font-size: 16px;
 color: #00000080;
 }
 
 .date_source span{
-    color: #000000;
-}
-
-.date_source span:visited{
-    color: #00000080;
-}
-
-.date_source span:hover{
-    color: #00000080;
+    text-decoration:underline;
 }
 
 .post p{
@@ -416,6 +427,32 @@ color: #00000080;
     margin-bottom: 30px;
     height: 80px;
     width: 100%;
+}
+
+.lines_parent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi_line_post{
+    width: 80px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi_line_post:hover{
+    background-color: var(--mlph) !important;
+}
+
+.multi_line_post p{
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .line{
@@ -581,15 +618,22 @@ color: #00000080;
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
-.st_button span{
-    max-width: 80%;
+.st_text_info{
+    margin: 0 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.st_button span, .st_text_info span{
+    text-align: center;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .st_button .circle_line{
@@ -617,4 +661,15 @@ color: #00000080;
 .del-sizing{
     width: 30% !important;
     margin: 0 !important;
+}
+
+.not_found{
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.not_found img{
+    width: 30%;
+    margin: 20px auto;
 }
