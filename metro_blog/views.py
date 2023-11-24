@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, View
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -61,17 +61,8 @@ class ShowPost(DetailView, DataMixin):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
-        context['form'] = CommentForm
         c_def = self.get_user_context(title=context['post'])
         return dict(list(context.items()) + list(c_def.items()))
-
-    def form_valid(self, form):
-        new_comment = form.save(commit=False)
-        new_comment.owner = self.request.user
-        new_comment.post = self.model
-        new_comment.save()
-        return super().form_valid(form)
-
 
 
 class AddPost(LoginRequiredMixin, DataMixin, CreateView):

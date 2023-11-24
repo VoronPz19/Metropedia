@@ -21,12 +21,4 @@ class AddPostForm(ModelForm):
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
-
-
-class CommentForm(ModelForm):
-    text = forms.CharField(label='Введите комментарий',
-                           widget=forms.TextInput(attrs={'class': 'form-input', 'cols': 60, 'rows': 10}))
-
-    class Meta:
-        model = Blog
-        fields = ('text',)
+        self.fields['slug'].required = False

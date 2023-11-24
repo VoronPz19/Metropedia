@@ -33,18 +33,3 @@ class Blog(models.Model):
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
         ordering = ['-time_created']
-
-
-class Comment(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Владелец')
-    post = models.ForeignKey(Blog, on_delete=models.CASCADE, blank=True, null=True, verbose_name='пост')
-    text = models.TextField(max_length=500, blank=True, null=True, verbose_name='Текст')
-    time_created = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
-
-    def __str__(self):
-        return self.text
-
-    class Meta:
-        verbose_name = 'Комментарий'
-        verbose_name_plural = 'Комментарии'
-        ordering = ['-time_created']
