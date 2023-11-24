@@ -43,3 +43,7 @@ class DataMixin:
         context['cats'] = cats
 
         return context
+
+
+class PaginateMixin:
+    paginate_by = 9
