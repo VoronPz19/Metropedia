@@ -3,12 +3,15 @@ from django.urls import reverse
 from users.models import Profile
 from ckeditor.fields import RichTextField
 
+from main_page.utils import unique_slugify
+
 
 class Blog(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Автор')
 
     title = models.CharField(max_length=250, blank=False, verbose_name='Название')
-    slug = models.CharField(max_length=250, unique=True, verbose_name='Ссылка')
+    slug = models.CharField(max_length=250, unique=True, verbose_name='Ссылка',
+                            help_text='Оставьте поле пустым, чтобы сгенерировать автоматически')
 
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
 
@@ -25,6 +28,11 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = unique_slugify(self, self.title)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
