@@ -12,12 +12,12 @@
             <ul class="vertical_list">
                 {% for line in lines %}
                     {% if line.city == city %}
-                        <li class="element color_hover" style="box-shadow: 0px 2px 12px 2px {{ line.color }}; --ch:{{ line.color }};">
+                        <li class="element color_hover w-90" style="box-shadow: 0px 2px 12px 2px {{ line.color }}; --ch:{{ line.color }};">
                             <a href="{{ line.get_absolute_url }}">
                                 <div class="circle_line" style="background: {{ line.color }};">
                                     <p style="color: {{ line.color_text }};">{{ line.number }}</p>
                                 </div>
-                                <h2 style="--cth:{{ line.color_text }};">{{ line.title | truncatechars:50 }}</h2>
+                                <h2 class="vertical_list_title_wrap" style="--cth:{{ line.color_text }};">{{ line.title | truncatechars:50 }}</h2>
                             </a>
                         </li>
                     {% endif %}

@@ -22,8 +22,12 @@
             <div class="double_list">
                 {% if depot.trains.all %}
                     <ul class="vertical_train_list">
+                        <li>
+                            <h4 class="title_wrap">Подвижной состав:</h4>
+                            <hr class="hr-line">
+                        </li>
                         {% for train in depot.trains.all %}
-                        <li class="element">
+                        <li class="element w-90">
                             <a href="{{ train.get_absolute_url }}">
                                 <div class="prev_train">
                                     {% if train.image %}
@@ -41,30 +45,36 @@
                     </ul>
                 {% endif %}
                 <ul class="vertical_list">
-                    <li class="element color_hover"
+                    <li>
+                        <h4 class="title_wrap">Основная обслуживаемая линия:</h4>
+                        <hr class="hr-line">
+                    </li>
+                    <li class="element color_hover w-90"
                         style="box-shadow: 0px 2px 12px 2px {{ depot.main_line.color }}; --ch:{{ depot.main_line.color }};">
                         <a href="{{ depot.main_line.get_absolute_url }}">
                             <div class="circle_line" style="background: {{ depot.main_line.color }};">
                                 <p style="color: {{ depot.main_line.color_text }};">{{ depot.main_line.number }}</p>
                             </div>
-                            <h2 style="--cth:{{ depot.main_line.color_text }};">{{ depot.main_line.title | truncatechars:50 }}</h2>
+                            <h2 class="vertical_list_title_wrap" style="--cth:{{ depot.main_line.color_text }};">{{ depot.main_line.title | truncatechars:50 }}</h2>
                         </a>
                     </li>
+                    {% if depot.lines.all %}
                     <li>
                         <h4 class="title_wrap">Другие обслуживаемые линий:</h4>
                         <hr class="hr-line">
                     </li>
                     {% for sl in depot.lines.all %}
-                        <li class="element color_hover"
+                        <li class="element color_hover w-90"
                             style="box-shadow: 0px 2px 12px 2px {{ sl.color }}; --ch:{{ sl.color }};">
-                            <a href="{{ depot.main_line.get_absolute_url }}">
+                            <a href="{{ sl.get_absolute_url }}">
                                 <div class="circle_line" style="background: {{ sl.color }};">
                                     <p style="color: {{ sl.color_text }};">{{ sl.number }}</p>
                                 </div>
-                                <h2 style="--cth:{{ sl.color_text }};">{{ sl.title | truncatechars:50 }}</h2>
+                                <h2 class="vertical_list_title_wrap" style="--cth:{{ sl.color_text }};">{{ sl.title | truncatechars:50 }}</h2>
                             </a>
                         </li>
                     {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
