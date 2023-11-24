@@ -2,12 +2,12 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from main_page.utils import DataMixin
+from main_page.utils import DataMixin, PaginateMixin
 
 from .forms import *
 
 
-class PublicPosts(DataMixin, ListView):
+class PublicPosts(DataMixin, PaginateMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -21,21 +21,21 @@ class PublicPosts(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AllPosts(DataMixin, ListView):
+class AllPosts(DataMixin, PaginateMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['status'] = Blog.is_public
+        context['status'] = True
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         c_def = self.get_user_context(title='Предложенные новости')
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class UserPosts(LoginRequiredMixin, DataMixin, ListView):
+class UserPosts(LoginRequiredMixin, DataMixin, PaginateMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -43,7 +43,7 @@ class UserPosts(LoginRequiredMixin, DataMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['posts'] = Blog.objects.filter(owner=self.request.user)
-        context['status'] = Blog.is_public
+        context['status'] = True
         if self.request.user.is_authenticated:
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         print(Blog.owner, self.request.user)
