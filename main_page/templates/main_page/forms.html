@@ -10,7 +10,9 @@
             {% for f in form %}
                 <p class="{% if f.label == 'Цвет текста' or f.label == 'Цвет' or f.label == 'Путь к предыдущей станций' or f.label == 'Статус' or f.label == 'Путь к следующей станций' or f.label == 'Тип пути' %} w-50
                 {% else %} w-100 {% endif %}">
-                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                    <label for="{{ f.id_for_label }}" class="form-label">
+                        {{ f.label }}{% if f.help_text %} ({{ f.help_text }}){% endif %}
+                    </label>
                     {{ f }}
                 </p>
                     {% if f.errors %}

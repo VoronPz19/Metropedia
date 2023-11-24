@@ -20,7 +20,11 @@
             <li><p class="p-as-a">Добавить запись</p>
                 <ul class="submenu">
                     {% for sm in submenu_editor %}
+                    {% if sm.title == '__object_line_hr__' %}
+                    <li class="w-100"><hr class="hr-line w-100 mtb-5"></li>
+                    {% else %}
                     <li><a href="{% url sm.url_name %}">{{ sm.title }}</a></li>
+                    {% endif %}
                     {% endfor %}
                 </ul>
             </li>
