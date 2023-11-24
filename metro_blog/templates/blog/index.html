@@ -11,7 +11,7 @@
             {% for p in posts %}
             <li class="element mw-wrap brad-10 black-shadow">
                 <div class="cat_post" id="fixed_container">
-                    <a href="{{ p.city.get_absolute_url }}">
+                    <a class="{% if not p.line.all %}post_lines_null{% endif %}" href="{{ p.city.get_absolute_url }}">
                         <span class="link_city">{{ p.city.title }}</span>
                     </a>
                     <ul class="post_lines_list">
@@ -99,6 +99,25 @@
             </li>
             {% endfor %}
         </ul>
+        {% if page_obj.has_other_pages %}
+            <div>
+                <ul class="list-pages">
+                    {% if page_obj.has_previous %}
+                    <li class="page_num"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+                    {% for p in paginator.page_range %}
+                    {% if page_obj.number == p %}
+                    <li class="page_num page-num-selected">{{ p }}</li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <li class="page_num"><a href="?page={{ p }}">{{ p }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page_num"><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
     </section>
     {% else %}
     <section class="no_news_wrap">

@@ -75,27 +75,6 @@
             </a>
         </div>
         {% endif %}
-        {% if post.is_public %}
-        <hr class="hr-line">
-        <div class="comments">
-            <h2>Комментарий: {{ comments.count|pluralize }}</h2>
-            {% if request.user.is_authenticated %}
-            <form class="form" method="POST">
-                {% csrf_token %}
-                {% for f in form %}
-                <p class="{% if f.label == 'Цвет текста' or f.label == 'Цвет' or f.label == 'Путь к предыдущей станций' or f.label == 'Статус' or f.label == 'Путь к следующей станций' or f.label == 'Тип пути' %} w-50
-                {% else %} w-100 {% endif %}">
-                    <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
-                    {{ f }}
-                </p>
-                {% endfor %}
-                <input class="btn btn--sub btn--lg" type="submit" value="Comments"/>
-            </form>
-            {% endif %}
-            {% if comment %}
-            {% endif %}
-        </div>
-        {% endif %}
     </section>
 </main>
 {% endblock %}
