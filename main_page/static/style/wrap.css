@@ -34,6 +34,7 @@
 
 .wrap_text h1{
     font-size: 30px;
+    margin: 20px auto;
     text-align: center;
     max-width: 80%;
 }

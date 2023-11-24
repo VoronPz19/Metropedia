@@ -107,44 +107,45 @@ p label, .file_wrap label{
     background-size: 50% 50%;
 }
 
-#id_trains, #id_city, #id_lines{
+#id_trains, #id_city, #id_lines, #id_line{
+    max-height: 500px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    overflow: auto;
 }
 
-#id_trains div, #id_city div, #id_lines div{
+#id_trains div, #id_city div, #id_lines div, #id_line div{
     width: 30%;
     margin: 2px 0;
-    padding: 0 10px;
+    padding: 0 5px;
     border-left: 5px solid #4388e4;
     border-right: 5px solid #4388e4;
 }
 
-#id_trains div label, #id_city div label, #id_lines div label{
+#id_trains div label, #id_city div label, #id_lines div label, #id_line div label{
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
 
-#id_trains div input, #id_city div input, #id_lines div input{
+#id_trains div input, #id_city div input, #id_lines div input, #id_line div input{
     width: 20px;
 }
 
 #id_status, #id_prev_path, #id_next_path{
     width: 100%;
 }
-
-#id_transfer div label input, #id_line div label input{
+#id_transfer div label input{
     width: 20px;
 }
 
-#id_transfer div label, #id_line div label{
+#id_transfer div label{
     display: block;
 }
 
-#id_transfer div, #id_line div{
+#id_transfer div{
     display: flex;
     flex-direction: row;
     margin: 10px 0;
@@ -157,7 +158,7 @@ p label, .file_wrap label{
     text-overflow: clip;
 }
 
-#id_transfer, #id_line{
+#id_transfer{
     height: 300px;
     display: flex;
     flex-direction: row;

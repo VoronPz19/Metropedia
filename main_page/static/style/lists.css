@@ -40,7 +40,6 @@
     width: 50%;
     height: 605px;
     margin: 0;
-    padding-top: 40px;
     background-color: #F5F5F5;
     box-shadow: inset 0px 2px 12px 2px #4388e4;
     display: flex;
@@ -95,6 +94,11 @@
 .vertical_list .element, .vertical_lines_cat_list .element, .vertical_station_cat_list .element{
     height: 55px;
     border-radius: 27.5px;
+}
+
+.vertical_list_title_wrap{
+    width: calc(100% - 75px);
+    justify-content: center;
 }
 
 .vertical_stations_list .element{

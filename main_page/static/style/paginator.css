@@ -1,0 +1,34 @@
+.list-pages{
+    display: flex;
+    align-items: center;
+}
+
+.list-pages .page-num-selected{
+    color: #4388e8;
+    height: 100%;
+    padding: 10px;
+    margin: 0 10px;
+    border: 3px solid #4388e8;
+    border-radius: 10px;
+}
+
+.list-pages a{
+    color: #4388e880;
+    height: 100%;
+    padding: 10px;
+    margin: 0 10px;
+    border: 3px solid #4388e880;
+    border-radius: 10px;
+    display: block;
+}
+
+.list-pages a:hover{
+    color: #4388e8;
+    border: 3px solid #4388e8;
+}
+
+.page_num{
+    margin: 6px;
+    border: 0;
+    font-weight: bold;
+}
