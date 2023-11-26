@@ -83,6 +83,10 @@
     max-width: 30%;
 }
 
+.top-45{
+    top: 45%;
+}
+
 .black-shadow{
     box-shadow: 2px 0 10px 2px #000;
 }

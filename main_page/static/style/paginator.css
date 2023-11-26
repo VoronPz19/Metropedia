@@ -1,5 +1,6 @@
 .list-pages{
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -7,7 +8,7 @@
     color: #4388e8;
     height: 100%;
     padding: 10px;
-    margin: 0 10px;
+    margin: 0 10px !important;
     border: 3px solid #4388e8;
     border-radius: 10px;
 }
@@ -28,7 +29,7 @@
 }
 
 .page_num{
-    margin: 6px;
+    margin: 0 !important;
     border: 0;
     font-weight: bold;
 }

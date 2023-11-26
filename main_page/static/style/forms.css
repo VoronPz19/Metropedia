@@ -7,7 +7,7 @@
 }
 
 
-p label, .file_wrap label{
+p label, .file_wrap label, .input-file-container-main-form .form-label{
     display: block;
     width: 100%;
     font-size: 20px;
@@ -17,6 +17,10 @@ p label, .file_wrap label{
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: center;
+}
+
+.input-file-container-main-form .form-label{
+    margin: 20px;
 }
 
 .form-input{
@@ -148,6 +152,8 @@ p label, .file_wrap label{
 #id_transfer div{
     display: flex;
     flex-direction: row;
+    font-size: 14px;
+    font-weight: bold;
     margin: 10px 0;
     box-shadow: 2px 2px 12px 2px #4388e4;
     border-radius: 5px;
@@ -155,7 +161,7 @@ p label, .file_wrap label{
     height: 30px;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: clip;
+    text-overflow: ellipsis;
 }
 
 #id_transfer{
@@ -210,4 +216,257 @@ p label, .file_wrap label{
 
 .ordering_form select{
     width: 66.668%;
+}
+
+.input-file-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-file-container-main-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file span {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #4388e4;
+	line-height: 22px;
+	height: 40px;
+    width: 80%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+.input-file input[type=file] {
+    position: absolute;
+    top: -35%;
+    left: 55%;
+    display: block;
+}
+ 
+/* Focus */
+.input-file input[type=file]:focus + span {
+	box-shadow: 2px 2px 12px 2px #4388e4;
+}
+ 
+/* Hover/active */
+.input-file:hover span {
+	background-color: #7db5ff;
+}
+.input-file:active span {
+	background-color: #2b4a74;
+}
+ 
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+	background-color: #ccc;
+}
+
+.example-1 .form-group{
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.example-1 .form-group button{
+    width: 70%;
+    margin: 30px auto;
+}
+
+.example-1 input[type=file]{
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.example-1 .label{
+    position: relative;
+    width: 70%;
+    height: 200px;
+    margin: 0 auto;
+    border: 3px dashed #4388e4;
+    border-radius: 10px;
+    display: flex;
+    padding: 1.2em;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+    flex-direction: column;
+}
+
+.example-1 .label svg{
+    width: 30%;
+    margin: 10px auto;
+    z-index: 1;
+}
+
+.example-1 .label .image{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 0;
+    filter: blur(1px) brightness(40%);
+}
+
+.example-1, .example-1 .label .title{
+    color: #4388e4;
+    transition: 200ms color;
+}
+
+.example-1 .label .title{
+    position: absolute;
+    top: 100px;
+    right: 50%;
+    margin-right: -57.5px;
+    z-index: 1;
+}
+
+.example-1 label .hovering{
+    position: absolute;
+    opacity: 0;
+    width: 160px;
+    top: 130px;
+    left: 50%;
+    margin-left: -80px;
+    height: 5px;
+    border-radius: 5px;
+    background: #4388e4;
+    z-index: 1;
+}
+
+.example-1 .label:hover{
+    animation: 500ms ease-out forwards animation-file-form;
+}
+
+.example-1 .label:hover .image{
+    animation: 500ms ease-out forwards animation-file-form-image;
+}
+
+.example-1 .label:hover .title{
+    animation: 2000ms ease-out forwards animation-file-form-title;
+}
+
+.example-1 .label:hover .hovering{
+    animation: 500ms ease-out forwards animation-file-form-line;
+}
+
+.example-1 .label:hover svg{
+    animation: 2000ms ease-out forwards animation-file-form-arrow;
+}
+
+
+@keyframes animation-file-form-image {
+    0% {
+        border-radius: 10px;
+    }
+  
+    100% {
+        border-radius: 0;
+    }
+}
+
+@keyframes animation-file-form {
+    0% {
+        border-radius: 10px;
+        border: 3px solid #4388e4;
+    }
+  
+    100% {
+        border-radius: 0;
+        border: 3px solid #4388e480;
+    }
+}
+
+@keyframes animation-file-form-title {
+    0% {
+        opacity: 1;
+    }
+  
+    25% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0;
+    }
+  
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes animation-file-form-line {
+    0% {
+        opacity: 0;
+    }
+  
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes animation-file-form-arrow {
+    0% {
+        padding-top: 0;
+    }
+
+    25% {
+        padding-top: 15px;
+    }
+
+    50% {
+        padding-top: 0;
+    }
+    
+    75% {
+        padding-top: 15px;
+    }
+    
+    100% {
+        padding-top: 0;
+    }
+}
+
+.submit_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_msg{
+    width: 25%;
+    text-align: center;
+    box-shadow: 2px 0 12px 2px #4388e4;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #4388e4;
+    font-weight: bold;
 }

@@ -59,16 +59,6 @@ p{
     font-size: 0.92em;
 }
 
-tbody{
-    background: #ccc;
-    box-shadow: 0px 2px 12px 2px #4388e4;
-}
-
-tbody, tr, th, td{
-    border: 0;
-    padding: 5px;
-}
-
 th{
     color: #4388e4;
     font-size: 18px;
