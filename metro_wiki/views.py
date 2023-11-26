@@ -236,6 +236,7 @@ class UpdateCity(DataMixin, UpdateView):
     form_class = AddCityForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'city_slug'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('cities')
 
@@ -264,6 +265,7 @@ class UpdateLine(DataMixin, UpdateView):
     form_class = AddLineForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'line_slug'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('lines')
 
@@ -292,6 +294,7 @@ class UpdateStation(DataMixin, UpdateView):
     form_class = AddStationForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'station_slug'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('stations')
 
@@ -320,6 +323,7 @@ class UpdateTrain(DataMixin, UpdateView):
     form_class = AddTrainForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'train_slug'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('trains')
 
@@ -348,6 +352,7 @@ class UpdateDepot(DataMixin, UpdateView):
     form_class = AddDepotForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'depot_slug'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('depots')
 
