@@ -1,4 +1,5 @@
 {% extends 'main_page/base.html' %}
+{% load static %}
 
 {% block content %}
 <main class="content">
@@ -8,24 +9,60 @@
             {% csrf_token %}
             {{ form.media }}
             {% for f in form %}
-                <p class="{% if f.label == 'Цвет текста' or f.label == 'Цвет' or f.label == 'Путь к предыдущей станций' or f.label == 'Статус' or f.label == 'Путь к следующей станций' or f.label == 'Тип пути' %} w-50
+            {% if f.label == 'Картинка' %}
+            <div class="w-100 input-file-container-main-form">
+                <label for="{{ f.id_for_label }}" class="form-label">{{ f.label }}</label>
+                <div class="example-1">
+                    <div class="form-group">
+                        <label class="label">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                 viewBox="0 0 46 46" xml:space="preserve">
+                                <g>
+                                	<polygon style="fill:#4388e4;" points="46,3.004 0,3 23.002,43 "/>
+                                </g>
+                            </svg>
+                            <span class="hovering"></span>
+                            <span class="title">Добавить файл</span>
+                            {{ f }}
+                            {% if model.image %}
+                            <img src="{{ model.image.url }}" alt="image" class="image">
+                            {% endif %}
+                        </label>
+                        {% if model.image %}
+                        <button type="submit" name="clear_image">Очистить</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class="{% if f.label == 'Цвет текста' or f.label == 'Цвет' or f.label == 'Путь к предыдущей станций' or f.label == 'Статус' or f.label == 'Путь к следующей станций' or f.label == 'Тип пути' %} w-50
                 {% else %} w-100 {% endif %}">
-                    <label for="{{ f.id_for_label }}" class="form-label">
-                        {{ f.label }}{% if f.help_text %} ({{ f.help_text }}){% endif %}
-                    </label>
-                    {{ f }}
-                </p>
-                    {% if f.errors %}
-                        <div class="form-error">{{ f.errors }}</div>
-                    {% endif %}
+                <label for="{{ f.id_for_label }}" class="form-label">
+                    {{ f.label }}{% if f.help_text %} ({{ f.help_text }}){% endif %}
+                </label>
+                {{ f }}
+            </p>
+            {% if f.errors %}
+            <div class="form-error">{{ f.errors }}</div>
+            {% endif %}
+            {% endif %}
             {% endfor %}
-            <button class="w-25 m-30">Сохранить</button>
-            {% if request.user.is_staff and public_form %}
-            {% if post.is_public %}
-                <button class="w-25 m-30" type="submit" name="save_non_public">Сохранить и отозвать</button>
-                {% else %}
-                <button class="w-25 m-30" type="submit" name="save_public">Сохранить и опубликовать</button>
+            {% if loading_message %}
+            <div class="submit_container">
+                <button class="w-25 m-30">Сохранить</button>
+                {% if loading_message %}
+                <div class="form_msg">При сохранений станций вам придётся подождать...</div>
                 {% endif %}
+            </div>
+            {% else %}
+            <button class="w-25 m-30">Сохранить</button>
+            {% endif %}
+            {% if request.user.is_staff and public_form %}
+            {% if model.is_public %}
+            <button class="w-25 m-30" type="submit" name="save_non_public">Сохранить и отозвать</button>
+            {% else %}
+            <button class="w-25 m-30" type="submit" name="save_public">Сохранить и опубликовать</button>
+            {% endif %}
             {% endif %}
         </form>
     </div>

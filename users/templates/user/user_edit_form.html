@@ -6,9 +6,11 @@
         <h1>{{ title }}</h1>
         <form class="form-style" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="w-100 file_wrap">
-                <label for="{{ form.image.id_for_label }}" class="form-label">Картинка</label>
-                {{ form.image }}
+            <div class="input-file-container">
+                <label tabindex="0" for="{{ form.image.id_for_label }}" class="input-file w-50">
+                    {{ form.image }}
+ 	   	            <span class="input-file-btn">Выберите фотографию</span>
+ 	            </label>
             </div>
             {% if form.image.errors %}
             <div class="form-error">{{ form.image.errors }}</div>

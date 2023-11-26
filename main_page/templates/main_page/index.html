@@ -4,16 +4,12 @@
 
 {% block content %}
 <main class="content">
-    <!--
-    <section class="main_sect">
-        <video autoplay loop muted class="bgvideo" id="bgvideo">
-            <source src="{% static 'trains.mp4' %}" type="video/mp4">
-        </video>
-        <h1 class="title_wrap">Добро пожаловать на сайт Метропедий</h1>
+    <section class="title_sect">
+        <img src="{% static 'images/main_background.jpg' %}" alt="main_image">
+        <h1 class="title_wrap">Добро пожаловать в Метропедию</h1>
+        <h2 class="title_wrap">Информационно-новостной сайт про метрополитены России</h2>
     </section>
-    -->
     <div class="wrap" style="flex-direction: column;">
-        <h1 class="title_wrap">Добро пожаловать на сайт Метропедий</h1>
         {% if posts %}
         <h2>Последние новости:</h2>
         <section class="post_sect">

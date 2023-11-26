@@ -10,7 +10,7 @@
             <button>Вернуться к станциям</button>
         </a>
         <form action="{% url 'search_station' %}" method="get" class="search-form" autocomplete="off">
-            <input type="search" placeholder="Введите название станций" name="q" required="" value="{{ q }}" class="form-input">
+            <input type="search" placeholder="Введите название станций" name="q" value="{{ q }}" class="form-input">
             <button type="submit">Найти станцию</button>
             <p class="ordering_form">{{ ordering }}</p>
         </form>
@@ -37,6 +37,7 @@
             </li>
             {% endfor %}
         </ul>
+
         {% else %}
         <div class="not_found">
                 <img src="{% static 'images/notfound.svg' %}" alt="nonews">
