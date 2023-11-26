@@ -66,6 +66,7 @@ class StationAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'index', 'status', 'line')
     list_display_links = ('id', 'title',)
     search_fields = ('title', 'line',)
+    filter_horizontal = ('transfer',)
 
 
 class LineAdmin(admin.ModelAdmin):
