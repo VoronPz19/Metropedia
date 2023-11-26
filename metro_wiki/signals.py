@@ -4,26 +4,17 @@ from django.dispatch.dispatcher import receiver
 
 
 @receiver(post_save, sender=Station)
-def transfer_update(sender, instance, created, **kwargs):
-    if created:
-        from_station = instance
-        to_station = Station.objects.set(
-            transfer=from_station.transfer,
-        )
-
-
-@receiver(post_save, sender=Station)
-def update_transfer(sender, instance, created, **kwargs):
+def transfer_update(sender, instance, **kwargs):
     from_station = instance
-    to_station = from_station.transfer
-    if created is False:
-        to_station.transfer = from_station.transfer
-        to_station.save()
+    for stations in Station.objects.all():
+        stations.transfer.remove(from_station)
+    for to_station in instance.transfer.all():
+        to_station.transfer.add(from_station)
 
 
 @receiver(post_delete, sender=Station)
-def delete_transfer(sender, instance, **kwargs):
-    to_station = instance.transfer
-    to_station.delete()
-
-
+def transfer_update(sender, instance, **kwargs):
+    from_station = instance
+    for to_station in instance.transfer.all():
+        print(to_station)
+        to_station.transfer.remove(from_station)
