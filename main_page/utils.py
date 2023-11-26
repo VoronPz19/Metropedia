@@ -23,7 +23,7 @@ submenu_editor = [{'title': '__object_line_hr__'},
                   {'title': '__object_line_hr__'},
                   {'title': 'Добавить новость', 'url_name': 'add_post'},
                   {'title': 'Посмотреть предложенные новости', 'url_name': 'post_list'},
-                  {'title': '__object_line_hr__'},]
+                  {'title': '__object_line_hr__'}]
 
 cats = [{'title': 'Города', 'url_name': 'cities', 'image': 'images/cities.jpg'},
         {'title': 'Линий', 'url_name': 'lines', 'image': 'images/lines.jpg'},
@@ -43,7 +43,3 @@ class DataMixin:
         context['cats'] = cats
 
         return context
-
-
-class PaginateMixin:
-    paginate_by = 9
