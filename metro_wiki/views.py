@@ -238,6 +238,13 @@ class UpdateCity(DataMixin, UpdateView):
 
     success_url = reverse_lazy('cities')
 
+    def form_valid(self, form):
+        new_object = form.save(commit=False)
+        if 'clear_image' in self.request.POST:
+            new_object.image = None
+        new_object.save()
+        return super().form_valid(form)
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
@@ -258,6 +265,13 @@ class UpdateLine(DataMixin, UpdateView):
     slug_url_kwarg = 'line_slug'
 
     success_url = reverse_lazy('lines')
+
+    def form_valid(self, form):
+        new_object = form.save(commit=False)
+        if 'clear_image' in self.request.POST:
+            new_object.image = None
+        new_object.save()
+        return super().form_valid(form)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -280,6 +294,13 @@ class UpdateStation(DataMixin, UpdateView):
 
     success_url = reverse_lazy('stations')
 
+    def form_valid(self, form):
+        new_object = form.save(commit=False)
+        if 'clear_image' in self.request.POST:
+            new_object.image = None
+        new_object.save()
+        return super().form_valid(form)
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
@@ -300,6 +321,13 @@ class UpdateTrain(DataMixin, UpdateView):
     slug_url_kwarg = 'train_slug'
 
     success_url = reverse_lazy('trains')
+
+    def form_valid(self, form):
+        new_object = form.save(commit=False)
+        if 'clear_image' in self.request.POST:
+            new_object.image = None
+        new_object.save()
+        return super().form_valid(form)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -330,6 +358,13 @@ class UpdateDepot(DataMixin, UpdateView):
         context['update'] = update
         c_def = self.get_user_context(title='Редактировать депо')
         return dict(list(context.items()) + list(c_def.items()))
+
+    def form_valid(self, form):
+        new_object = form.save(commit=False)
+        if 'clear_image' in self.request.POST:
+            new_object.image = None
+        new_object.save()
+        return super().form_valid(form)
 
     def get_queryset(self):
         return self.model.objects.all()
