@@ -382,7 +382,7 @@ class UpdateDepot(DataMixin, UpdateView):
 
 class StationSelectorResult(DataMixin, ListView):
     template_name = 'wiki/search/stations.html'
-    paginate_by = 64
+    paginate_by = 128
     context_object_name = 'stations'
 
     def get_context_data(self, object_list=None, *args, **kwargs):
