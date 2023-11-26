@@ -311,6 +311,7 @@ class UpdateStation(DataMixin, UpdateView):
             context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
         update = True
         context['update'] = update
+        context['loading_message'] = True
         c_def = self.get_user_context(title='Редактировать станцию')
         return dict(list(context.items()) + list(c_def.items()))
 
