@@ -104,6 +104,8 @@ class UpdatePost(LoginRequiredMixin, DataMixin, UpdateView):
             new_post.is_public = False
         if 'save_public' in self.request.POST:
             new_post.is_public = True
+        if 'clear_image' in self.request.POST:
+            new_post.image = None
         new_post.save()
         return super().form_valid(form)
 
