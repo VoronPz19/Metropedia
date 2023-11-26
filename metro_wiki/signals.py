@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save
 from .models import *
 from django.dispatch.dispatcher import receiver
 
@@ -10,11 +10,3 @@ def transfer_update(sender, instance, **kwargs):
         stations.transfer.remove(from_station)
     for to_station in instance.transfer.all():
         to_station.transfer.add(from_station)
-
-
-@receiver(post_delete, sender=Station)
-def transfer_update(sender, instance, **kwargs):
-    from_station = instance
-    for to_station in instance.transfer.all():
-        print(to_station)
-        to_station.transfer.remove(from_station)
