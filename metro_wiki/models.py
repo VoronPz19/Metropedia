@@ -108,7 +108,7 @@ class Station(models.Model):
     class Meta:
         verbose_name = 'Станция'
         verbose_name_plural = 'Станций'
-        ordering = ['index', 'title']
+        ordering = ['line', 'index', 'title']
 
 
 class Train(models.Model):
