@@ -7,7 +7,10 @@
             <li class="logo">
                 <a href="{% url 'user' %}">
                     <img src="{{ request.user.image.url }}" alt="{{ request.user.username }}" class="avatar">
-                    <p>{{ request.user.username }}{% if request.user.is_staff %}👑{% endif %}</p>
+                    <p>{{ request.user.username }}
+                        {% if request.user.is_staff %}
+                        {% if request.user.is_superuser %}👑{% else %}✏{% endif %}
+                        {% endif %}</p>
                 </a>
             </li>
             {% else %}

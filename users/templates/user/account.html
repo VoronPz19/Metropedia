@@ -8,7 +8,10 @@
         <div class="main_user_info bg-fff">
             <img src="{{ request.user.image.url}}" alt="{{request.user}}">
             <div>
-                <h2>{{request.user}} {% if request.user.is_staff %}👑{% endif %}</h2>
+                <h2>{{request.user}}
+                    {% if request.user.is_staff %}
+                    {% if request.user.is_superuser %}👑{% else %}✏{% endif %}
+                    {% endif %}</h2>
                 <a href="{% url 'user_profile_edit' request.user.id %}">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -43,7 +46,9 @@
             <div class="central_user_info">
                 <span>Статус:</span>
                 <hr class="hr-line mtb-5">
-                <span>{% if request.user.is_staff %}Администратор сайта{% else %}Пользователь{% endif %}</span>
+                <span>{% if request.user.is_staff %}
+                      {% if request.user.is_superuser %}Администратор сайта{% else %}Менеджер сайта{% endif %}
+                      {% else %}Пользователь{% endif %}</span>
             </div>
             <div>
                 <span>Количество предложенных постов:</span>
@@ -171,7 +176,7 @@
             <div class="tracked_metro bg-fff">
                 <h2>Мы отлеживаем "{{ request.user.tracked_city }}"</h2>
                 <ul class="profile-news">
-                    {% for p in tracked_city_posts|slice:"12" %}
+                    {% for p in tracked_city_posts|slice:"5" %}
                     <li class="element brad-10 black-shadow">
                         <a class="post_card" href="{{ p.get_absolute_url }}">
                             <div class="hover_background"></div>
