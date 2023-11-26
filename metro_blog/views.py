@@ -93,7 +93,7 @@ class UpdatePost(LoginRequiredMixin, DataMixin, UpdateView):
     form_class = AddPostForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'post_slug'
-    context_object_name = 'post'
+    context_object_name = 'model'
 
     success_url = reverse_lazy('blogs')
     login_url = reverse_lazy('login')
