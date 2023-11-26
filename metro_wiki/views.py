@@ -1,8 +1,9 @@
-from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+
 from .forms import *
 from metro_blog.models import Blog
-from django.urls import reverse_lazy
+
 from main_page.utils import DataMixin
 
 
