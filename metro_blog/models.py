@@ -10,8 +10,7 @@ class Blog(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Автор')
 
     title = models.CharField(max_length=250, blank=False, verbose_name='Название')
-    slug = models.CharField(max_length=250, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=250, unique=True, verbose_name='Ссылка')
 
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
 

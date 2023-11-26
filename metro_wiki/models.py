@@ -8,8 +8,7 @@ from main_page.utils import unique_slugify
 
 class City(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название метрополитена')
-    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле  пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
 
@@ -32,8 +31,7 @@ class City(models.Model):
 
 class Line(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Название линий')
-    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле  пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     number = models.CharField(max_length=3, blank=True, verbose_name='Номер линий')
     color_text = ColorField(default='#FFFFFF', verbose_name='Цвет текста')
@@ -81,11 +79,11 @@ class Station(models.Model):
     )
 
     title = models.CharField(max_length=100, blank=False, verbose_name='Название станций')
-    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле  пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     index = models.IntegerField(default=1, verbose_name='Номер станций (север-юг/восток-запад)')
-    transfer = models.ManyToManyField('Station', blank=True, related_name='+', verbose_name='Пересадки')
+    transfer = models.ManyToManyField('Station', blank=True, related_name='+', verbose_name='Пересадки',
+                                      help_text='После добавления пересадок, вам нужно ещё раз сохранить станцию')
     path_direction = models.CharField(max_length=200, choices=PATH_DIRECTION,
                                       default='Основной путь', verbose_name='Тип пути')
     prev_path = models.CharField(max_length=200, choices=PATH_TYPE,
@@ -115,8 +113,7 @@ class Station(models.Model):
 
 class Train(models.Model):
     title = models.CharField(max_length=100, blank=False, verbose_name='Модель метровагона')
-    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле  пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
 
@@ -148,8 +145,7 @@ class Depot(models.Model):
 
     number_of_depot = models.IntegerField(default=1, verbose_name='Номер депо')
     title = models.CharField(max_length=100, blank=False, verbose_name='Название депо')
-    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка',
-                            help_text='Оставьте поле  пустым, чтобы сгенерировать автоматически')
+    slug = models.CharField(max_length=100, blank=True, unique=True, verbose_name='Ссылка')
     image = models.ImageField(upload_to='images/%Y/%M/%D', blank=True, verbose_name='Картинка')
     content = RichTextField(blank=True, null=True, verbose_name='Текст', config_name='extends')
     status = models.CharField(max_length=200, choices=STATUS_TYPE, default='Эксплуатируется', verbose_name='Статус')
