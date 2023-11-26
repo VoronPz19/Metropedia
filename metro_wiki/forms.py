@@ -4,6 +4,8 @@ from .models import *
 
 
 class AddCityForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
+
     class Meta:
         model = City
         fields = '__all__'
@@ -17,13 +19,18 @@ class AddCityForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
+        self.fields['image'].required = False
 
 
 class AddLineForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
+
     class Meta:
         model = Line
         fields = '__all__'
@@ -37,13 +44,18 @@ class AddLineForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
+        self.fields['image'].required = False
 
 
 class AddStationForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
+
     class Meta:
         model = Station
         fields = '__all__'
@@ -59,10 +71,13 @@ class AddStationForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
+        self.fields['image'].required = False
 
 
 class OrderingStationForm(forms.Form):
@@ -77,10 +92,12 @@ class OrderingStationForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
 
 class AddTrainForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
+
     class Meta:
         model = Train
         fields = '__all__'
@@ -94,13 +111,18 @@ class AddTrainForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
+        self.fields['image'].required = False
 
 
 class AddDepotForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
+    
     class Meta:
         model = Depot
         fields = '__all__'
@@ -117,7 +139,10 @@ class AddDepotForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
+        self.fields['image'].required = False

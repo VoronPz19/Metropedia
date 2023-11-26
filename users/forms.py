@@ -45,6 +45,7 @@ class EditingUserForm(UserChangeForm):
             field.widget.attrs.update({'class': 'form-input'})
 
         self.fields['image'].required = False
+        self.fields['image'].widget.attrs.update({'name': 'file'})
         self.fields['city'].required = False
         self.fields['tracked_city'].required = False
 

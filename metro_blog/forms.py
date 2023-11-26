@@ -4,6 +4,7 @@ from .models import *
 
 
 class AddPostForm(ModelForm):
+    image = forms.ImageField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file-input'}))
 
     class Meta:
         model = Blog
@@ -17,8 +18,11 @@ class AddPostForm(ModelForm):
         super().__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-input'})
+            field.widget.attrs.update({'class': 'form-input', 'autocomplete': 'off'})
 
         self.fields['content'].widget.attrs.update({'class': 'form-control django_ckeditor_5'})
         self.fields['content'].required = False
+        self.fields['slug'].widget.attrs.update(
+            {'placeholder': 'Оставьте поле пустым, чтобы сгенерировать автоматически'})
         self.fields['slug'].required = False
+        self.fields['image'].required = False
