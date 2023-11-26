@@ -2,12 +2,12 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from main_page.utils import DataMixin, PaginateMixin
+from main_page.utils import DataMixin
 
 from .forms import *
 
 
-class PublicPosts(DataMixin, PaginateMixin, ListView):
+class PublicPosts(DataMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -21,10 +21,11 @@ class PublicPosts(DataMixin, PaginateMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AllPosts(DataMixin, PaginateMixin, ListView):
+class AllPosts(DataMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
+    paginate_by = 9
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,7 +36,7 @@ class AllPosts(DataMixin, PaginateMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class UserPosts(LoginRequiredMixin, DataMixin, PaginateMixin, ListView):
+class UserPosts(LoginRequiredMixin, DataMixin, ListView):
     model = Blog
     template_name = 'blog/index.html'
     context_object_name = 'posts'
