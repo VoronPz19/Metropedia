@@ -291,7 +291,7 @@ class UpdateLine(DataMixin, UpdateView):
 
 class UpdateStation(DataMixin, UpdateView):
     model = Station
-    form_class = AddStationForm
+    form_class = EditStationForm
     template_name = 'main_page/forms.html'
     slug_url_kwarg = 'station_slug'
     context_object_name = 'model'
