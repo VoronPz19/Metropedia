@@ -1,0 +1,23 @@
+{% extends 'main_page/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content">
+    <div class="form_wrap">
+        <h2>Удаление новости ({{ object | truncatechars:25 }})</h2>
+      <div class="warning_message">
+        <img src="{% static 'images/warning.svg' %}" alt="">
+        <h3>Внимание!</h3>
+        <p>Отменить это действие будет невозможно!</p>
+      </div>
+      <p>Вы действительно хотите удалить этот объект?</p>
+        <form class="deleting" method="post">
+            {% csrf_token %}
+            <a href="{% url 'main' %}">
+                <button type="button">Вернуться</button>
+            </a>
+            <button class="btn-delete del-sizing" type="submit">Удалить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

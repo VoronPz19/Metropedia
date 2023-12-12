@@ -11,7 +11,11 @@
                 <li class="element">
                     <a href="{{ c.get_absolute_url }}">
                         <button class="btn_cats">
+                            {% if c.image %}
                             <img src="{{ c.image.url }}" alt="city_image">
+                            {% else %}
+                            <img src="{% static 'images/plug.jpg' %}" alt="city_image">
+                            {% endif %}
                             <span>{{ c.title }}</span></button>
                     </a>
                 </li>

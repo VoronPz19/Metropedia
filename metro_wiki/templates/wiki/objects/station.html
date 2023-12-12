@@ -414,6 +414,11 @@
                 <a href="{% url 'update_station' station.slug %}">
                     <button class="mb-20 mt-20">Редактировать</button>
                 </a>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'delete_station' station.slug %}">
+                    <button class="btn-delete mb-20 mt-20">Удалить</button>
+                </a>
+                {% endif %}
             {% endif %}
         </div>
     </section>

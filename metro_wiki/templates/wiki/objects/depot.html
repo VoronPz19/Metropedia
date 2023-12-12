@@ -11,11 +11,6 @@
         <div class="wrap_text">
             <h2> Информация о электродепо:</h2>
             <p>{{ depot.content | safe | linebreaksbr }}</p>
-            {% if request.user.is_staff %}
-                <a href="{% url 'update_depot' depot.slug %}">
-                    <button class="mb-20 mt-20">Редактировать</button>
-                </a>
-            {% endif %}
         </div>
         <div class="wrap_text pb-20">
             <h2>Обслуживаемые линий{% if depot.trains.all %} и подвижной состав{% endif %}:</h2>
@@ -78,6 +73,16 @@
                 </ul>
             </div>
         </div>
+        {% if request.user.is_staff %}
+        <a href="{% url 'update_depot' depot.slug %}">
+            <button class="mb-20 mt-20">Редактировать</button>
+        </a>
+        {% if request.user.is_superuser %}
+        <a href="{% url 'delete_depot' depot.slug %}">
+            <button class="btn-delete mb-20 mt-20">Удалить</button>
+        </a>
+        {% endif %}
+        {% endif %}
     </section>
 </main>
 {% endblock %}

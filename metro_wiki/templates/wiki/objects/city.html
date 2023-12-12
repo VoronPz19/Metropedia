@@ -1,4 +1,5 @@
 {% extends 'main_page/base.html' %}
+{% load static %}
 
 {% block content %}
 <main class="content post_style">
@@ -23,7 +24,11 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            {% if c.image %}
             <img class="scheme" src="{{ city.image.url }}" alt="schem">
+            {% else %}
+            <img class="scheme"  src="{% static 'images/plug.jpg' %}" alt="schem">
+            {% endif %}
         </div>
         <div class="wrap_text">
             <h2> Информация о метрополитене:</h2>
@@ -32,6 +37,11 @@
                 <a href="{% url 'update_city' city.slug %}">
                     <button class="mb-20 mt-20">Редактировать</button>
                 </a>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'delete_city' city.slug %}">
+                    <button class="btn-delete mb-20 mt-20">Удалить</button>
+                </a>
+                {% endif %}
             {% endif %}
         </div>
     </section>

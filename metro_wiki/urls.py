@@ -27,4 +27,10 @@ urlpatterns = [
     path('station/<slug:station_slug>/update/', UpdateStation.as_view(), name='update_station'),
     path('train/<slug:train_slug>/update/', UpdateTrain.as_view(), name='update_train'),
     path('depot/<slug:depot_slug>/update/', UpdateDepot.as_view(), name='update_depot'),
+
+    path('city/<slug:city_slug>/delete/', DeleteCity.as_view(), name='delete_city'),
+    path('line/<slug:line_slug>/delete/', DeleteLine.as_view(), name='delete_line'),
+    path('station/<slug:station_slug>/delete/', DeleteStation.as_view(), name='delete_station'),
+    path('train/<slug:train_slug>/delete/', DeleteTrain.as_view(), name='delete_train'),
+    path('depot/<slug:depot_slug>/delete/', DeleteDepot.as_view(), name='delete_depot'),
 ]

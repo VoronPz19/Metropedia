@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .forms import *
@@ -163,7 +164,7 @@ class ShowDepot(DataMixin, DetailView):
 # -- Adding objects --
 
 
-class AddCity(DataMixin, CreateView):
+class AddCity(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddCityForm
     template_name = 'main_page/forms.html'
     success_url = reverse_lazy('cities')
@@ -176,7 +177,7 @@ class AddCity(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddLine(DataMixin, CreateView):
+class AddLine(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddLineForm
     template_name = 'main_page/forms.html'
     success_url = reverse_lazy('lines')
@@ -189,7 +190,7 @@ class AddLine(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddStation(DataMixin, CreateView):
+class AddStation(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddStationForm
     template_name = 'main_page/forms.html'
     success_url = reverse_lazy('stations')
@@ -202,7 +203,7 @@ class AddStation(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddTrain(DataMixin, CreateView):
+class AddTrain(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddTrainForm
     template_name = 'main_page/forms.html'
     success_url = reverse_lazy('trains')
@@ -215,7 +216,7 @@ class AddTrain(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddDepot(DataMixin, CreateView):
+class AddDepot(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddDepotForm
     template_name = 'main_page/forms.html'
     success_url = reverse_lazy('depots')
@@ -231,7 +232,7 @@ class AddDepot(DataMixin, CreateView):
 # -- Editing objects --
 
 
-class UpdateCity(DataMixin, UpdateView):
+class UpdateCity(LoginRequiredMixin, DataMixin, UpdateView):
     model = City
     form_class = AddCityForm
     template_name = 'main_page/forms.html'
@@ -260,7 +261,7 @@ class UpdateCity(DataMixin, UpdateView):
         return self.model.objects.all()
 
 
-class UpdateLine(DataMixin, UpdateView):
+class UpdateLine(LoginRequiredMixin, DataMixin, UpdateView):
     model = Line
     form_class = AddLineForm
     template_name = 'main_page/forms.html'
@@ -289,7 +290,7 @@ class UpdateLine(DataMixin, UpdateView):
         return self.model.objects.all()
 
 
-class UpdateStation(DataMixin, UpdateView):
+class UpdateStation(LoginRequiredMixin, DataMixin, UpdateView):
     model = Station
     form_class = EditStationForm
     template_name = 'main_page/forms.html'
@@ -319,7 +320,7 @@ class UpdateStation(DataMixin, UpdateView):
         return self.model.objects.all()
 
 
-class UpdateTrain(DataMixin, UpdateView):
+class UpdateTrain(LoginRequiredMixin, DataMixin, UpdateView):
     model = Train
     form_class = AddTrainForm
     template_name = 'main_page/forms.html'
@@ -348,7 +349,7 @@ class UpdateTrain(DataMixin, UpdateView):
         return self.model.objects.all()
 
 
-class UpdateDepot(DataMixin, UpdateView):
+class UpdateDepot(LoginRequiredMixin, DataMixin, UpdateView):
     model = Depot
     form_class = AddDepotForm
     template_name = 'main_page/forms.html'
@@ -377,6 +378,99 @@ class UpdateDepot(DataMixin, UpdateView):
         return self.model.objects.all()
 
 
+# -- delete objects --
+
+
+class DeleteCity(LoginRequiredMixin, DataMixin, DeleteView):
+    model = City
+    template_name = 'wiki/delete-objects.html'
+    slug_url_kwarg = 'city_slug'
+
+    success_url = reverse_lazy('cities')
+    login_url = reverse_lazy('login')
+
+    context_object_name = 'object'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title='Удалить город')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteLine(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Line
+    template_name = 'wiki/delete-objects.html'
+    slug_url_kwarg = 'line_slug'
+
+    success_url = reverse_lazy('lines')
+    login_url = reverse_lazy('login')
+
+    context_object_name = 'object'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title='Удалить линию')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteStation(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Station
+    template_name = 'wiki/delete-objects.html'
+    slug_url_kwarg = 'station_slug'
+
+    success_url = reverse_lazy('stations')
+    login_url = reverse_lazy('login')
+
+    context_object_name = 'object'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title='Удалить станцию')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteTrain(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Train
+    template_name = 'wiki/delete-objects.html'
+    slug_url_kwarg = 'train_slug'
+
+    success_url = reverse_lazy('trains')
+    login_url = reverse_lazy('login')
+
+    context_object_name = 'object'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title='Удалить метровагон')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class DeleteDepot(LoginRequiredMixin, DataMixin, DeleteView):
+    model = Depot
+    template_name = 'wiki/delete-objects.html'
+    slug_url_kwarg = 'depot_slug'
+
+    success_url = reverse_lazy('depots')
+    login_url = reverse_lazy('login')
+
+    context_object_name = 'object'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['post_user_count'] = Blog.objects.filter(owner=self.request.user).count
+        c_def = self.get_user_context(title='Удалить депо')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 # -- selectors --
 
 
@@ -396,7 +490,8 @@ class StationSelectorResult(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Station.objects.filter(title__icontains=self.request.GET.get('q'))\
-            .order_by(self.request.GET.get('ordering'), 'title') if self.request.GET.get('ordering')\
-            != 'По алфавиту (По убиванию)' else Station.objects.filter(title__icontains=self.request.GET.get('q'))\
+        return Station.objects.filter(title__icontains=self.request.GET.get('q')) \
+            .order_by(self.request.GET.get('ordering'), 'title') if self.request.GET.get('ordering') \
+                                                                    != 'По алфавиту (По убиванию)' else Station.objects.filter(
+            title__icontains=self.request.GET.get('q')) \
             .order_by(self.request.GET.get('ordering'))
